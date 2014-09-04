@@ -33,7 +33,7 @@
         android:theme="@style/AppTheme" >
         
         <activity 
-            android:name="drawnzer.anurag.shareplayer.SharePlayer">
+            android:name="drawnzer.anurag.shareplayer.StreamSharePlayer">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

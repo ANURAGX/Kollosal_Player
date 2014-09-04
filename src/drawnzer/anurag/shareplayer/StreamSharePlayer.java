@@ -22,7 +22,7 @@ package drawnzer.anurag.shareplayer;
 import android.app.Activity;
 import android.os.Bundle;
 
-public class SharePlayer extends Activity{
+public class StreamSharePlayer extends Activity{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
