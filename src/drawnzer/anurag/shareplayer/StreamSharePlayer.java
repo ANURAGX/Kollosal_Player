@@ -27,13 +27,15 @@ import android.graphics.drawable.TransitionDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
 import com.astuetz.PagerSlidingTabStrip;
 
 
@@ -45,16 +47,35 @@ public class StreamSharePlayer extends FragmentActivity{
 	ViewPager pager;
 	PagerSlidingTabStrip pagerSlideTab;
 	private int currentColor = 0xFF666666;
+	
+	
+	private DrawerLayout slidingDrawer;
+	private ActionBarDrawerToggle toggle;
+	private CharSequence mTitle;
+	private ListView lsMenu;
+	
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.share_player);		
+		
+		setContentView(R.layout.combined_ui);	
+		
+		mTitle = getTitle();
+		slidingDrawer = (DrawerLayout)findViewById(R.id.slideDrawer);
+		lsMenu = (ListView)findViewById(R.id.list_slidermenu);
+		lsMenu.setAdapter(new ArrayAdapter<String>(StreamSharePlayer.this, android.R.layout.simple_list_item_1,
+				getResources().getStringArray(R.array.lsMenu)));
+		
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);		
 		pager = (ViewPager)findViewById(R.id.pager);
 		pagerSlideTab = (PagerSlidingTabStrip)findViewById(R.id.tabs);
-		pager.setAdapter( new MyPagerAdapter(getSupportFragmentManager()));
+		
+		pager.setAdapter(new TaskAdapter(getSupportFragmentManager()));
+		
 		final int pageMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources()
 				.getDisplayMetrics());
 		pager.setPageMargin(pageMargin);
@@ -129,30 +150,5 @@ public class StreamSharePlayer extends FragmentActivity{
 		public void unscheduleDrawable(Drawable who, Runnable what) {
 			handler.removeCallbacks(what);
 		}
-	};
-
-	public class MyPagerAdapter extends FragmentPagerAdapter {
-
-		private final String[] TITLES = { "Categories", "Home", "Top Paid", "Top Free", "Top Grossing", "Top New Paid",
-				"Top New Free", "Trending" };
-
-		public MyPagerAdapter(FragmentManager fm) {
-			super(fm);
-		}
-
-		@Override
-		public CharSequence getPageTitle(int position) {
-			return TITLES[position];
-		}
-
-		@Override
-		public int getCount() {
-			return TITLES.length;
-		}
-
-		@Override
-		public Fragment getItem(int position) {
-			return SuperAwesomeCardFragment.newInstance(position);
-		}
-	}	
+	};	
 }

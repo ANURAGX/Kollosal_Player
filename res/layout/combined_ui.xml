@@ -1,0 +1,27 @@
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/slideDrawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/frame_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <include 
+            layout="@layout/share_player"/>
+    </LinearLayout>
+    
+    <!-- Listview to display slider menu -->
+    <ListView
+        android:id="@+id/list_slidermenu"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:choiceMode="singleChoice"
+        android:dividerHeight="1dp"        
+        />    
+</android.support.v4.widget.DrawerLayout>
+
