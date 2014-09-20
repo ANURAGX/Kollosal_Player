@@ -40,7 +40,8 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import drawnzer.anurag.shareplayer.R;
+import drawnzer.anurag.kollosal.R;
+
 
 
 @SuppressLint("NewApi")

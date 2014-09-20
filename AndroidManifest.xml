@@ -18,10 +18,22 @@
  -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="drawnzer.anurag.shareplayer"
+    package="drawnzer.anurag.kollosal"
     android:versionCode="1"
     android:versionName="1.0" >
 
+    
+    <!-- APP'S PERMISSIONS.... -->
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    
+    <!-- APP'S FEATURES.... -->
+    <uses-feature android:name="android.hardware.camera" />
+    
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="21" />
@@ -33,7 +45,7 @@
         android:theme="@style/AppTheme" >
         
         <activity 
-            android:name="drawnzer.anurag.shareplayer.StreamSharePlayer">
+            android:name="drawnzer.anurag.kollosal.KollosalStreamPlayer">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
