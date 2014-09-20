@@ -19,7 +19,7 @@
 
 <resources>
 
-    <string name="app_name">Stream Share Player</string>
+    <string name="app_name">Kollosal Stream Player</string>
     <string-array name="lsMenu">
         <item>Theme</item>
         <item>Theme</item>
