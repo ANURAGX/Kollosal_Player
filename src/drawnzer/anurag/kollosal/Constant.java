@@ -19,6 +19,19 @@
 
 package drawnzer.anurag.kollosal;
 
+/**
+ * 
+ * @author Anurag....
+ *
+ */
 public class Constant {
 
+	//Colors....
+	public static int[] COLORS = {	R.color.grey,
+									R.color.green,
+									R.color.red,
+									R.color.orange,
+									R.color.blue,
+									R.color.violet
+								};
 }

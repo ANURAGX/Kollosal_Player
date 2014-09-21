@@ -86,12 +86,12 @@ public class KollosalStreamPlayer extends FragmentActivity{
 	public void onColorClicked(View v) {
 		int color = Color.parseColor(v.getTag().toString());
 		changeColor(color);
-
+		
 	}
 	private void changeColor(int newColor) {
-
 		pagerSlideTab.setIndicatorColor(newColor);
-
+		pager.setBackgroundColor(newColor);
+		
 		// change ActionBar color just if an ActionBar is available
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 

@@ -64,7 +64,7 @@ public class SuperAwesomeCardFragment extends Fragment {
 		v.setLayoutParams(params);
 		v.setLayoutParams(params);
 		v.setGravity(Gravity.CENTER);
-		v.setBackgroundResource(R.drawable.background_card);
+		//v.setBackgroundResource(R.drawable.background_card);
 		v.setText("CARD " + (position + 1));
 
 		fl.addView(v);
