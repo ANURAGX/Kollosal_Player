@@ -19,6 +19,7 @@
 
 package drawnzer.anurag.kollosal;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -81,6 +82,7 @@ public class KollosalStreamPlayer extends FragmentActivity{
 		pager.setPageMargin(pageMargin);
 		pagerSlideTab.setViewPager(pager);
 		changeColor(currentColor);
+		//startActivity(new Intent(KollosalStreamPlayer.this, VideoPlayer.class));
 	}	
 	
 	public void onColorClicked(View v) {
