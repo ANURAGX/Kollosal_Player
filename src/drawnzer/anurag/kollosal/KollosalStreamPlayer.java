@@ -25,6 +25,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.TransitionDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -82,7 +83,9 @@ public class KollosalStreamPlayer extends FragmentActivity{
 		pager.setPageMargin(pageMargin);
 		pagerSlideTab.setViewPager(pager);
 		changeColor(currentColor);
-		startActivity(new Intent(KollosalStreamPlayer.this, VideoPlayer.class));
+		/*Intent inte = new Intent(KollosalStreamPlayer.this, VideoPlayer.class);
+		inte.setData(Uri.parse("/sdcard/Movies/Godzilla 2014.mkv"));
+		startActivity(inte);*/
 	}	
 	
 	public void onColorClicked(View v) {
