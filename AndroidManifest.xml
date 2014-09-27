@@ -68,7 +68,7 @@
         
         <!-- VIDEO PLAYER ACTIVITY.... -->
         <activity 
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+            android:theme="@android:style/Theme.Holo.NoActionBar"
             android:name="drawnzer.anurag.kollosal.VideoPlayer"
             android:screenOrientation="landscape">
             
