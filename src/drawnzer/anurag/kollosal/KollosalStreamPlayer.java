@@ -82,7 +82,7 @@ public class KollosalStreamPlayer extends FragmentActivity{
 		pager.setPageMargin(pageMargin);
 		pagerSlideTab.setViewPager(pager);
 		changeColor(currentColor);
-		//startActivity(new Intent(KollosalStreamPlayer.this, VideoPlayer.class));
+		startActivity(new Intent(KollosalStreamPlayer.this, VideoPlayer.class));
 	}	
 	
 	public void onColorClicked(View v) {

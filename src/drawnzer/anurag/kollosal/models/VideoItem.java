@@ -19,10 +19,45 @@
 
 package drawnzer.anurag.kollosal.models;
 
+import java.io.File;
+
+import android.graphics.Bitmap;
+
 public class VideoItem {
 
-	public VideoItem(String[] NAMES) {
+	
+	private String videoPath;
+	private String folderDisplayName;
+	private Bitmap thumb;
+	public VideoItem(String path , Bitmap bitmap) {
 		// TODO Auto-generated constructor stub
+		this.videoPath = path;
+		this.folderDisplayName = new File(new File(this.videoPath).getParent()).getName();
+		this.thumb = bitmap;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public String getDisplayName(){
+		return this.folderDisplayName;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public Bitmap getThumbnail(){
+		return this.thumb;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public String getVideoPath(){
+		return this.videoPath;
 	}
 	
 }

@@ -19,30 +19,18 @@
 
 package drawnzer.anurag.kollosal.utils;
 
-import java.util.HashMap;
-
+import io.vov.vitamio.provider.MediaStore;
 import android.content.Context;
-import android.database.Cursor;
-import android.provider.MediaStore;
+import android.util.SparseArray;
 import drawnzer.anurag.kollosal.models.VideoItem;
 
 public class LoadVideoFromSDUtils {
 	
-	public static HashMap<String, VideoItem> VIDEO_LIST;
-	
+	public static SparseArray<VideoItem> VIDEO_LIST;
+	private static int position;
 	public static void prepare(Context ctx){
-		VIDEO_LIST = new HashMap<String , VideoItem>();
-		Cursor cursor = ctx.getContentResolver().query(
-				MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
-				null,
-				null,
-				null,
-				null);
-		while(cursor.moveToNext()){
-			String PATH = cursor.getColumnName(cursor.getColumnIndex(MediaStore.Video.Media.DATA));
-			
-			
-		}
-		cursor.close();
+		position = 0;
+		//MediaStore.Video.Media.
+		
 	}
 }

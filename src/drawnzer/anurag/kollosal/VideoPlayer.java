@@ -42,7 +42,7 @@ public class VideoPlayer extends Activity{
 		setContentView(R.layout.video_view);
 		
 		VideoView videoView = (VideoView) findViewById(R.id.videoView);
-		videoView.setVideoPath("/sdcard/SuperBeam/Pokemon Movie 11.flv");
+		videoView.setVideoPath("/sdcard/Movies/Godzilla 2014.mkv");
 		videoView.requestFocus();
 		videoView.setMediaController(new MediaController(VideoPlayer.this));
 		videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener(){

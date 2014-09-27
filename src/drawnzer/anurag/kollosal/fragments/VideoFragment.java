@@ -20,14 +20,20 @@
 
 package drawnzer.anurag.kollosal.fragments;
 
+import drawnzer.anurag.kollosal.utils.LoadVideoFromSDUtils;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView.LayoutParams;
+import android.widget.ListView;
+import android.widget.Toast;
 
 public class VideoFragment extends Fragment{
 
+	int LS_ID = 10;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -38,6 +44,21 @@ public class VideoFragment extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		return super.onCreateView(inflater, container, savedInstanceState);
+		ListView ls = new ListView(getActivity());
+		ls.setId(LS_ID);
+		LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+		ls.setLayoutParams(params);
+		LoadVideoFromSDUtils.prepare(getActivity());
+		Toast.makeText(getActivity(), LoadVideoFromSDUtils.VIDEO_LIST.size()+"", Toast.LENGTH_SHORT).show();
+		ls.setAdapter(new VideoAdapter(getActivity()));
+		return ls;
+	}
+
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+	
 	}	
+	
+	
 }
