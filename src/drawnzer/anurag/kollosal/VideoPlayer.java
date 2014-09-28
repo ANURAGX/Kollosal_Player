@@ -25,9 +25,13 @@ import io.vov.vitamio.widget.MediaController;
 import io.vov.vitamio.widget.VideoView;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
+import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.OrientationEventListener;
 import android.view.View;
+
 
 /**
  * THIS CLASS PLAYS THE VIDEO FROM THE PROVIDED PATH .....
@@ -40,7 +44,7 @@ public class VideoPlayer extends Activity{
 	private VideoView videoView;
 	String videoPath;
 	private static int NAV_BAR_OPTIONS;
-	
+	OrientationEventListener orientationlistener;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -90,8 +94,25 @@ public class VideoPlayer extends Activity{
 			}
 		});
 		getWindow().getDecorView().setSystemUiVisibility(NAV_BAR_OPTIONS);
+		
+		/**
+		 * This listener is responsible for changing the orientation from reverse_landscape to landscape
+		 * and vice versa....
+		 */
+		orientationlistener = new OrientationEventListener(this , SensorManager.SENSOR_DELAY_NORMAL) {
+			@Override
+			public void onOrientationChanged(int orientation) {
+				// TODO Auto-generated method stub
+				if(orientation>180)
+					setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+				else
+					setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+					
+				
+			}
+		};
+		orientationlistener.enable();
 	}	
-	
 	
 	/**
 	 * This function calculat
