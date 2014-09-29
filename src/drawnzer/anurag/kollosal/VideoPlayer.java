@@ -31,6 +31,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.OrientationEventListener;
 import android.view.View;
+import android.widget.Toast;
 
 
 /**
@@ -112,6 +113,30 @@ public class VideoPlayer extends Activity{
 			}
 		};
 		orientationlistener.enable();
+		
+		/**
+		 * This is handle the next button press request and load the next video
+		 * from the current directory if available....
+		 */
+		mController.setOnNextVideoSelectListener(new MediaController.OnNextVideoSelectListener() {
+			@Override
+			public void onNextVideoSelect() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		/**
+		 * This is handle the previous button press request and load the next video
+		 * from the current directory if available....
+		 */
+		mController.setOnPreviousVideoSelectListener(new MediaController.OnPreviousVideoSelectListener(){
+			@Override
+			public void onPreviousVideoSelect() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}	
 	
 	/**
