@@ -31,7 +31,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.OrientationEventListener;
 import android.view.View;
-import android.widget.Toast;
+
 
 
 /**
