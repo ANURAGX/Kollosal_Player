@@ -19,13 +19,11 @@
 
 package drawnzer.anurag.kollosal;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.TransitionDrawable;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -37,8 +35,8 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import com.astuetz.PagerSlidingTabStrip;
+
 
 
 
@@ -83,9 +81,7 @@ public class KollosalStreamPlayer extends FragmentActivity{
 		pager.setPageMargin(pageMargin);
 		pagerSlideTab.setViewPager(pager);
 		changeColor(currentColor);
-		/*Intent inte = new Intent(KollosalStreamPlayer.this, VideoPlayer.class);
-		inte.setData(Uri.parse("/sdcard/Movies/Godzilla 2014.mkv"));
-		startActivity(inte);*/
+		
 	}	
 	
 	public void onColorClicked(View v) {
