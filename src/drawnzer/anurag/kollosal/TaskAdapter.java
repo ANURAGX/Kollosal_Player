@@ -9,7 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 public class TaskAdapter extends FragmentPagerAdapter{
 
 	private final String[] TITLES = { "VIDEOS", "MUSIC", "NETWORK STREAM", "CLOUD PLAYER", ""
-			+ "CAMERA", "YOU TUBE",};
+			+ "SHARE  CAMERA", "YOU TUBE",};
 	
 	public TaskAdapter(FragmentManager fm) {
 		super(fm);
