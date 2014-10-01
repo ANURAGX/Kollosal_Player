@@ -150,6 +150,7 @@ public class VideoPlayer extends Activity{
 				
 			}
 		});
+				
 	}	
 	
 	/**
