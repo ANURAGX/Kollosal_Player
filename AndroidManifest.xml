@@ -36,7 +36,6 @@
     
     <!-- APP'S FEATURES.... -->
     <uses-feature android:name="android.hardware.camera" />
-    
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="21" />
@@ -68,6 +67,7 @@
         
         <!-- VIDEO PLAYER ACTIVITY.... -->
         <activity 
+            android:hardwareAccelerated="true"
             android:theme="@android:style/Theme.Holo.NoActionBar"
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
             android:name="drawnzer.anurag.kollosal.VideoPlayer"
