@@ -31,6 +31,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.OrientationEventListener;
 import android.view.View;
+import android.widget.Toast;
 
 
 
@@ -133,6 +134,17 @@ public class VideoPlayer extends Activity{
 		mController.setOnPreviousVideoSelectListener(new MediaController.OnPreviousVideoSelectListener(){
 			@Override
 			public void onPreviousVideoSelect() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		/**
+		 * This is to handle the click on Qr Code Button....
+		 */
+		mController.setOnQrCodeClickListener(new MediaController.OnQrCodeClickListener() {
+			@Override
+			public void onCLick() {
 				// TODO Auto-generated method stub
 				
 			}
