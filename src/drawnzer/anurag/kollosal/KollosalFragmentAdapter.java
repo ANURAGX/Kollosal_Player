@@ -21,6 +21,7 @@ package drawnzer.anurag.kollosal;
 
 import drawnzer.anurag.kollosal.fragments.CloudPlayerFragment;
 import drawnzer.anurag.kollosal.fragments.KollosalCameraFragment;
+import drawnzer.anurag.kollosal.fragments.MusicFragment;
 import drawnzer.anurag.kollosal.fragments.NetworkStreamFragments;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -50,6 +51,9 @@ public class KollosalFragmentAdapter extends FragmentPagerAdapter{
 	public Fragment getItem(int position) {
 		
 		switch(position){
+			case 1:
+				return new MusicFragment();
+		
 			case 2:
 				return new NetworkStreamFragments();
 				
