@@ -1,6 +1,7 @@
 package drawnzer.anurag.kollosal;
 
 
+import drawnzer.anurag.kollosal.fragments.CloudPlayerFragment;
 import drawnzer.anurag.kollosal.fragments.NetworkStreamFragments;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -30,6 +31,8 @@ public class TaskAdapter extends FragmentPagerAdapter{
 	public Fragment getItem(int position) {
 		if(position == 2)
 			return new NetworkStreamFragments();
+		else if(position == 3)
+			return new CloudPlayerFragment();
 		return SuperAwesomeCardFragment.newInstance(position);
 	}
 }
