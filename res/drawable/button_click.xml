@@ -25,6 +25,6 @@
         android:drawable="@android:color/transparent" />
     <item android:state_focused="true" android:drawable="@color/semi_white" />
     <item android:state_pressed="true" android:drawable="@color/semi_white" />    
-    <item android:drawable="@android:color/transparent" android:state_enabled="false"/>
-    <item android:drawable="@android:color/transparent" />
+    <item android:drawable="@android:color/transparent"  android:state_enabled="false"/>
+    <item android:drawable="@android:color/transparent"  />
 </selector>
