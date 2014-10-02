@@ -29,8 +29,8 @@
         <item>Theme</item>
         <item>Theme</item>
     </string-array>
-
-    
+    <string name="share_camera">Share Camera</string>
+    <string name="use_other_camera">Connect with Other Phone\'s Camera</string>
     <string name="dropbox">Drop Box</string>
     <string name="googledrive">Google Drive</string>
 </resources>
