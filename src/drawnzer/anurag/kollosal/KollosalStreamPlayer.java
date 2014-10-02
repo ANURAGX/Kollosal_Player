@@ -33,27 +33,31 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+
 import com.astuetz.PagerSlidingTabStrip;
 
-
-
-
+/**
+ * 
+ * @author ANURAG....
+ *
+ */
 public class KollosalStreamPlayer extends FragmentActivity{
 	
 	private final Handler handler = new Handler();
 	Drawable oldBackground;
 	ViewPager pager;
 	PagerSlidingTabStrip pagerSlideTab;
-	private int currentColor = 0xFF666666;
+	private int currentColor = 0xFFC74B46;
 	
-	
+	private boolean isDrawerOpen; 
 	private DrawerLayout slidingDrawer;
 	private ActionBarDrawerToggle toggle;
-	private CharSequence mTitle;
 	private ListView lsMenu;
-	
+	private ListView lsTheme;
 	
 	
 	@Override
@@ -62,15 +66,61 @@ public class KollosalStreamPlayer extends FragmentActivity{
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.combined_ui);	
-		
-		mTitle = getTitle();
+		isDrawerOpen = false;
 		slidingDrawer = (DrawerLayout)findViewById(R.id.slideDrawer);
 		lsMenu = (ListView)findViewById(R.id.list_slidermenu);
+		lsTheme = (ListView)findViewById(R.id.list_slidermenu_theme);
+		lsTheme.setSelector(R.drawable.button_click);
+		lsMenu.setSelector(R.drawable.button_click);
+		
 		lsMenu.setAdapter(new ArrayAdapter<String>(KollosalStreamPlayer.this, android.R.layout.simple_list_item_1,
 				getResources().getStringArray(R.array.lsMenu)));
-		
+		lsTheme.setAdapter(new ThemeAdapter(KollosalStreamPlayer.this));
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-		getActionBar().setHomeButtonEnabled(true);		
+		getActionBar().setHomeButtonEnabled(true);	
+		
+		toggle = new ActionBarDrawerToggle(KollosalStreamPlayer.this, slidingDrawer,
+				R.drawable.ic_launcher_icon, R.string.settings, R.string.app_name){
+			public void onDrawerClosed(View view) {
+                getActionBar().setTitle(getString(R.string.app_name));
+                isDrawerOpen = false;
+                if(lsTheme.getVisibility() == View.VISIBLE)
+    				lsTheme.setVisibility(View.GONE);
+            } 
+            public void onDrawerOpened(View drawerView) {
+                getActionBar().setTitle(getString(R.string.settings));
+                isDrawerOpen = true;
+            }
+		};
+		
+		lsMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int position,long arg3) {
+				// TODO Auto-generated method stub
+				if(position == 5){//handling click on theme option...
+					if(lsTheme.getVisibility() == View.GONE)
+						lsTheme.setVisibility(View.VISIBLE);
+					else 
+						lsTheme.setVisibility(View.GONE);
+				}	
+			}
+		});
+		
+		lsTheme.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,long arg3) {
+				// TODO Auto-generated method stub
+				int[] colors={
+						R.color.grey,R.color.green,
+						R.color.red,R.color.orange,
+						R.color.blue,R.color.violet
+					};
+				changeColor(getResources().getColor(colors[arg2]));
+			}
+		});
+		
+		slidingDrawer.setDrawerListener(toggle);
+		
 		pager = (ViewPager)findViewById(R.id.pager);
 		pagerSlideTab = (PagerSlidingTabStrip)findViewById(R.id.tabs);
 		
@@ -92,7 +142,11 @@ public class KollosalStreamPlayer extends FragmentActivity{
 	private void changeColor(int newColor) {
 		pagerSlideTab.setIndicatorColor(newColor);
 		pager.setBackgroundColor(newColor);
-		
+		LinearLayout listLayout = (LinearLayout)findViewById(R.id.lists_layout);
+		listLayout.setBackgroundColor(newColor);
+		ColorDrawable color = new ColorDrawable(newColor);
+		lsMenu.setDivider(color);
+		lsTheme.setDivider(color);
 		// change ActionBar color just if an ActionBar is available
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 
@@ -151,5 +205,20 @@ public class KollosalStreamPlayer extends FragmentActivity{
 		public void unscheduleDrawable(Drawable who, Runnable what) {
 			handler.removeCallbacks(what);
 		}
-	};	
+	};
+
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		if(isDrawerOpen){
+			slidingDrawer.closeDrawers();
+			if(lsTheme.getVisibility() == View.VISIBLE)
+				lsTheme.setVisibility(View.GONE);
+		}	
+		else{
+			android.os.Process.killProcess(android.os.Process.myPid());
+		}
+	}	
+	
+	
 }
