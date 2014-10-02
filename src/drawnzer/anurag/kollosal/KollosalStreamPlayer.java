@@ -74,7 +74,7 @@ public class KollosalStreamPlayer extends FragmentActivity{
 		pager = (ViewPager)findViewById(R.id.pager);
 		pagerSlideTab = (PagerSlidingTabStrip)findViewById(R.id.tabs);
 		
-		pager.setAdapter(new TaskAdapter(getSupportFragmentManager()));
+		pager.setAdapter(new KollosalFragmentAdapter(getSupportFragmentManager()));
 		
 		final int pageMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources()
 				.getDisplayMetrics());
