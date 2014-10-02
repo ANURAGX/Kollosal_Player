@@ -2,6 +2,7 @@ package drawnzer.anurag.kollosal;
 
 
 import drawnzer.anurag.kollosal.fragments.CloudPlayerFragment;
+import drawnzer.anurag.kollosal.fragments.KollosalCameraFragment;
 import drawnzer.anurag.kollosal.fragments.NetworkStreamFragments;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -29,10 +30,20 @@ public class TaskAdapter extends FragmentPagerAdapter{
 
 	@Override
 	public Fragment getItem(int position) {
-		if(position == 2)
-			return new NetworkStreamFragments();
-		else if(position == 3)
-			return new CloudPlayerFragment();
-		return SuperAwesomeCardFragment.newInstance(position);
+		
+		switch(position){
+			case 2:
+				return new NetworkStreamFragments();
+				
+			case 3:	
+				return new CloudPlayerFragment();
+				
+			case 4:
+				return new KollosalCameraFragment();
+				
+			default :
+				return SuperAwesomeCardFragment.newInstance(position);
+		}
+				
 	}
 }
