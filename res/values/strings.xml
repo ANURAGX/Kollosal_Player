@@ -21,14 +21,22 @@
 
     <string name="app_name">Kollosal Stream Player</string>
     <string-array name="lsMenu">
-        <item>Theme</item>
-        <item>Theme</item>
-        <item>Theme</item>
-        <item>Theme</item>
-        <item>Theme</item>
-        <item>Theme</item>
+        <item>Preferences</item>
+        <item>Check for update</item>
+        <item>Help</item>
+        <item>Bug report</item>
+        <item>About</item>
         <item>Theme</item>
     </string-array>
+    <string-array name="theme_colors">
+        <item>Grey</item>
+        <item>Green</item>
+        <item>Red</item>
+        <item>Orange</item>
+        <item>Blue</item>
+        <item>Violet</item>
+    </string-array>
+    
     <string name="share_camera">Share Camera</string>
     <string name="use_other_camera">Connect with Other Phone\'s Camera</string>
     <string name="dropbox">DROP BOX</string>
@@ -38,5 +46,5 @@
     <string name="playlist">PLAYLISTS</string>
     <string name="recently_played">RECENTLY PLAYED</string>
     <string name="music">ALL MUSIC</string>
-    
+    <string name="settings">Settings</string>
 </resources>
