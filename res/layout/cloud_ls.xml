@@ -17,6 +17,8 @@
  
  -->
 <LinearLayout 
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,6 +29,8 @@
         android:layout_height="5dp"/>
     
     <LinearLayout 
+        android:padding="5dp"
+        android:background="@drawable/button_click"
         android:clickable="true"
         android:focusable="true"
         android:id="@+id/dropbox"
@@ -56,6 +60,8 @@
         android:layout_height="10dp"/>
     
     <LinearLayout 
+        android:padding="5dp"
+        android:background="@drawable/button_click"
         android:clickable="true"
         android:focusable="true"
         android:id="@+id/googleDrive"
