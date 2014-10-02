@@ -31,6 +31,12 @@
     </string-array>
     <string name="share_camera">Share Camera</string>
     <string name="use_other_camera">Connect with Other Phone\'s Camera</string>
-    <string name="dropbox">Drop Box</string>
-    <string name="googledrive">Google Drive</string>
+    <string name="dropbox">DROP BOX</string>
+    <string name="googledrive">GOOGLE DRIVE</string>
+    <string name="album">ALBUMS</string> 
+    <string name="artist">ARTISTS</string>
+    <string name="playlist">PLAYLISTS</string>
+    <string name="recently_played">RECENTLY PLAYED</string>
+    <string name="music">ALL MUSIC</string>
+    
 </resources>
