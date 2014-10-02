@@ -30,4 +30,7 @@
         <item>Theme</item>
     </string-array>
 
+    
+    <string name="dropbox">Drop Box</string>
+    <string name="googledrive">Google Drive</string>
 </resources>
