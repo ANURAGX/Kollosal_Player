@@ -18,6 +18,8 @@
  -->
  
 <LinearLayout 
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -28,16 +30,17 @@
         android:layout_height="5dp"/>
     
     <LinearLayout 
+        android:padding="5dp"
+        android:background="@drawable/button_click"
         android:id="@+id/share_cam"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:clickable="true"
         android:focusable="true">
         
         <ImageButton 
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="false"
@@ -48,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="18sp"/>
+            android:textSize="15sp"/>
     </LinearLayout>
     
     <Space 
@@ -56,9 +59,11 @@
         android:layout_height="10dp"/>
     
     <LinearLayout 
+        android:padding="5dp"
+        android:background="@drawable/button_click"
         android:id="@+id/use_cam"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:clickable="true"
@@ -76,7 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="18sp"/>
+            android:textSize="15sp"/>
     </LinearLayout>
 
 </LinearLayout>
