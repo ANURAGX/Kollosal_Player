@@ -34,13 +34,29 @@
     </LinearLayout>
     
     <!-- Listview to display slider menu -->
-    <ListView
-        android:id="@+id/list_slidermenu"
-        android:layout_width="240dp"
-        android:layout_height="match_parent"
+    
+    <LinearLayout 
+        android:id="@+id/lists_layout"
+        android:orientation="vertical"
         android:layout_gravity="start"
-        android:choiceMode="singleChoice"
-        android:dividerHeight="1dp"        
-        />    
+        android:layout_width="270dp"
+        android:layout_height="match_parent">
+        <ListView
+            android:id="@+id/list_slidermenu"
+        	android:layout_width="270dp"
+        	android:layout_height="wrap_content"
+        	android:choiceMode="singleChoice"
+        	android:dividerHeight="1dp"/>
+        
+        <ListView
+            android:visibility="gone"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/list_slidermenu_theme"
+        	android:layout_width="270dp"
+        	android:layout_height="wrap_content"
+        	android:choiceMode="singleChoice"
+        	android:dividerHeight="1dp"/>
+    </LinearLayout>
+       
 </android.support.v4.widget.DrawerLayout>
 
