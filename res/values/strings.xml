@@ -19,7 +19,7 @@
 
 <resources>
 
-    <string name="app_name">Kollosal Stream Player</string>
+    <string name="app_name">Kollosal Player</string>
     <string-array name="lsMenu">
         <item>Preferences</item>
         <item>Check for update</item>
@@ -36,7 +36,8 @@
         <item>Blue</item>
         <item>Violet</item>
     </string-array>
-    
+    <string name="search">Search</string>
+    <string name="sync">Sync</string>
     <string name="share_camera">Share Camera</string>
     <string name="use_other_camera">Connect with Other Phone\'s Camera</string>
     <string name="dropbox">DROP BOX</string>

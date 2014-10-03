@@ -57,7 +57,7 @@
         
         <!-- APP'S MAIN ACTIVITY.... -->
         <activity 
-            android:name="drawnzer.anurag.kollosal.KollosalStreamPlayer">
+            android:name="drawnzer.anurag.kollosal.KollosalPlayer">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
