@@ -20,6 +20,7 @@
 <resources>
 
     <string name="app_name">Kollosal Player</string>
+    <string name="music_player">Kollosal Music Player</string>
     <string-array name="lsMenu">
         <item>Preferences</item>
         <item>Check for update</item>
