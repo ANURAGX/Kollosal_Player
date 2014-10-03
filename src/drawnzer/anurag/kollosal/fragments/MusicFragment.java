@@ -20,9 +20,13 @@
 package drawnzer.anurag.kollosal.fragments;
 
 import java.util.ArrayList;
+
+import drawnzer.anurag.kollosal.MusicPlayer;
 import drawnzer.anurag.kollosal.R;
 import drawnzer.anurag.kollosal.models.MusicItem;
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -64,7 +68,10 @@ public class MusicFragment extends Fragment{
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position,long arg3) {
 				// TODO Auto-generated method stub
-				
+				MusicItem item = list.get(position);
+				Intent intent = new Intent(getActivity(), MusicPlayer.class);
+				intent.setData(Uri.parse(item.getPath()));
+				startActivity(intent);
 			}
 		});
 		
