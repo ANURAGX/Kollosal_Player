@@ -19,7 +19,6 @@
 
 package drawnzer.anurag.kollosal;
 
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
@@ -32,6 +31,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -45,7 +46,7 @@ import com.astuetz.PagerSlidingTabStrip;
  * @author ANURAG....
  *
  */
-public class KollosalStreamPlayer extends FragmentActivity{
+public class KollosalPlayer extends FragmentActivity{
 	
 	private final Handler handler = new Handler();
 	Drawable oldBackground;
@@ -73,13 +74,13 @@ public class KollosalStreamPlayer extends FragmentActivity{
 		lsTheme.setSelector(R.drawable.button_click);
 		lsMenu.setSelector(R.drawable.button_click);
 		
-		lsMenu.setAdapter(new ArrayAdapter<String>(KollosalStreamPlayer.this, android.R.layout.simple_list_item_1,
+		lsMenu.setAdapter(new ArrayAdapter<String>(KollosalPlayer.this, android.R.layout.simple_list_item_1,
 				getResources().getStringArray(R.array.lsMenu)));
-		lsTheme.setAdapter(new ThemeAdapter(KollosalStreamPlayer.this));
+		lsTheme.setAdapter(new ThemeAdapter(KollosalPlayer.this));
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);	
 		
-		toggle = new ActionBarDrawerToggle(KollosalStreamPlayer.this, slidingDrawer,
+		toggle = new ActionBarDrawerToggle(KollosalPlayer.this, slidingDrawer,
 				R.drawable.ic_launcher_icon, R.string.settings, R.string.app_name){
 			public void onDrawerClosed(View view) {
                 getActionBar().setTitle(getString(R.string.app_name));
@@ -130,15 +131,17 @@ public class KollosalStreamPlayer extends FragmentActivity{
 				.getDisplayMetrics());
 		pager.setPageMargin(pageMargin);
 		pagerSlideTab.setViewPager(pager);
-		changeColor(currentColor);
-		
+		changeColor(currentColor);		
 	}	
 	
-	public void onColorClicked(View v) {
-		int color = Color.parseColor(v.getTag().toString());
-		changeColor(color);
-		
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    // Inflate the menu items for use in the action bar
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.action_bar_menu, menu);
+	    return super.onCreateOptionsMenu(menu);
 	}
+	
 	private void changeColor(int newColor) {
 		pagerSlideTab.setIndicatorColor(newColor);
 		pager.setBackgroundColor(newColor);
