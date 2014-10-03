@@ -19,15 +19,20 @@
 
 package drawnzer.anurag.kollosal;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import drawnzer.anurag.kollosal.fragments.CloudPlayerFragment;
 import drawnzer.anurag.kollosal.fragments.KollosalCameraFragment;
 import drawnzer.anurag.kollosal.fragments.MusicFragment;
 import drawnzer.anurag.kollosal.fragments.NetworkStreamFragments;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 
-public class KollosalFragmentAdapter extends FragmentPagerAdapter{
+/**
+ * 
+ * @author Anurag....
+ *
+ */
+public class KollosalFragmentAdapter extends FragmentStatePagerAdapter{
 
 	private final String[] TITLES = { "VIDEOS", "MUSIC", "CLOUD PLAYER", ""
 			+ "SHARE  CAMERA", "YOU TUBE","NETWORK STREAM"};
