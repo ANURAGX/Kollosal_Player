@@ -36,7 +36,17 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     	<item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
-        <item name="android:windowIsTranslucent">true</item>        
+        <item name="android:windowIsTranslucent">true</item>  
+        <item name="android:actionBarStyle">@style/ActionBarTheme</item>      
+    </style>
+    
+    <!-- Theme for action Bar -->
+    <style name="ActionBarTheme" parent="android:Widget.Holo.ActionBar">
+        <item name="android:titleTextStyle">@style/ActionBarThemeTitleStyle</item>
     </style>
 
+    <!-- Theme for action Bar -->
+    <style name="ActionBarThemeTitleStyle" parent="android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>
