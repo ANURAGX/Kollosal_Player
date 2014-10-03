@@ -20,7 +20,6 @@
 package drawnzer.anurag.kollosal.fragments;
 
 import java.util.ArrayList;
-
 import drawnzer.anurag.kollosal.R;
 import drawnzer.anurag.kollosal.models.MusicItem;
 import android.database.Cursor;
@@ -31,6 +30,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 /**
@@ -60,6 +60,21 @@ public class MusicFragment extends Fragment{
 		// TODO Auto-generated method stub
 		super.onViewCreated(view, savedInstanceState);
 		musicGrids.setAdapter(adapter);
+		musicGrids.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int position,long arg3) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		musicGrids.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+			@Override
+			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,int position, long arg3) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+		});
 		new LoadMusic().execute();
 	}
 
