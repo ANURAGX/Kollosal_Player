@@ -110,6 +110,15 @@
             
         </activity>
         
+        <!-- MUSIC PLAYER ACTIVITY.... -->
+        <activity 
+            android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
+            android:name="drawnzer.anurag.kollosal.MusicPlayer"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo">
+            
+        </activity>
+        
     </application>
 
 </manifest>
