@@ -24,10 +24,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-    <Space 
-        android:layout_width="match_parent"
-        android:layout_height="10dp"/>
-    
     <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -106,5 +102,14 @@
         android:id="@+id/btn5"
         android:layout_width="wrap_content"
         android:layout_height="25sp"/>
+    
+    <GridView 
+        android:scrollbars="none"
+        android:id="@+id/music_grids"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="3">
+        
+    </GridView>
 
 </LinearLayout>
