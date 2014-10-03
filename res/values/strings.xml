@@ -37,6 +37,8 @@
         <item>Blue</item>
         <item>Violet</item>
     </string-array>
+    <string name="equilizer">Equilizer</string>
+    <string name="more_options">More Options</string>
     <string name="search">Search</string>
     <string name="sync">Sync</string>
     <string name="share_camera">Share Camera</string>
