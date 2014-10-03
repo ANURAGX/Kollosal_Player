@@ -19,6 +19,7 @@
 
 package drawnzer.anurag.kollosal;
 
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
@@ -49,11 +50,11 @@ import com.astuetz.PagerSlidingTabStrip;
 public class KollosalPlayer extends FragmentActivity{
 	
 	private final Handler handler = new Handler();
-	Drawable oldBackground;
-	ViewPager pager;
-	PagerSlidingTabStrip pagerSlideTab;
-	private int currentColor = 0xFFC74B46;
-	
+	private Drawable oldBackground;
+	private ViewPager pager;
+	private PagerSlidingTabStrip pagerSlideTab;
+	private int currentColor;
+	private SharedPreferences prefs;
 	private boolean isDrawerOpen; 
 	private DrawerLayout slidingDrawer;
 	private ActionBarDrawerToggle toggle;
@@ -65,6 +66,8 @@ public class KollosalPlayer extends FragmentActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		prefs = getSharedPreferences("APP_SETTINGS", 0);
+		currentColor = prefs.getInt("APP_COLOR",0xFFC74B46);
 		
 		setContentView(R.layout.combined_ui);	
 		isDrawerOpen = false;
@@ -117,6 +120,9 @@ public class KollosalPlayer extends FragmentActivity{
 						R.color.blue,R.color.violet
 					};
 				changeColor(getResources().getColor(colors[arg2]));
+				SharedPreferences.Editor edit = prefs.edit();
+				edit.putInt("APP_COLOR", getResources().getColor(colors[arg2]));
+				edit.commit();
 			}
 		});
 		
