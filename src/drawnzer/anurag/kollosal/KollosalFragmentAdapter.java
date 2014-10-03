@@ -29,8 +29,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class KollosalFragmentAdapter extends FragmentPagerAdapter{
 
-	private final String[] TITLES = { "VIDEOS", "MUSIC", "NETWORK STREAM", "CLOUD PLAYER", ""
-			+ "SHARE  CAMERA", "YOU TUBE"};
+	private final String[] TITLES = { "VIDEOS", "MUSIC", "CLOUD PLAYER", ""
+			+ "SHARE  CAMERA", "YOU TUBE","NETWORK STREAM"};
 	
 	public KollosalFragmentAdapter(FragmentManager fm) {
 		super(fm);
@@ -53,16 +53,12 @@ public class KollosalFragmentAdapter extends FragmentPagerAdapter{
 		switch(position){
 			case 1:
 				return new MusicFragment();
-		
-			case 2:
-				return new NetworkStreamFragments();
-				
-			case 3:	
+			case 2:	
 				return new CloudPlayerFragment();
-				
-			case 4:
+			case 3:
 				return new KollosalCameraFragment();
-				
+			case 5:
+				return new NetworkStreamFragments();	
 			default :
 				return SuperAwesomeCardFragment.newInstance(position);
 		}
