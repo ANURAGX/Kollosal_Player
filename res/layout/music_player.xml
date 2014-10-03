@@ -36,55 +36,95 @@
     
     <LinearLayout 
         android:gravity="center"
-        android:layout_weight="5"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
-        <ImageButton 
-            android:id="@+id/shuffle"
-            android:onClick="onClick"
-            android:background="@drawable/button_click"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/shuffle"/>
-        <ImageButton 
-            android:id="@+id/previous"
-            android:onClick="onClick"
-            android:background="@drawable/button_click"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/mediacontroller_previous"/>
-        <ImageButton 
-            android:id="@+id/playorpause"
-            android:onClick="onClick"
-            android:background="@drawable/button_click"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/mediacontroller_play"/>
-        <ImageButton 
-            android:id="@+id/next"
-            android:onClick="onClick"
-            android:background="@drawable/button_click"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/mediacontroller_next"/>
-        <ImageButton 
-            android:id="@+id/loop"
-            android:onClick="onClick"
-            android:background="@drawable/button_click"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/loop"/>
-    </LinearLayout>
-    
+        android:orientation="vertical"
+        android:layout_weight="5">
+        <LinearLayout 
+        	android:gravity="center"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:orientation="horizontal">
+        	<ImageButton 
+            	android:id="@+id/shuffle"
+            	android:onClick="onClick"
+            	android:background="@drawable/button_click"
+            	android:layout_marginLeft="5dp"
+            	android:layout_weight="1"
+            	android:layout_width="0dp"
+            	android:layout_height="wrap_content"
+            	android:src="@drawable/shuffle"/>
+        	<ImageButton 
+            	android:id="@+id/previous"
+            	android:onClick="onClick"
+            	android:background="@drawable/button_click"
+            	android:layout_marginLeft="5dp"
+            	android:layout_weight="1"
+            	android:layout_width="0dp"
+            	android:layout_height="wrap_content"
+            	android:src="@drawable/mediacontroller_previous"/>
+        	<ImageButton 
+            	android:id="@+id/playorpause"
+            	android:onClick="onClick"
+            	android:background="@drawable/button_click"
+            	android:layout_marginLeft="5dp"
+            	android:layout_weight="1"
+            	android:layout_width="0dp"
+            	android:layout_height="wrap_content"
+            	android:src="@drawable/mediacontroller_play"/>
+        	<ImageButton 
+            	android:id="@+id/next"
+            	android:onClick="onClick"
+            	android:background="@drawable/button_click"
+            	android:layout_marginLeft="5dp"
+            	android:layout_weight="1"
+            	android:layout_width="0dp"
+            	android:layout_height="wrap_content"
+            	android:src="@drawable/mediacontroller_next"/>
+        	<ImageButton 
+            	android:id="@+id/loop"
+            	android:onClick="onClick"
+            	android:background="@drawable/button_click"
+            	android:layout_marginLeft="5dp"
+            	android:layout_weight="1"
+            	android:layout_width="0dp"
+            	android:layout_height="wrap_content"
+            	android:src="@drawable/loop"/>
+    	</LinearLayout>
+    	
+        <RelativeLayout
+            android:layout_marginTop="5dp"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:orientation="horizontal" >
+        	<TextView
+            	android:id="@+id/time_current"
+            	style="@style/MediaController_Text"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:layout_centerVertical="true"
+            	android:layout_marginLeft="5dp"/>
+
+        	<TextView
+            	android:id="@+id/time_total"
+            	style="@style/MediaController_Text"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:layout_alignParentRight="true"
+            	android:layout_centerVertical="true"
+            	android:layout_marginRight="5dp" />
+
+        	<SeekBar
+            	android:id="@+id/seekbar"
+            	android:progressDrawable="@drawable/seekbar"
+            	android:thumb="@null"
+            	android:layout_width="match_parent"
+            	android:layout_height="wrap_content"
+            	android:layout_centerVertical="true"
+            	android:layout_toLeftOf="@id/mediacontroller_time_total"
+            	android:layout_toRightOf="@id/mediacontroller_time_current"
+            	android:focusable="true"
+            	android:max="1000" />
+    	</RelativeLayout>
+    </LinearLayout>    
 </LinearLayout>

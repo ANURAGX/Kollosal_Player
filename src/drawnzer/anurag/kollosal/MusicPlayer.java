@@ -39,7 +39,8 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.SeekBar;
+
 
 /**
  * 
@@ -53,7 +54,7 @@ public class MusicPlayer extends FragmentActivity implements View.OnClickListene
 	private SharedPreferences prefs;
 	private Intent intent;
 	private int color;
-	
+	private SeekBar seekbar;
 	@Override
 	protected void onCreate(Bundle arg0) {
 		// TODO Auto-generated method stub
@@ -61,7 +62,7 @@ public class MusicPlayer extends FragmentActivity implements View.OnClickListene
 		prefs = getSharedPreferences("APP_SETTINGS", 0);
 		color = prefs.getInt("APP_COLOR", 0xFFC74B46);
 		setContentView(R.layout.music_player);
-		
+		seekbar = (SeekBar)findViewById(R.id.seekbar);
 		intent = getIntent();
 		changeColor(color);
 		updateUI();
