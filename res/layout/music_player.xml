@@ -26,11 +26,12 @@
     
 
     <LinearLayout 
+        android:background="@color/semi_white15"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ImageView 
-            android:background="@color/semi_white15"
+            
             android:id="@+id/album_art"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

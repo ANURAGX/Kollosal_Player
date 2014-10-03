@@ -39,6 +39,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.astuetz.PagerSlidingTabStrip;
 
@@ -151,6 +152,8 @@ public class KollosalPlayer extends FragmentActivity{
 	private void changeColor(int newColor) {
 		pagerSlideTab.setIndicatorColor(newColor);
 		pager.setBackgroundColor(newColor);
+		RelativeLayout ml = (RelativeLayout)findViewById(R.id.main_ui);
+		ml.setBackgroundColor(newColor);
 		LinearLayout listLayout = (LinearLayout)findViewById(R.id.lists_layout);
 		listLayout.setBackgroundColor(newColor);
 		ColorDrawable color = new ColorDrawable(newColor);
