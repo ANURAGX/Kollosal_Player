@@ -37,6 +37,8 @@
         <item>Blue</item>
         <item>Violet</item>
     </string-array>
+    <string name="timeline_video">TIMELINE VIDEO</string>
+    <string name="timeline_vid_name">No Video Selected</string>
     <string name="equilizer">Equilizer</string>
     <string name="more_options">More Options</string>
     <string name="search">Search</string>

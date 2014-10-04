@@ -18,7 +18,7 @@
  -->
  
 <LinearLayout 
-    android:layout_margin="5dp"
+    android:padding="5dp"
     android:id="@+id/vid_img"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -26,9 +26,10 @@
     android:orientation="vertical" >
     
     <LinearLayout 
-        android:id="@+id/vid_to_blur"
         android:clickable="true"
         android:focusable="true"
+        android:background="@drawable/button_click2"
+        android:id="@+id/vid_to_blur"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="180dp">
@@ -40,8 +41,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/MediaController_Text"
-            android:text="Timeline Video"/>
+            android:text="@string/timeline_video"/>
         
+        <Space 
+            android:layout_width="match_parent"
+            android:layout_height="45dp"/>
+        <ImageView 
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/mediacontroller_play"/>
+        
+               
+        <RelativeLayout 
+            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView 
+                android:id="@+id/timeline_vid_name"
+                android:layout_alignParentBottom="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/MediaController_Text"
+                android:text="@string/timeline_vid_name"/>
+            
+        </RelativeLayout>
     </LinearLayout>
 
 </LinearLayout>
