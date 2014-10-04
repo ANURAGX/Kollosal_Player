@@ -21,7 +21,6 @@
 package drawnzer.anurag.kollosal.fragments;
 
 import drawnzer.anurag.kollosal.R;
-import drawnzer.anurag.kollosal.utils.LoadVideoFromSDUtils;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,7 +42,7 @@ public class VideoAdapter extends BaseAdapter{
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return LoadVideoFromSDUtils.VIDEO_LIST.size();
+		return 0;
 	}
 
 	@Override
@@ -76,8 +75,7 @@ public class VideoAdapter extends BaseAdapter{
 		}else
 			hold = (Holder) convert.getTag();	
 		
-		hold.thumb.setImageBitmap(LoadVideoFromSDUtils.VIDEO_LIST.get(position).getThumbnail());
-		hold.name.setText(LoadVideoFromSDUtils.VIDEO_LIST.get(position).getDisplayName());
+		
 		return convert;
 	}
 
