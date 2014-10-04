@@ -21,6 +21,7 @@
 package drawnzer.anurag.kollosal;
 
 
+import io.vov.vitamio.utils.StringUtils;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -46,6 +47,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import drawnzer.anurag.kollosal.utils.MusicService;
 import drawnzer.anurag.kollosal.utils.MusicService.LocalBinder;
 
@@ -55,7 +57,7 @@ import drawnzer.anurag.kollosal.utils.MusicService.LocalBinder;
  * @author Anurag....
  *
  */
-public class MusicPlayer extends FragmentActivity implements View.OnClickListener{
+public class MusicPlayer extends FragmentActivity implements View.OnClickListener,SeekBar.OnSeekBarChangeListener{
 
 	private final int PLAYING_COMPLETED = 0;
 	private final int PAUSE = 1;
@@ -71,7 +73,9 @@ public class MusicPlayer extends FragmentActivity implements View.OnClickListene
 	private int color;
 	private SeekBar seekbar;
 	private MusicService musicPlayback;
-	
+	private int max;
+	private TextView maxTime;
+	private TextView currentTime;
 	
 	private ServiceConnection connection = new ServiceConnection() {
 		@Override
@@ -115,10 +119,13 @@ public class MusicPlayer extends FragmentActivity implements View.OnClickListene
 				case ERROR:
 						break;
 				case SEEKBAR_MAX:
-						seekbar.setMax((int)msg.obj);
+					    max = (int)msg.obj;
+						seekbar.setMax(max);
+						maxTime.setText(StringUtils.generateTime(max));
 						break;
 				default:
-					seekbar.setProgress(msg.what);						
+						currentTime.setText(StringUtils.generateTime(msg.what));
+						seekbar.setProgress(msg.what);						
 			}
 		}		
 	};
@@ -131,6 +138,9 @@ public class MusicPlayer extends FragmentActivity implements View.OnClickListene
 		color = prefs.getInt("APP_COLOR", 0xFFC74B46);
 		setContentView(R.layout.music_player);
 		seekbar = (SeekBar)findViewById(R.id.seekbar);
+		maxTime = (TextView)findViewById(R.id.time_total);
+		currentTime = (TextView)findViewById(R.id.time_current);
+		
 		intent = getIntent();
 		changeColor(color);
 		updateUI();
@@ -225,6 +235,9 @@ public class MusicPlayer extends FragmentActivity implements View.OnClickListene
 		
 		//binding the service to the current activity....
 		bindService(intent, connection, Context.BIND_IMPORTANT);
+		
+		//seekbar change listener....
+		seekbar.setOnSeekBarChangeListener(this);
 	}
 
 	@Override
@@ -235,7 +248,24 @@ public class MusicPlayer extends FragmentActivity implements View.OnClickListene
 		}
 	}	
 	
-	public interface UpdateUI{
-		public void updateSeekbar(SeekBar bar);
+	@Override
+	public void onProgressChanged(SeekBar arg0, int arg1, boolean arg2) {
+		// TODO Auto-generated method stub
+		if(arg2){
+			arg0.setProgress(arg1);
+			musicPlayback.seekTo(arg1);
+		}	
+	}
+
+	@Override
+	public void onStartTrackingTouch(SeekBar arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStopTrackingTouch(SeekBar arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }

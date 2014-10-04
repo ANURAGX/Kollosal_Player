@@ -99,6 +99,8 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
 				player = new MediaPlayer();
 			player.setDataSource(PATH);
 			player.prepare();
+			player.setOnCompletionListener(this);
+			player.setOnErrorListener(this);
 			player.start();
 			Message msg = new Message();
 			msg.what = SEEKBAR_MAX;
@@ -116,6 +118,10 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
 		serve.start();
 	}
 	
+	public void seekTo(int progress){
+		serve.seekTo(progress);
+	}
+	
 	/**
 	 * 
 	 *
@@ -130,17 +136,21 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
 			// TODO Auto-generated method stub
 			super.run();
 			prepare();
-			while(isPLaying){
-				try {
-					Thread.sleep(1);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			handle.postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					handle.sendEmptyMessage(player.getCurrentPosition());
+					if(isPLaying)
+						handle.postDelayed(this, 1000);
 				}
-				handle.sendEmptyMessage(player.getCurrentPosition());
-			}	
+			}, 1000);	
 		}
 
+		public void seekTo(int prog){
+			player.seekTo(prog);
+		}
+		
 		@Override
 		public void interrupt() {
 			// TODO Auto-generated method stub
