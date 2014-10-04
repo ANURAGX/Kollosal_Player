@@ -70,9 +70,7 @@ public class KollosalFragmentAdapter extends FragmentStatePagerAdapter{
 				return new YoutubeFragment();	
 			case 5:
 				return new NetworkStreamFragments();	
-			default :
-				return SuperAwesomeCardFragment.newInstance(position);
 		}
-				
+		return null;		
 	}
 }

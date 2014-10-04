@@ -20,6 +20,7 @@
 
 package drawnzer.anurag.kollosal.fragments;
 
+import drawnzer.anurag.kollosal.R;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -38,7 +39,8 @@ public class VideoFragment extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		return null;
+		View view = inflater.inflate(R.layout.timeline_view, container , false);
+		return view;
 	}
 
 	@Override
