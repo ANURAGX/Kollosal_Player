@@ -21,7 +21,10 @@
 package drawnzer.anurag.kollosal;
 
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -30,9 +33,12 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.media.MediaMetadataRetriever;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
+import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -40,6 +46,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
+import drawnzer.anurag.kollosal.utils.MusicService;
+import drawnzer.anurag.kollosal.utils.MusicService.LocalBinder;
 
 
 /**
@@ -49,12 +57,72 @@ import android.widget.SeekBar;
  */
 public class MusicPlayer extends FragmentActivity implements View.OnClickListener{
 
-	private final Handler handler = new Handler();
+	private final int PLAYING_COMPLETED = 0;
+	private final int PAUSE = 1;
+	private final int NEXT = 2;
+	private final int PREVIOUS = 3;
+	private final int SHUFFLE = 4;
+	private final int LOOP = 5;
+	private final int ERROR = 6;
+	private final int SEEKBAR_MAX = 7;
 	private Drawable oldBackground;
 	private SharedPreferences prefs;
 	private Intent intent;
 	private int color;
 	private SeekBar seekbar;
+	private MusicService musicPlayback;
+	
+	
+	private ServiceConnection connection = new ServiceConnection() {
+		@Override
+		public void onServiceDisconnected(ComponentName arg0) {
+			// TODO Auto-generated method stub
+			musicPlayback = null;
+		}
+		@Override
+		public void onServiceConnected(ComponentName arg0, IBinder arg1) {
+			// TODO Auto-generated method stub
+			
+			//stopping other music players...
+			Intent i = new Intent("com.android.music.musicservicecommand");
+		    i.putExtra("command", "pause");
+		    sendBroadcast(i);			
+		    musicPlayback = ((LocalBinder)arg1).getService();
+			musicPlayback.setHandler(handler);
+		    musicPlayback.play();
+		}
+	};
+	
+	private final Handler handler = new Handler(){
+		@Override
+		public void handleMessage(Message msg) {
+			// TODO Auto-generated method stub
+			super.handleMessage(msg);
+			switch(msg.what){
+				case PLAYING_COMPLETED:
+						seekbar.setProgress(0);
+						break;
+				case PAUSE:
+						break;
+				case NEXT:
+						break;
+				case PREVIOUS:
+						break;	
+				case SHUFFLE:
+						break;
+				case LOOP:
+						break;
+				case ERROR:
+						break;
+				case SEEKBAR_MAX:
+						seekbar.setMax((int)msg.obj);
+						break;
+				default:
+					seekbar.setProgress(msg.what);						
+			}
+		}		
+	};
+	
 	@Override
 	protected void onCreate(Bundle arg0) {
 		// TODO Auto-generated method stub
@@ -147,6 +215,16 @@ public class MusicPlayer extends FragmentActivity implements View.OnClickListene
 		}catch(Exception e){
 			
 		}
+		
+		
+		Intent intent = new Intent(MusicPlayer.this,MusicService.class);
+		intent.setAction("play");
+		intent.setData(Uri.parse(path));
+		//starting service...
+		startService(intent);
+		
+		//binding the service to the current activity....
+		bindService(intent, connection, Context.BIND_IMPORTANT);
 	}
 
 	@Override
@@ -156,4 +234,8 @@ public class MusicPlayer extends FragmentActivity implements View.OnClickListene
 		
 		}
 	}	
+	
+	public interface UpdateUI{
+		public void updateSeekbar(SeekBar bar);
+	}
 }
