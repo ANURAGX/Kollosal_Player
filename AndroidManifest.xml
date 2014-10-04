@@ -110,6 +110,12 @@
             
         </activity>
         
+        <!-- SERVICE CLASS FOR MUSIC PLAYER.... -->
+        <service 
+            android:name="drawnzer.anurag.kollosal.utils.MusicService">
+            
+        </service>
+        
         <!-- MUSIC PLAYER ACTIVITY.... -->
         <activity 
             android:label="@string/music_player"
