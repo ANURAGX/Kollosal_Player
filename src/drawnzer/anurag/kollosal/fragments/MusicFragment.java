@@ -45,24 +45,32 @@ import android.widget.GridView;
 public class MusicFragment extends Fragment{
 
 	private GridView musicGrids;
-	private ArrayList<MusicItem> list;
-	private MusicAdapter adapter;
+	private static ArrayList<MusicItem> list;
+	private static MusicAdapter adapter;
+	private static LoadMusic loadMusic;
+	private static View view = null;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+		if(view !=null)
+			return view;
 		View view = inflater.inflate(R.layout.music_tab, container , false);
-		musicGrids = (GridView)view.findViewById(R.id.music_grids);
-		musicGrids.setSelector(R.drawable.button_click);
-		list = new ArrayList<MusicItem>();
-		adapter = new MusicAdapter(getActivity(), list);
+		if(list == null)
+			list = new ArrayList<MusicItem>();
+		
+		if(adapter == null)
+			adapter = new MusicAdapter(getActivity(), list);
+				
 		return view;
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
+	public void onViewCreated(View v, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		super.onViewCreated(view, savedInstanceState);
+		super.onViewCreated(v, savedInstanceState);
+		musicGrids = (GridView)v.findViewById(R.id.music_grids);
+		musicGrids.setSelector(R.drawable.button_click);
 		musicGrids.setAdapter(adapter);
 		musicGrids.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
@@ -82,17 +90,14 @@ public class MusicFragment extends Fragment{
 				return false;
 			}
 		});
-		new LoadMusic().execute();
+		if(loadMusic == null){
+			loadMusic = new LoadMusic();
+			loadMusic.execute();
+		}	
 	}
 
 	private class LoadMusic extends AsyncTask<Void, Void, Void>{
 				
-		@Override
-		protected void onPostExecute(Void result) {
-			// TODO Auto-generated method stub
-			super.onPostExecute(result);
-		}
-
 		@Override
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
