@@ -19,21 +19,40 @@
 
 package drawnzer.anurag.kollosal.models;
 
+import io.vov.vitamio.ThumbnailUtils;
+import io.vov.vitamio.provider.MediaStore;
+
 import java.io.File;
 
+import android.content.Context;
 import android.graphics.Bitmap;
-
 public class VideoItem {
-
 	
 	private String videoPath;
 	private String folderDisplayName;
 	private Bitmap thumb;
-	public VideoItem(String path , Bitmap bitmap) {
+	public VideoItem(String path , Context ctx) {
 		// TODO Auto-generated constructor stub
 		this.videoPath = path;
 		this.folderDisplayName = new File(new File(this.videoPath).getParent()).getName();
-		this.thumb = bitmap;
+		this.thumb = makeThumb(path, ctx);
+	}
+	
+	/**
+	 * THIS FUNCTION GENERATES A THUMBNAIL OF THE VIDEO...
+	 * THIS FUNCTION USES VITAMIO LIBRARY INSTEAD OF ANDROID PROVIDED
+	 * FUNCTION..... 
+	 * @param path
+	 * @return
+	 */
+	private Bitmap makeThumb(String path , Context ctx) {
+		// TODO Auto-generated method stub
+		//MediaMetadataRetriever ret = new MediaMetadataRetriever();
+		//ret.setDataSource(path);
+		Bitmap map;// = ret.getFrameAtTime(10000, MediaMetadataRetriever.OPTION_CLOSEST_SYNC);
+		map = ThumbnailUtils.extractThumbnail(ThumbnailUtils.createVideoThumbnail(ctx,
+               path, MediaStore.Video.Thumbnails.MINI_KIND), 500, 200);
+		return map;
 	}
 	
 	/**

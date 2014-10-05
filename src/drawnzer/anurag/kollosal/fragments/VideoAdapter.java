@@ -20,35 +20,41 @@
 
 package drawnzer.anurag.kollosal.fragments;
 
-import drawnzer.anurag.kollosal.R;
+import java.util.ArrayList;
+
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import drawnzer.anurag.kollosal.R;
+import drawnzer.anurag.kollosal.models.VideoItem;
 
 public class VideoAdapter extends BaseAdapter{
 
-	LayoutInflater inflater;
-	Context ctx;
-	public VideoAdapter(Context context) {
+	private LayoutInflater inflater;
+	private Context ctx;
+	private ArrayList<VideoItem> list;
+	public VideoAdapter(Context context , ArrayList<VideoItem> object) {
 		// TODO Auto-generated constructor stub
 		this.ctx = context;
+		this.list = object;
 		this.inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 	
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 0;
+		return list.size();
 	}
 
 	@Override
 	public Object getItem(int arg0) {
 		// TODO Auto-generated method stub
-		return null;
+		return list.get(arg0);
 	}
 
 	@Override
@@ -65,18 +71,19 @@ public class VideoAdapter extends BaseAdapter{
 	@Override
 	public View getView(int position, View convert, ViewGroup arg2) {
 		// TODO Auto-generated method stub
-		
+		VideoItem item = list.get(position);
 		Holder hold = new Holder();
 		if(convert == null){
-			convert = inflater.inflate(R.layout.list_item, arg2 , false);
-			hold.thumb = (ImageView) convert.findViewById(R.id.thumb);
-			hold.name = (TextView) convert.findViewById(R.id.displayName);
+			convert = inflater.inflate(R.layout.video_grid_item, arg2 , false);
+			hold.thumb = (ImageView) convert.findViewById(R.id.grid_icon);
+			hold.name = (TextView) convert.findViewById(R.id.grid_artist_name);
 			convert.setTag(hold);
 		}else
 			hold = (Holder) convert.getTag();	
-		
-		
+		Bitmap map = item.getThumbnail();
+		if(map != null)
+			hold.thumb.setImageBitmap(item.getThumbnail());
+		hold.name.setText(item.getDisplayName());
 		return convert;
 	}
-
 }

@@ -20,19 +20,38 @@
 
 package drawnzer.anurag.kollosal.fragments;
 
+import java.util.ArrayList;
+
 import drawnzer.anurag.kollosal.R;
+import drawnzer.anurag.kollosal.models.VideoItem;
+import android.content.Context;
+import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 
+/**
+ * 
+ * @author Anurag....
+ *
+ */
 public class VideoFragment extends Fragment{
 
+	private VideoAdapter adapter;
+	private ArrayList<VideoItem> list;
+	private Context ctx;
+	private GridView grid;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		this.ctx = getActivity();
+		this.list = new ArrayList<VideoItem>();
 	}
 
 	@Override
@@ -45,9 +64,41 @@ public class VideoFragment extends Fragment{
 
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-	
+		// TODO Auto-generated method stub	
+		grid = (GridView)view.findViewById(R.id.video_grid);
+		adapter = new VideoAdapter(ctx, list);
+		grid.setAdapter(adapter);
+		new LoadVideo().execute();
 	}	
 	
-	
+	/**
+	 * 
+	 * @author Anurag....
+	 *
+	 */
+	private class LoadVideo extends AsyncTask<Void, Void, Void>{
+		public LoadVideo() {
+			// TODO Auto-generated constructor stub
+		}
+		@Override
+		protected void onProgressUpdate(Void... values) {
+			// TODO Auto-generated method stub
+			super.onProgressUpdate(values);
+			adapter.notifyDataSetChanged();
+		}
+		@Override
+		protected Void doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			Cursor cursor = ctx.getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
+					null, null, null, null);
+			while(cursor.moveToNext()){
+				String path = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.DATA));
+				VideoItem item = new VideoItem(path , ctx);
+				list.add(item);
+				publishProgress(new Void[]{});
+			}
+			cursor.close();
+			return null;
+		}
+	}	
 }
