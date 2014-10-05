@@ -81,7 +81,7 @@
         android:layout_height="wrap_content">
         <TextView 
             style="@style/MediaController_Text"
-            android:text="LOCAL VIDEOS"
+            android:text="@string/local_videos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
