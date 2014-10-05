@@ -78,8 +78,7 @@ public class KollosalPlayer extends FragmentActivity{
 		lsTheme.setSelector(R.drawable.button_click);
 		lsMenu.setSelector(R.drawable.button_click);
 		
-		lsMenu.setAdapter(new ArrayAdapter<String>(KollosalPlayer.this, android.R.layout.simple_list_item_1,
-				getResources().getStringArray(R.array.lsMenu)));
+		lsMenu.setAdapter(new DrawerMenuAdapter(KollosalPlayer.this));
 		lsTheme.setAdapter(new ThemeAdapter(KollosalPlayer.this));
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);	
