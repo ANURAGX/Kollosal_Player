@@ -115,14 +115,9 @@ public class KollosalPlayer extends FragmentActivity{
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,long arg3) {
 				// TODO Auto-generated method stub
-				int[] colors={
-						R.color.grey,R.color.green,
-						R.color.red,R.color.orange,
-						R.color.blue,R.color.violet
-					};
-				changeColor(getResources().getColor(colors[arg2]));
+				changeColor(getResources().getColor(Constant.COLORS[arg2]));
 				SharedPreferences.Editor edit = prefs.edit();
-				edit.putInt("APP_COLOR", getResources().getColor(colors[arg2]));
+				edit.putInt("APP_COLOR", getResources().getColor(Constant.COLORS[arg2]));
 				edit.commit();
 			}
 		});
