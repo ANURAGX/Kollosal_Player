@@ -69,4 +69,31 @@
         </RelativeLayout>
     </LinearLayout>
 
+    
+    <LinearLayout 
+        android:layout_marginTop="10dp"
+        android:background="@color/semi_white15"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="3dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView 
+            style="@style/MediaController_Text"
+            android:text="LOCAL VIDEOS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    
+    <GridView 
+        android:layout_marginTop="5dp"
+        android:id="@+id/video_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="3">
+        
+    </GridView>
+    
+    
 </LinearLayout>
