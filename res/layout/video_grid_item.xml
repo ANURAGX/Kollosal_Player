@@ -25,11 +25,27 @@
     android:orientation="vertical"
     android:gravity="center" >
  
-    <ImageView 
-        android:background="@color/semi_white"
-        android:id="@+id/grid_icon"
+    
+    <RelativeLayout 
+        android:gravity="center"
         android:layout_width="100dp"
-        android:layout_height="100dp"/>
+        android:layout_height="100dp">
+    	<ImageView 
+        	android:background="@color/semi_white"
+        	android:id="@+id/grid_icon"
+        	android:layout_width="100dp"
+        	android:layout_height="100dp"/>
+
+    	<ImageView
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:layout_centerHorizontal="true"
+    	    android:layout_centerVertical="true"
+    	    android:background="@drawable/mediacontroller_play" />
+    
+    </RelativeLayout>
+    
+    
     
     <TextView 
         style="@style/MediaController_Text"

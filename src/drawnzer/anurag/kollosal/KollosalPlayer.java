@@ -35,7 +35,6 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-
 import com.astuetz.PagerSlidingTabStrip;
 
 /**
@@ -43,6 +42,8 @@ import com.astuetz.PagerSlidingTabStrip;
  * @author ANURAG....
  *
  */
+
+
 public class KollosalPlayer extends FragmentActivity{
 	
 	private ViewPager pager;
@@ -127,6 +128,7 @@ public class KollosalPlayer extends FragmentActivity{
 		pagerSlideTab.setViewPager(pager);
 		changeColor(currentColor);		
 	}	
+	
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

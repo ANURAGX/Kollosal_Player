@@ -159,7 +159,7 @@ public class VideoPlayer extends Activity{
 	 */
 	@SuppressLint("InlinedApi")
 	private int prepareNavBarOptions(){
-		if(Build.VERSION.SDK_INT >18){
+		if(Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT){
 			int ret = View.SYSTEM_UI_FLAG_FULLSCREEN |
 					  View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
 					  View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY |

@@ -51,7 +51,7 @@ public class VideoItem {
 		//ret.setDataSource(path);
 		Bitmap map;// = ret.getFrameAtTime(10000, MediaMetadataRetriever.OPTION_CLOSEST_SYNC);
 		map = ThumbnailUtils.extractThumbnail(ThumbnailUtils.createVideoThumbnail(ctx,
-               path, MediaStore.Video.Thumbnails.MINI_KIND), 500, 200);
+               path, MediaStore.Video.Thumbnails.MINI_KIND), 500, 500);
 		return map;
 	}
 	

@@ -21,10 +21,8 @@
 package drawnzer.anurag.kollosal.fragments;
 
 import java.util.ArrayList;
-
 import drawnzer.anurag.kollosal.R;
 import drawnzer.anurag.kollosal.models.VideoItem;
-import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -42,33 +40,33 @@ import android.widget.GridView;
  */
 public class VideoFragment extends Fragment{
 
-	private VideoAdapter adapter;
-	private ArrayList<VideoItem> list;
-	private Context ctx;
+	private static VideoAdapter adapter;
+	private static ArrayList<VideoItem> list;
 	private GridView grid;
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
-		this.ctx = getActivity();
-		this.list = new ArrayList<VideoItem>();
-	}
-
+	private static LoadVideo loadVideo;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View view = inflater.inflate(R.layout.timeline_view, container , false);
+		if(list == null)
+			list = new ArrayList<VideoItem>();
+		if(adapter == null)
+			adapter = new VideoAdapter(getActivity(), list);
 		return view;
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
+	public void onViewCreated(View v, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub	
-		grid = (GridView)view.findViewById(R.id.video_grid);
-		adapter = new VideoAdapter(ctx, list);
+		grid = (GridView)v.findViewById(R.id.video_grid);
+		grid.setSelector(R.drawable.button_click);
 		grid.setAdapter(adapter);
-		new LoadVideo().execute();
+		if(loadVideo == null){
+			loadVideo = new LoadVideo();
+			loadVideo.execute();
+		}
 	}	
 	
 	/**
@@ -89,11 +87,11 @@ public class VideoFragment extends Fragment{
 		@Override
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
-			Cursor cursor = ctx.getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
+			Cursor cursor = getActivity().getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
 					null, null, null, null);
 			while(cursor.moveToNext()){
 				String path = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.DATA));
-				VideoItem item = new VideoItem(path , ctx);
+				VideoItem item = new VideoItem(path , getActivity());
 				list.add(item);
 				publishProgress(new Void[]{});
 			}

@@ -48,13 +48,10 @@ public class MusicFragment extends Fragment{
 	private static ArrayList<MusicItem> list;
 	private static MusicAdapter adapter;
 	private static LoadMusic loadMusic;
-	private static View view = null;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		if(view !=null)
-			return view;
 		View view = inflater.inflate(R.layout.music_tab, container , false);
 		if(list == null)
 			list = new ArrayList<MusicItem>();
