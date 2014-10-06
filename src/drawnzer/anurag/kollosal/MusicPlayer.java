@@ -31,11 +31,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
-import android.graphics.drawable.TransitionDrawable;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -67,7 +64,6 @@ public class MusicPlayer extends FragmentActivity implements View.OnClickListene
 	private final int LOOP = 5;
 	private final int ERROR = 6;
 	private final int SEEKBAR_MAX = 7;
-	private Drawable oldBackground;
 	private SharedPreferences prefs;
 	private Intent intent;
 	private int color;
@@ -157,54 +153,11 @@ public class MusicPlayer extends FragmentActivity implements View.OnClickListene
 	private void changeColor(int newColor) {
 		LinearLayout listLayout = (LinearLayout)findViewById(R.id.main);
 		listLayout.setBackgroundColor(newColor);
-		
-		// change ActionBar color just if an ActionBar is available
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-
-			Drawable colorDrawable = new ColorDrawable(newColor);
-			Drawable bottomDrawable = getResources().getDrawable(R.drawable.actionbar_bottom);
-			LayerDrawable ld = new LayerDrawable(new Drawable[] { colorDrawable, bottomDrawable });
-			if (oldBackground == null) {
-
-				if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
-					ld.setCallback(drawableCallback);
-				} else {
-					getActionBar().setBackgroundDrawable(ld);
-				}
-
-			} else {
-				TransitionDrawable td = new TransitionDrawable(new Drawable[] { oldBackground, ld });
-				if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
-					td.setCallback(drawableCallback);
-				} else {
-					getActionBar().setBackgroundDrawable(td);
-				}
-
-				td.startTransition(200);
-			}
-			oldBackground = ld;
-			getActionBar().setDisplayShowTitleEnabled(false);
-			getActionBar().setDisplayShowTitleEnabled(true);
-
-		}
+		Drawable colorDrawable = new ColorDrawable(newColor);
+		getActionBar().setBackgroundDrawable(colorDrawable);
+		getActionBar().setDisplayShowTitleEnabled(false);
+		getActionBar().setDisplayShowTitleEnabled(true);
 	}
-	
-	private Drawable.Callback drawableCallback = new Drawable.Callback() {
-		@Override
-		public void invalidateDrawable(Drawable who) {
-			getActionBar().setBackgroundDrawable(who);
-		}
-
-		@Override
-		public void scheduleDrawable(Drawable who, Runnable what, long when) {
-			handler.postAtTime(what, when);
-		}
-
-		@Override
-		public void unscheduleDrawable(Drawable who, Runnable what) {
-			handler.removeCallbacks(what);
-		}
-	};
 	
 	private void updateUI(){
 		String path = intent.getData().toString();

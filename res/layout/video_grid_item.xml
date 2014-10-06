@@ -32,6 +32,7 @@
         android:layout_height="100dp"/>
     
     <TextView 
+        style="@style/MediaController_Text"
         android:singleLine="true"
         android:layout_marginTop="5dp"
         android:id="@+id/grid_artist_name"

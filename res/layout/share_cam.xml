@@ -47,6 +47,7 @@
             android:background="@drawable/share_camera"/>
         
         <TextView 
+            style="@style/MediaController_Text"
             android:text="@string/share_camera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -77,6 +78,7 @@
             android:background="@drawable/use_other_camera"/>
         
         <TextView 
+            style="@style/MediaController_Text"
             android:text="@string/use_other_camera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

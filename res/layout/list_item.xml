@@ -30,6 +30,7 @@
 		android:layout_width="40.0dp" 
 		android:layout_height="40.0dp" />
    <TextView 
+        style="@style/MediaController_Text"
         android:paddingLeft="10dp"
         android:layout_gravity="center_vertical"
         android:textStyle="bold"

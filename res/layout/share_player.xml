@@ -26,10 +26,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
    	<com.astuetz.PagerSlidingTabStrip
-   	    android:background="@color/semi_white"
+   	    
    	    android:id="@+id/tabs"
        	android:layout_width="match_parent"
-       	android:layout_height="24dip"/>
+       	android:layout_height="36dip"/>
    	<android.support.v4.view.ViewPager
    	    android:id="@+id/pager"
        	android:layout_width="match_parent"
