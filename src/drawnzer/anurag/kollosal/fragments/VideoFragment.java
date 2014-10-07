@@ -21,6 +21,8 @@
 package drawnzer.anurag.kollosal.fragments;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import drawnzer.anurag.kollosal.R;
 import drawnzer.anurag.kollosal.models.VideoItem;
 import android.database.Cursor;
@@ -44,14 +46,17 @@ public class VideoFragment extends Fragment{
 	private static ArrayList<VideoItem> list;
 	private GridView grid;
 	private static LoadVideo loadVideo;
+	private static HashMap<String, Integer> addedItems;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View view = inflater.inflate(R.layout.timeline_view, container , false);
-		if(list == null)
+		if(list == null){
+			addedItems = new HashMap<String , Integer>();
 			list = new ArrayList<VideoItem>();
+		}	
 		if(adapter == null)
 			adapter = new VideoAdapter(getActivity(), list);
 		return view;
@@ -91,6 +96,7 @@ public class VideoFragment extends Fragment{
 					null, null, null, null);
 			while(cursor.moveToNext()){
 				String path = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.DATA));
+				//addedItems.put(key, value)
 				VideoItem item = new VideoItem(path , getActivity());
 				list.add(item);
 				publishProgress(new Void[]{});
