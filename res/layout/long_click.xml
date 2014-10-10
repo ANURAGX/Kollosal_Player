@@ -1,0 +1,284 @@
+<!-- 
+  Copyright(c) 2014 DRAWNZER.ORG PROJECTS -> ANURAG
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+       
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+                              
+                              anurag.dev1512@gmail.com
+ 
+ -->
+ 
+<LinearLayout 
+    android:background="@color/semi_white30"
+    android:id="@+id/main_long"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="bottom" >
+
+    <!-- Row 1.... -->
+    <LinearLayout 
+        android:id="@+id/row1"
+        android:visibility="gone"
+        android:baselineAligned="false"
+        android:gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+        
+        <!-- Blank Space .... -->
+        <LinearLayout 
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            
+        </LinearLayout>
+        
+        
+        <!-- Blank Space .... -->
+        <LinearLayout 
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            
+        </LinearLayout>
+        
+        <!-- Blank Space -->
+        <LinearLayout 
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            
+        </LinearLayout>
+        
+        <!-- Reload thumbnail button.... -->
+        <LinearLayout 
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:id="@+id/reload_thumb"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/button_click">
+            <ImageButton 
+                android:clickable="false"
+        		android:background="@drawable/reload"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"/>
+            <TextView 
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reload_thumb"
+                style="@style/MediaController_Text"/>
+        </LinearLayout>
+    </LinearLayout>
+    
+    
+    
+    <!-- Row 2.... -->
+    <LinearLayout 
+        android:visibility="gone"
+        android:baselineAligned="false"
+        android:id="@+id/row2"
+        android:gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+        
+        <!-- Blank Space .... -->
+        <LinearLayout 
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            
+        </LinearLayout>
+        
+        
+        <!-- Blank Space .... -->
+        <LinearLayout 
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            
+        </LinearLayout>
+        
+        <!-- Blank Space -->
+        <LinearLayout 
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            
+        </LinearLayout>
+        
+        <!-- Properties Button.... -->
+        <LinearLayout 
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:id="@+id/properties"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/button_click">
+            <ImageButton 
+                android:clickable="false"
+        		android:background="@drawable/stats"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"/>
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/properties"
+                style="@style/MediaController_Text"/>
+        </LinearLayout>
+    </LinearLayout>    
+    
+    
+    <!-- Row 3.... -->
+    <LinearLayout 
+        android:baselineAligned="false"
+        android:gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+        
+        <!-- Play button.... -->
+        <LinearLayout 
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:id="@+id/play_all"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/button_click">
+            <ImageButton 
+                android:clickable="false"
+        		android:background="@drawable/mediacontroller_play"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"/>
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/play_all"
+                style="@style/MediaController_Text"/>
+        </LinearLayout>
+        
+        
+        <!-- Delete button.... -->
+        <LinearLayout 
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:id="@+id/delete"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/button_click">
+            <ImageButton 
+                android:clickable="false"
+        		android:background="@drawable/delete"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"/>
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delete"
+                style="@style/MediaController_Text"/>
+        </LinearLayout>
+        
+        <!-- Share Button -->
+        <LinearLayout 
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:id="@+id/share"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/button_click">
+            <ImageButton 
+                android:clickable="false" 
+        		android:background="@drawable/share"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"/>
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/share"
+                style="@style/MediaController_Text"/>
+        </LinearLayout>
+        
+        <!-- Properties button.... -->
+         <LinearLayout 
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:id="@+id/more"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/button_click">
+            <ImageButton 
+                android:clickable="false" 
+        		android:background="@drawable/more"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"/>
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/more"
+                style="@style/MediaController_Text"/>
+        </LinearLayout>
+    </LinearLayout>
+    
+    
+    
+    
+    
+</LinearLayout>

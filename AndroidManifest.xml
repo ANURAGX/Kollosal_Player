@@ -54,6 +54,12 @@
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         
+        <!-- SIMPLE ACTIVITY LAUNCHED ON LONG CLICK ACTION.... -->
+        <activity 
+            android:name="drawnzer.anurag.kollosal.LongClick"
+            >
+            
+        </activity>
         
         <!-- APP'S MAIN ACTIVITY.... -->
         <activity 

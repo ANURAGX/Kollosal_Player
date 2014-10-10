@@ -34,4 +34,13 @@ public class Constant {
 									R.color.blue,
 									R.color.violet
 								};
+	
+	//Colors....
+	public static int[] SEMI_COLORS = {	R.color.semi_grey,
+									R.color.semi_green,
+									R.color.semi_red,
+									R.color.semi_orange,
+									R.color.semi_blue,
+									R.color.semi_violet
+								};
 }

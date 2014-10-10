@@ -23,8 +23,10 @@ package drawnzer.anurag.kollosal.fragments;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import drawnzer.anurag.kollosal.LongClick;
 import drawnzer.anurag.kollosal.R;
 import drawnzer.anurag.kollosal.models.VideoItem;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -33,6 +35,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 /**
@@ -68,6 +71,16 @@ public class VideoFragment extends Fragment{
 		grid = (GridView)v.findViewById(R.id.video_grid);
 		grid.setSelector(R.drawable.button_click);
 		grid.setAdapter(adapter);
+		
+		grid.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+			@Override
+			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,int position, long arg3) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(getActivity(), LongClick.class);
+				startActivity(intent);
+				return false;
+			}
+		});
 		if(loadVideo == null){
 			loadVideo = new LoadVideo();
 			loadVideo.execute();

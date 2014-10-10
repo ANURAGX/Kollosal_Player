@@ -21,6 +21,7 @@ package drawnzer.anurag.kollosal.fragments;
 
 import java.util.ArrayList;
 
+import drawnzer.anurag.kollosal.LongClick;
 import drawnzer.anurag.kollosal.MusicPlayer;
 import drawnzer.anurag.kollosal.R;
 import drawnzer.anurag.kollosal.models.MusicItem;
@@ -84,7 +85,9 @@ public class MusicFragment extends Fragment{
 			@Override
 			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,int position, long arg3) {
 				// TODO Auto-generated method stub
-				return false;
+				Intent intent = new Intent(getActivity(), LongClick.class);
+				startActivity(intent);
+				return true;
 			}
 		});
 		if(loadMusic == null){
