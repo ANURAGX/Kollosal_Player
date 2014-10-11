@@ -25,4 +25,10 @@
     <color name="blue">#FF3F9FE0</color>
     <color name="violet">#FF5161BC</color>
     <color name="semi_white30">#4DFFFFFF</color>
+    <color name="semi_grey70">#CC666666</color>
+    <color name="semi_green70">#CC96AA39</color>
+    <color name="semi_red70">#CCC74B46</color>
+    <color name="semi_orange70">#CCF4842D</color>
+    <color name="semi_blue70">#CC3F9FE0</color>
+    <color name="semi_violet70">#CC5161BC</color>
 </resources>
