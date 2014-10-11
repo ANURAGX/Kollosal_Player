@@ -24,6 +24,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 /**
  * 
@@ -65,16 +66,23 @@ public class LongClick extends Activity implements View.OnClickListener{
 			case R.id.more:
 					{
 						visible = !visible;
+						TextView txt = (TextView)findViewById(R.id.more_button);
 						if(!visible){
 							LinearLayout l1 = (LinearLayout)findViewById(R.id.row1);
 							l1.setVisibility(View.GONE);
 							LinearLayout l2 = (LinearLayout)findViewById(R.id.row2);
 							l2.setVisibility(View.GONE);
+							LinearLayout l3 = (LinearLayout)findViewById(R.id.row3);
+							l3.setVisibility(View.GONE);
+							txt.setText(getString(R.string.more));
 						}else if(visible){
 							LinearLayout l1 = (LinearLayout)findViewById(R.id.row1);
 							l1.setVisibility(View.VISIBLE);
 							LinearLayout l2 = (LinearLayout)findViewById(R.id.row2);
 							l2.setVisibility(View.VISIBLE);
+							LinearLayout l3 = (LinearLayout)findViewById(R.id.row3);
+							l3.setVisibility(View.VISIBLE);
+							txt.setText(getString(R.string.less));
 						}
 					}
 					break;

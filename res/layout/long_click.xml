@@ -65,11 +65,11 @@
             
         </LinearLayout>
         
-        <!-- Reload thumbnail button.... -->
+        <!-- Reload properties button.... -->
         <LinearLayout 
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
-            android:id="@+id/reload_thumb"
+            android:id="@+id/properties"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_weight="1"
@@ -81,14 +81,14 @@
             android:background="@drawable/button_click">
             <ImageButton 
                 android:clickable="false"
-        		android:background="@drawable/reload"
+        		android:background="@drawable/stats"
         		android:layout_width="wrap_content"
         		android:layout_height="wrap_content"/>
             <TextView 
                 android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/reload_thumb"
+                android:text="@string/properties"
                 style="@style/MediaController_Text"/>
         </LinearLayout>
     </LinearLayout>
@@ -134,11 +134,11 @@
             
         </LinearLayout>
         
-        <!-- Properties Button.... -->
+        <!-- Properties thumb.... -->
         <LinearLayout 
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
-            android:id="@+id/properties"
+            android:id="@+id/reload_thumb"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_weight="1"
@@ -150,19 +150,88 @@
             android:background="@drawable/button_click">
             <ImageButton 
                 android:clickable="false"
-        		android:background="@drawable/stats"
+        		android:background="@drawable/reload"
         		android:layout_width="wrap_content"
         		android:layout_height="wrap_content"/>
             <TextView 
+                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/properties"
+                android:text="@string/reload_thumb"
                 style="@style/MediaController_Text"/>
         </LinearLayout>
     </LinearLayout>    
     
     
     <!-- Row 3.... -->
+    <LinearLayout 
+        android:id="@+id/row3"
+        android:visibility="gone"
+        android:baselineAligned="false"
+        android:gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+        
+        <!-- Blank Space .... -->
+        <LinearLayout 
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            
+        </LinearLayout>
+        
+        
+        <!-- Blank Space .... -->
+        <LinearLayout 
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            
+        </LinearLayout>
+        
+        <!-- Blank Space -->
+        <LinearLayout 
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            
+        </LinearLayout>
+        
+        <!-- Reload share button.... -->
+        <LinearLayout 
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:id="@+id/share"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/button_click">
+            <ImageButton 
+                android:clickable="false"
+        		android:background="@drawable/share"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"/>
+            <TextView 
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/share"
+                style="@style/MediaController_Text"/>
+        </LinearLayout>
+    </LinearLayout>
+    
+    
+    <!-- Row 4.... -->
     <LinearLayout 
         android:baselineAligned="false"
         android:gravity="bottom"
@@ -228,7 +297,7 @@
         <LinearLayout 
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
-            android:id="@+id/share"
+            android:id="@+id/rename"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_weight="1"
@@ -240,13 +309,13 @@
             android:background="@drawable/button_click">
             <ImageButton 
                 android:clickable="false" 
-        		android:background="@drawable/share"
+        		android:background="@drawable/rename"
         		android:layout_width="wrap_content"
         		android:layout_height="wrap_content"/>
             <TextView 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/share"
+                android:text="@string/rename"
                 style="@style/MediaController_Text"/>
         </LinearLayout>
         
@@ -270,15 +339,11 @@
         		android:layout_width="wrap_content"
         		android:layout_height="wrap_content"/>
             <TextView 
+                android:id="@+id/more_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/more"
                 style="@style/MediaController_Text"/>
         </LinearLayout>
-    </LinearLayout>
-    
-    
-    
-    
-    
+    </LinearLayout>    
 </LinearLayout>

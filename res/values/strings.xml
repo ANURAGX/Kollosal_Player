@@ -61,5 +61,6 @@
     <string name="reload_thumb">Reload Thumbnail</string>
     <string name="play_all">Play all</string>
     <string name="more">More</string>
+    <string name="less">Less</string>
     <string name="rename">Rename</string>
 </resources>
