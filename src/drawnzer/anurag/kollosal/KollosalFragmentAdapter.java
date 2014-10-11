@@ -19,6 +19,8 @@
 
 package drawnzer.anurag.kollosal;
 
+import java.util.HashMap;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -36,9 +38,9 @@ import drawnzer.anurag.kollosal.fragments.YoutubeFragment;
  */
 public class KollosalFragmentAdapter extends FragmentStatePagerAdapter{
 
-	private final String[] TITLES = { "VIDEOS", "MUSIC", "CLOUD PLAYER", ""
+	private final static String[] TITLES = { "VIDEOS", "MUSIC", "CLOUD PLAYER", ""
 			+ "SHARE  CAMERA", "YOU TUBE","NETWORK STREAM"};
-	
+	private static HashMap<String, Fragment> fragments;
 	public KollosalFragmentAdapter(FragmentManager fm) {
 		super(fm);
 		// TODO Auto-generated constructor stub
@@ -56,20 +58,70 @@ public class KollosalFragmentAdapter extends FragmentStatePagerAdapter{
 
 	@Override
 	public Fragment getItem(int position) {
-		
+		if(fragments == null)
+			fragments = new HashMap<String , Fragment>();
 		switch(position){
-			case 0:
-				return new VideoFragment();
+			case 0:	
+					{
+						Fragment frgmt = fragments.get(""+position);	
+						if(frgmt == null){
+							VideoFragment vidFrgmt = new VideoFragment();
+							fragments.put(""+position, vidFrgmt);
+							return vidFrgmt;
+						}
+						return frgmt;
+					}				
 			case 1:
-				return new MusicFragment();
+					{
+						Fragment frgmt = fragments.get(""+position);	
+						if(frgmt == null){
+							MusicFragment musicFrgmt = new MusicFragment();
+							fragments.put(""+position, musicFrgmt);
+							return musicFrgmt;
+						}
+						return frgmt;
+					}
 			case 2:	
-				return new CloudPlayerFragment();
+					{
+						Fragment frgmt = fragments.get(""+position);	
+						if(frgmt == null){
+							CloudPlayerFragment cloudFrgmt = new CloudPlayerFragment();
+							fragments.put(""+position, cloudFrgmt);
+							return cloudFrgmt;
+						}
+						return frgmt;
+					}
+				
 			case 3:
-				return new KollosalCameraFragment();
+					{
+						Fragment frgmt = fragments.get(""+position);	
+						if(frgmt == null){
+							KollosalCameraFragment camFrgmt = new KollosalCameraFragment();
+							fragments.put(""+position, camFrgmt);
+							return camFrgmt;
+						}
+						return frgmt;
+					}
 			case 4:
-				return new YoutubeFragment();	
+					{
+						Fragment frgmt = fragments.get(""+position);	
+						if(frgmt == null){
+							YoutubeFragment youFrgmt = new YoutubeFragment();
+							fragments.put(""+position , youFrgmt);
+							return youFrgmt;
+						}
+						return frgmt;
+					}
 			case 5:
-				return new NetworkStreamFragments();	
+					{
+						Fragment frgmt = fragments.get(""+position);	
+						if(frgmt == null){
+							NetworkStreamFragments netFrgmt = new NetworkStreamFragments();
+							fragments.put(""+position, netFrgmt);
+							return netFrgmt;
+						}
+						return frgmt;
+					}
 		}
 		return null;		
 	}
