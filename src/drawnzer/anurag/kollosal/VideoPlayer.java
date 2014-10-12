@@ -25,6 +25,7 @@ import io.vov.vitamio.widget.MediaController;
 import io.vov.vitamio.widget.VideoView;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.hardware.SensorManager;
 import android.os.Build;
@@ -43,21 +44,23 @@ public class VideoPlayer extends Activity{
 
 	private MediaController mController;
 	private VideoView videoView;
-	String videoPath;
-	private static int NAV_BAR_OPTIONS;
-	OrientationEventListener orientationlistener;
+	private String videoPath;
+	private int NAV_BAR_OPTIONS;
+	private int color;
+	private OrientationEventListener orientationlistener;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		if (!LibsChecker.checkVitamioLibs(this))
 			return;
-		
+		SharedPreferences prefs = getSharedPreferences("APP_SETTINGS", 0);
+		color = prefs.getInt("CONTROLLER_COLOR", 0x66C74B46);
 		videoPath = getIntent().getData().toString();
 		NAV_BAR_OPTIONS = prepareNavBarOptions(); 
 		setContentView(R.layout.video_view);
 		
-		mController = new MediaController(VideoPlayer.this);
+		mController = new MediaController(VideoPlayer.this , color);
 		videoView = (VideoView) findViewById(R.id.videoView);
 		//videoView.setHardwareDecoder(true);
 		videoView.setBufferSize(1024*1024*2);
@@ -154,7 +157,7 @@ public class VideoPlayer extends Activity{
 	}	
 	
 	/**
-	 * This function calculat
+	 * This function calculate
 	 * @return
 	 */
 	@SuppressLint("InlinedApi")

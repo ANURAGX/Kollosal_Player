@@ -112,6 +112,7 @@ public class KollosalPlayer extends FragmentActivity{
 				SharedPreferences.Editor edit = prefs.edit();
 				edit.putInt("APP_COLOR", getResources().getColor(Constant.COLORS[arg2]));
 				edit.putInt("SEMI_APP_COLOR", getResources().getColor(Constant.SEMI_COLORS[arg2]));
+				edit.putInt("CONTROLLER_COLOR", getResources().getColor(Constant.CONTROLLER_COLORS[arg2]));
 				edit.commit();
 			}
 		});
