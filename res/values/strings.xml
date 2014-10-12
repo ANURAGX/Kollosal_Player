@@ -62,4 +62,5 @@
     <string name="more">More</string>
     <string name="less">Less</string>
     <string name="rename">Rename</string>
+    <string name="st">00:00</string>
 </resources>

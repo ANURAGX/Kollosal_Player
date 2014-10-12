@@ -23,11 +23,9 @@ package drawnzer.anurag.kollosal.fragments;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import drawnzer.anurag.kollosal.LongClick;
-import drawnzer.anurag.kollosal.R;
-import drawnzer.anurag.kollosal.models.VideoItem;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -37,6 +35,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import drawnzer.anurag.kollosal.LongClick;
+import drawnzer.anurag.kollosal.R;
+import drawnzer.anurag.kollosal.VideoPlayer;
+import drawnzer.anurag.kollosal.models.VideoItem;
 
 /**
  * 
@@ -72,6 +74,7 @@ public class VideoFragment extends Fragment{
 		grid.setSelector(R.drawable.button_click);
 		grid.setAdapter(adapter);
 		
+		//long click action is taken here.....
 		grid.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,int position, long arg3) {
@@ -83,6 +86,18 @@ public class VideoFragment extends Fragment{
 				return false;
 			}
 		});
+		
+		//launching the video player....
+		grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int position,long arg3) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(getActivity(), VideoPlayer.class);
+				intent.setData(Uri.parse(list.get(position).getVideoPath()));
+				startActivity(intent);
+			}
+		});
+		
 		if(loadVideo == null){
 			loadVideo = new LoadVideo();
 			loadVideo.execute();

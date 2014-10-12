@@ -98,6 +98,7 @@
         	android:layout_height="wrap_content"
         	android:orientation="horizontal" >
         	<TextView
+        	    android:text="@string/st"
             	android:id="@+id/time_current"
             	style="@style/MediaController_Text"
             	android:layout_width="wrap_content"
@@ -106,6 +107,7 @@
             	android:layout_marginLeft="5dp"/>
 
         	<TextView
+        	    android:text="@string/st"
             	android:id="@+id/time_total"
             	style="@style/MediaController_Text"
             	android:layout_width="wrap_content"
@@ -121,8 +123,8 @@
             	android:layout_width="match_parent"
             	android:layout_height="wrap_content"
             	android:layout_centerVertical="true"
-            	android:layout_toLeftOf="@id/mediacontroller_time_total"
-            	android:layout_toRightOf="@id/mediacontroller_time_current"
+            	android:layout_toLeftOf="@+id/time_total"
+            	android:layout_toRightOf="@+id/time_current"
             	android:focusable="true"
             	android:max="1000" />
     	</RelativeLayout>
