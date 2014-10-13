@@ -30,10 +30,11 @@ import android.content.pm.ActivityInfo;
 import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.GestureDetector.SimpleOnGestureListener;
+import android.view.MotionEvent;
 import android.view.OrientationEventListener;
 import android.view.View;
-
-
 
 /**
  * THIS CLASS PLAYS THE VIDEO FROM THE PROVIDED PATH .....
@@ -42,6 +43,7 @@ import android.view.View;
  */
 public class VideoPlayer extends Activity{
 
+	private GestureDetector detector;
 	private MediaController mController;
 	private VideoView videoView;
 	private String videoPath;
@@ -59,7 +61,7 @@ public class VideoPlayer extends Activity{
 		videoPath = getIntent().getData().toString();
 		NAV_BAR_OPTIONS = prepareNavBarOptions(); 
 		setContentView(R.layout.video_view);
-		
+		detector = new GestureDetector(new SwipeGestureDetector());
 		mController = new MediaController(VideoPlayer.this , color);
 		videoView = (VideoView) findViewById(R.id.videoView);
 		//videoView.setHardwareDecoder(true);
@@ -181,5 +183,58 @@ public class VideoPlayer extends Activity{
 			int ret = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;					  
 			return ret;
 		}
+	}
+
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		// TODO Auto-generated method stub
+		detector.onTouchEvent(event);		
+		return super.onTouchEvent(event);
+	}	
+	
+	
+	/**
+	 * 
+	 * @author Anurag....
+	 *
+	 */
+	class SwipeGestureDetector extends SimpleOnGestureListener {
+	    @Override
+	    public boolean onFling(MotionEvent e1, MotionEvent e2,float velocityX, float velocityY){
+	        switch (getSlope(e1.getX(), e1.getY(), e2.getX(), e2.getY())) {
+	        case 1:
+	        	//swiped to top....
+	        	return true;
+	        case 2:
+	            //swiped to left....
+	        	return true;
+	        case 3:
+	        	//swiped to down....
+	        	return true;
+	        case 4:
+	        	//swiped to right....
+	        	return true;
+	        }
+	        //unrecognized swipe....
+	        return false;
+	    }
+	    
+	    //function to calculate the exact quadrant and angle....
+	    private int getSlope(float x1, float y1, float x2, float y2) {
+	        Double angle = Math.toDegrees(Math.atan2(y1 - y2, x2 - x1));
+	        if (angle > 45 && angle <= 135)
+	        // top
+	        return 1;
+	        if (angle >= 135 && angle < 180 || angle < -135 && angle > -180)
+	        // left
+	        return 2;
+	        if (angle < -45 && angle >= -135)
+	        // down
+	        return 3;
+	        if (angle >= -45 && angle <= 45)
+	        // right
+	        return 4;
+	        return 0;
+	    }
 	}
 }
