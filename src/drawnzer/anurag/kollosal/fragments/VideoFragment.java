@@ -52,7 +52,7 @@ public class VideoFragment extends Fragment{
 	private GridView grid;
 	private static LoadVideo loadVideo;
 	private static HashMap<String, Integer> addedItems;
-	
+	private static ArrayList<String> keys;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -61,6 +61,7 @@ public class VideoFragment extends Fragment{
 		if(list == null){
 			addedItems = new HashMap<String , Integer>();
 			list = new ArrayList<VideoItem>();
+			keys = new ArrayList<String>();
 		}	
 		if(adapter == null)
 			adapter = new VideoAdapter(getActivity(), list);
