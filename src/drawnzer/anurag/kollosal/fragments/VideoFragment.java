@@ -26,8 +26,9 @@ import java.util.HashMap;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -53,6 +54,15 @@ public class VideoFragment extends Fragment{
 	private static LoadVideo loadVideo;
 	private static HashMap<String, Integer> addedItems;
 	private static ArrayList<String> keys;
+	private Handler handler = new Handler(){
+		@Override
+		public void handleMessage(Message msg) {
+			// TODO Auto-generated method stub
+			super.handleMessage(msg);
+			adapter.notifyDataSetChanged();
+		}
+		
+	};
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -101,7 +111,7 @@ public class VideoFragment extends Fragment{
 		
 		if(loadVideo == null){
 			loadVideo = new LoadVideo();
-			loadVideo.execute();
+			loadVideo.start();
 		}
 	}	
 	
@@ -110,30 +120,24 @@ public class VideoFragment extends Fragment{
 	 * @author Anurag....
 	 *
 	 */
-	private class LoadVideo extends AsyncTask<Void, Void, Void>{
+	private class LoadVideo extends Thread{
 		public LoadVideo() {
 			// TODO Auto-generated constructor stub
 		}
+
 		@Override
-		protected void onProgressUpdate(Void... values) {
-			// TODO Auto-generated method stub
-			super.onProgressUpdate(values);
-			adapter.notifyDataSetChanged();
-		}
-		@Override
-		protected Void doInBackground(Void... params) {
+		public void run() {
 			// TODO Auto-generated method stub
 			Cursor cursor = getActivity().getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
-					null, null, null, null);
+							null, null, null, null);
 			while(cursor.moveToNext()){
 				String path = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.DATA));
 				//addedItems.put(key, value)
 				VideoItem item = new VideoItem(path , getActivity());
 				list.add(item);
-				publishProgress(new Void[]{});
+				handler.sendEmptyMessage(0);
 			}
 			cursor.close();
-			return null;
-		}
+		}		
 	}	
 }
