@@ -19,6 +19,7 @@
 
 package drawnzer.anurag.kollosal;
 
+import android.app.ActionBar;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -35,6 +36,7 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+
 import com.astuetz.PagerSlidingTabStrip;
 
 /**
@@ -46,23 +48,46 @@ import com.astuetz.PagerSlidingTabStrip;
 
 public class KollosalPlayer extends FragmentActivity{
 	
+	//view pager for fragments....
 	private ViewPager pager;
+	
+	//pages slide tab strip for view pager....
 	private PagerSlidingTabStrip pagerSlideTab;
+	
+	//current color used in theme....
 	private int currentColor;
+	
+	//preferences of the app....
 	private SharedPreferences prefs;
-	private boolean isDrawerOpen; 
+	
+	//if true drawer is open....
+	private boolean isDrawerOpen;
+	
+	//slide drawer menu....
 	private DrawerLayout slidingDrawer;
+	
+	//action bar toggle....
 	private ActionBarDrawerToggle toggle;
+	
+	//main list view in slide drawer menu....
 	private ListView lsMenu;
+	
+	//theme listview in slide drawer menu
 	private ListView lsTheme;
 	
+	//icon position for action bar....
+	private int ACTIONBAR_ICON;
 	
+	//action bar of main activity....
+	private ActionBar actionBar;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		prefs = getSharedPreferences("APP_SETTINGS", 0);
 		currentColor = prefs.getInt("APP_COLOR",0xFFC74B46);
+		ACTIONBAR_ICON = prefs.getInt("APP_ICON", 2);
+		
 		
 		setContentView(R.layout.combined_ui);	
 		isDrawerOpen = false;
@@ -74,11 +99,16 @@ public class KollosalPlayer extends FragmentActivity{
 		
 		lsMenu.setAdapter(new DrawerMenuAdapter(KollosalPlayer.this));
 		lsTheme.setAdapter(new ThemeAdapter(KollosalPlayer.this));
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-		getActionBar().setHomeButtonEnabled(true);	
+		
+		actionBar = getActionBar();
+		
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setHomeButtonEnabled(true);	
+		
+		actionBar.setIcon(Constant.KOLLOSAL_ICONS[ACTIONBAR_ICON]);
 		
 		toggle = new ActionBarDrawerToggle(KollosalPlayer.this, slidingDrawer,
-				R.drawable.ic_launcher_icon, R.string.settings, R.string.app_name){
+				R.drawable.green_kollosal, R.string.settings, R.string.app_name){
 			public void onDrawerClosed(View view) {
                 getActionBar().setTitle(getString(R.string.app_name));
                 isDrawerOpen = false;
@@ -108,11 +138,13 @@ public class KollosalPlayer extends FragmentActivity{
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,long arg3) {
 				// TODO Auto-generated method stub
+				ACTIONBAR_ICON = arg2;
 				changeColor(getResources().getColor(Constant.COLORS[arg2]));
 				SharedPreferences.Editor edit = prefs.edit();
 				edit.putInt("APP_COLOR", getResources().getColor(Constant.COLORS[arg2]));
 				edit.putInt("SEMI_APP_COLOR", getResources().getColor(Constant.SEMI_COLORS[arg2]));
 				edit.putInt("CONTROLLER_COLOR", getResources().getColor(Constant.CONTROLLER_COLORS[arg2]));
+				edit.putInt("APP_ICON", arg2);
 				edit.commit();
 			}
 		});
@@ -150,10 +182,12 @@ public class KollosalPlayer extends FragmentActivity{
 		lsMenu.setDivider(color);
 		lsTheme.setDivider(color);
 		Drawable colorDrawable = new ColorDrawable(newColor);
-		getActionBar().setBackgroundDrawable(colorDrawable);
+		actionBar.setBackgroundDrawable(colorDrawable);
 		// http://stackoverflow.com/questions/11002691/actionbar-setbackgrounddrawable-nulling-background-from-thread-handler
-		getActionBar().setDisplayShowTitleEnabled(false);
-		getActionBar().setDisplayShowTitleEnabled(true);
+		actionBar.setDisplayShowTitleEnabled(false);
+		actionBar.setDisplayShowTitleEnabled(true);
+		//changing the action bar icon....
+		actionBar.setIcon(Constant.KOLLOSAL_ICONS[ACTIONBAR_ICON]);
 	}	
 
 	@Override
@@ -167,7 +201,5 @@ public class KollosalPlayer extends FragmentActivity{
 		else{
 			android.os.Process.killProcess(android.os.Process.myPid());
 		}
-	}	
-	
-	
+	}		
 }

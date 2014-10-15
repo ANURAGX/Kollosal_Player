@@ -84,7 +84,7 @@ public class VideoFragment extends Fragment{
 				intent.setAction("VIDEO");
 				intent.putExtra("PATH", list.get(position).getVideoPath());
 				startActivity(intent);
-				return false;
+				return true;
 			}
 		});
 		
