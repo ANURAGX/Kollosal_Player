@@ -161,6 +161,9 @@ public class KollosalPlayer extends FragmentActivity{
 		pager.setPageMargin(pageMargin);
 		pagerSlideTab.setViewPager(pager);
 		changeColor(currentColor);		
+		
+		//setting view pager limit to save fragents....
+		pager.setOffscreenPageLimit(7);
 	}	
 	
 	
