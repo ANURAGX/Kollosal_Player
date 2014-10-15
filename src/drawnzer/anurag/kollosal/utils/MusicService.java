@@ -248,6 +248,8 @@ public class MusicService extends Service implements
 					else 
 						play();
 				}
+			}else if(ACTION_NEXT_SONG_DELAYED.equals(action)){
+				
 			}
 		}
 		return START_NOT_STICKY;

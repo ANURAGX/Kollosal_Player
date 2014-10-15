@@ -20,16 +20,13 @@
 package drawnzer.anurag.kollosal;
 
 import java.util.HashMap;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import drawnzer.anurag.kollosal.fragments.CloudPlayerFragment;
-import drawnzer.anurag.kollosal.fragments.KollosalCameraFragment;
 import drawnzer.anurag.kollosal.fragments.MusicFragment;
 import drawnzer.anurag.kollosal.fragments.NetworkStreamFragments;
 import drawnzer.anurag.kollosal.fragments.VideoFragment;
-import drawnzer.anurag.kollosal.fragments.YoutubeFragment;
 
 /**
  * 
@@ -39,7 +36,7 @@ import drawnzer.anurag.kollosal.fragments.YoutubeFragment;
 public class KollosalFragmentAdapter extends FragmentStatePagerAdapter{
 
 	private final static String[] TITLES = { "VIDEOS", "MUSIC", "CLOUD PLAYER", ""
-			+ "SHARE  CAMERA", "YOU TUBE","NETWORK STREAM"};
+			+ "NETWORK STREAM"};
 	private static HashMap<String, Fragment> fragments;
 	public KollosalFragmentAdapter(FragmentManager fm) {
 		super(fm);
@@ -93,26 +90,6 @@ public class KollosalFragmentAdapter extends FragmentStatePagerAdapter{
 					}
 				
 			case 3:
-					{
-						Fragment frgmt = fragments.get(""+position);	
-						if(frgmt == null){
-							KollosalCameraFragment camFrgmt = new KollosalCameraFragment();
-							fragments.put(""+position, camFrgmt);
-							return camFrgmt;
-						}
-						return frgmt;
-					}
-			case 4:
-					{
-						Fragment frgmt = fragments.get(""+position);	
-						if(frgmt == null){
-							YoutubeFragment youFrgmt = new YoutubeFragment();
-							fragments.put(""+position , youFrgmt);
-							return youFrgmt;
-						}
-						return frgmt;
-					}
-			case 5:
 					{
 						Fragment frgmt = fragments.get(""+position);	
 						if(frgmt == null){
