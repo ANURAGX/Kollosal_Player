@@ -47,11 +47,6 @@
     <string name="use_other_camera">Connect with Other Phone\'s Camera</string>
     <string name="dropbox">DROP BOX</string>
     <string name="googledrive">GOOGLE DRIVE</string>
-    <string name="album">ALBUMS</string> 
-    <string name="artist">ARTISTS</string>
-    <string name="playlist">PLAYLISTS</string>
-    <string name="recently_played">RECENTLY PLAYED</string>
-    <string name="music">ALL MUSIC</string>
     <string name="settings">Settings</string>
     <string name="recently_connected">RECENTLY CONNECTED DEVICES</string>
     <string name="local_videos">LOCAL VIDEOS</string>
