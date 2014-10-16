@@ -23,6 +23,8 @@ import io.vov.vitamio.ThumbnailUtils;
 import io.vov.vitamio.provider.MediaStore;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -31,11 +33,23 @@ public class VideoItem {
 	private String videoPath;
 	private String folderDisplayName;
 	private Bitmap thumb;
-	public VideoItem(String path , Context ctx) {
+	private ArrayList<VideoItem> child_Videos;
+	
+	/**
+	 * 
+	 * @param path path for video.....
+	 * @param ctx
+	 * @param load_thumb if true loads the thumb....
+	 */
+	public VideoItem(File path , Context ctx , boolean load_thumb) {
 		// TODO Auto-generated constructor stub
-		this.videoPath = path;
-		this.folderDisplayName = new File(new File(this.videoPath).getParent()).getName();
-		this.thumb = makeThumb(path, ctx);
+		this.child_Videos = new ArrayList<VideoItem>();
+		this.videoPath = path.getAbsolutePath();
+		this.folderDisplayName = path.getParentFile().getName();
+		if(load_thumb)
+			this.thumb = makeThumb(path.getAbsolutePath(), ctx);
+		else
+			this.thumb = null;
 	}
 	
 	/**
@@ -77,6 +91,14 @@ public class VideoItem {
 	 */
 	public String getVideoPath(){
 		return this.videoPath;
+	}
+	
+	/**
+	 * 
+	 * @param item
+	 */
+	public void addVideo(VideoItem item) {
+		this.child_Videos.add(item);
 	}
 	
 }

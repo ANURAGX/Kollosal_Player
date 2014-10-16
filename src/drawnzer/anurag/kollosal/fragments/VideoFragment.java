@@ -20,9 +20,11 @@
 
 package drawnzer.anurag.kollosal.fragments;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -52,8 +54,11 @@ public class VideoFragment extends Fragment{
 	private static ArrayList<VideoItem> list;
 	private GridView grid;
 	private static LoadVideo loadVideo;
-	private static HashMap<String, Integer> addedItems;
-	private static ArrayList<String> keys;
+	
+	
+	private static HashMap<String, VideoItem> addedItems;
+		
+	@SuppressLint("HandlerLeak")
 	private Handler handler = new Handler(){
 		@Override
 		public void handleMessage(Message msg) {
@@ -69,9 +74,8 @@ public class VideoFragment extends Fragment{
 		// TODO Auto-generated method stub
 		View view = inflater.inflate(R.layout.timeline_view, container , false);
 		if(list == null){
-			addedItems = new HashMap<String , Integer>();
+			addedItems = new HashMap<String , VideoItem>();
 			list = new ArrayList<VideoItem>();
-			keys = new ArrayList<String>();
 		}	
 		if(adapter == null)
 			adapter = new VideoAdapter(getActivity(), list);
@@ -133,9 +137,17 @@ public class VideoFragment extends Fragment{
 			while(cursor.moveToNext()){
 				String path = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.DATA));
 				//addedItems.put(key, value)
-				VideoItem item = new VideoItem(path , getActivity());
-				list.add(item);
-				handler.sendEmptyMessage(0);
+				File file = new File(path);
+				String parent = file.getParent();
+				VideoItem itm = addedItems.get(parent);
+				if(itm == null){
+					VideoItem item = new VideoItem(file , getActivity() , false);
+					list.add(item);
+					handler.sendEmptyMessage(0);
+					addedItems.put(file.getParent(), item);
+				}else{
+					addedItems.get(parent).addVideo(new VideoItem(file, getActivity(),false));
+				}				
 			}
 			cursor.close();
 		}		
