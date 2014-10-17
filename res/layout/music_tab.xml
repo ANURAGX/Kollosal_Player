@@ -17,22 +17,85 @@
  
  -->
  
-<LinearLayout 
-    android:padding="5dp"
+<RelativeLayout 
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
-    
-    
-    <GridView 
-        android:scrollbars="none"
-        android:id="@+id/music_grids"
+    android:orientation="vertical" >    
+    <com.sothree.slidinguppanel.SlidingUpPanelLayout
+        xmlns:sothree="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/sliding_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:numColumns="2">
-        
-    </GridView>
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        sothree:panelHeight="68dp"
+        sothree:shadowHeight="4dp"
+        sothree:paralaxOffset="100dp"
+        sothree:dragView="@+id/dragView">
 
-</LinearLayout>
+        <!-- MAIN CONTENT -->
+        <GridView 
+        	android:scrollbars="none"
+        	android:id="@+id/music_grids"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:numColumns="2">
+        
+    	</GridView>
+
+        <!-- SLIDING LAYOUT -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="false"
+            android:id="@+id/dragView">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textSize="14sp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"/>
+
+                <ImageButton 
+                    android:background="@drawable/button_click"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/mediacontroller_play"/>
+                
+                <ImageButton 
+                    android:background="@drawable/button_click"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/mediacontroller_next"/>
+
+            </LinearLayout>
+
+            <!-- Music player UI.... -->
+            <LinearLayout 
+                android:layout_width="match_parent"
+            	android:layout_height="match_parent">
+                <include 
+                    layout="@layout/music_player"/>
+            </LinearLayout>
+        
+        </LinearLayout>
+        
+        
+    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
+    
+    
+  
+
+</RelativeLayout>

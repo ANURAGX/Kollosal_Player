@@ -20,6 +20,9 @@
 package drawnzer.anurag.kollosal.fragments;
 
 import java.util.ArrayList;
+
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+
 import drawnzer.anurag.kollosal.LongClick;
 import drawnzer.anurag.kollosal.MusicPlayer;
 import drawnzer.anurag.kollosal.R;
@@ -27,6 +30,7 @@ import drawnzer.anurag.kollosal.models.MusicItem;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -72,7 +76,11 @@ public class MusicFragment extends Fragment{
 		
 		if(adapter == null)
 			adapter = new MusicAdapter(getActivity(), list);
-				
+		
+		//setting color for sliding panel layout....
+		SlidingUpPanelLayout panel = (SlidingUpPanelLayout)view.findViewById(R.id.sliding_layout);
+		int color = getActivity().getSharedPreferences("APP_SETTINGS", 0).getInt("APP_COLOR",0xFFC74B46);
+		panel.setBackgroundColor(color);	
 		return view;
 	}
 
@@ -105,6 +113,9 @@ public class MusicFragment extends Fragment{
 				return true;
 			}
 		});
+		
+		
+		
 		if(loadMusic == null){
 			loadMusic = new LoadMusic();
 			loadMusic.start();
