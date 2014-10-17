@@ -20,16 +20,17 @@
 package drawnzer.anurag.kollosal.fragments;
 
 import java.util.ArrayList;
-
 import drawnzer.anurag.kollosal.LongClick;
 import drawnzer.anurag.kollosal.MusicPlayer;
 import drawnzer.anurag.kollosal.R;
 import drawnzer.anurag.kollosal.models.MusicItem;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -43,12 +44,24 @@ import android.widget.GridView;
  * @author Anurag....
  *
  */
+@SuppressLint("HandlerLeak")
 public class MusicFragment extends Fragment{
 
 	private GridView musicGrids;
 	private static ArrayList<MusicItem> list;
 	private static MusicAdapter adapter;
 	private static LoadMusic loadMusic;
+	
+	private Handler handler = new Handler(){
+		@Override
+		public void handleMessage(Message msg) {
+			// TODO Auto-generated method stub
+			super.handleMessage(msg);
+			adapter.notifyDataSetChanged();
+		}
+		
+	};
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -94,27 +107,13 @@ public class MusicFragment extends Fragment{
 		});
 		if(loadMusic == null){
 			loadMusic = new LoadMusic();
-			loadMusic.execute();
+			loadMusic.start();
 		}	
 	}
 
-	private class LoadMusic extends AsyncTask<Void, Void, Void>{
-				
+	private class LoadMusic extends Thread{
 		@Override
-		protected void onPreExecute() {
-			// TODO Auto-generated method stub
-			super.onPreExecute();
-		}
-
-		@Override
-		protected void onProgressUpdate(Void... values) {
-			// TODO Auto-generated method stub
-			super.onProgressUpdate(values);
-			adapter.notifyDataSetChanged();
-		}
-
-		@Override
-		protected Void doInBackground(Void... params) {
+		public void run() {
 			// TODO Auto-generated method stub
 			Cursor cursor = getActivity().getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
 					null, null, null, null);
@@ -123,10 +122,9 @@ public class MusicFragment extends Fragment{
 				String name = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
 				MusicItem item = new MusicItem(name, path);
 				list.add(item);
-				publishProgress(new Void[]{});
+				handler.sendEmptyMessage(0);
 			}			
 			cursor.close();
-			return null;
 		}		
 	}	
 }
