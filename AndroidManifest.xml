@@ -70,6 +70,7 @@
         
         <!-- VIDEO PLAYER ACTIVITY.... -->
         <activity 
+            android:launchMode="singleTop"
             android:hardwareAccelerated="true"
             android:theme="@android:style/Theme.Holo.NoActionBar"
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
@@ -121,6 +122,7 @@
         
         <!-- MUSIC PLAYER ACTIVITY.... -->
         <activity 
+            android:launchMode="singleTop"
             android:label="@string/music_player"
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
             android:name="drawnzer.anurag.kollosal.MusicPlayer"
