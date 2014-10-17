@@ -32,6 +32,7 @@ import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -87,8 +88,7 @@ public class KollosalPlayer extends FragmentActivity{
 		prefs = getSharedPreferences("APP_SETTINGS", 0);
 		currentColor = prefs.getInt("APP_COLOR",0xFFC74B46);
 		ACTIONBAR_ICON = prefs.getInt("APP_ICON", 2);
-		
-		
+				
 		setContentView(R.layout.combined_ui);	
 		isDrawerOpen = false;
 		slidingDrawer = (DrawerLayout)findViewById(R.id.slideDrawer);
