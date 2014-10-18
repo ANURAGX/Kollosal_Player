@@ -39,6 +39,9 @@ import android.widget.RelativeLayout;
 
 import com.astuetz.PagerSlidingTabStrip;
 
+import drawnzer.anurag.kollosal.fragments.MusicFragment;
+
+
 /**
  * 
  * @author ANURAG....
@@ -139,6 +142,8 @@ public class KollosalPlayer extends FragmentActivity{
 				// TODO Auto-generated method stub
 				ACTIONBAR_ICON = arg2;
 				changeColor(getResources().getColor(Constant.COLORS[arg2]));
+				//explicitly changing music fragment color here....
+				MusicFragment.notifyColorChange(getResources().getColor(Constant.COLORS[arg2]));
 				SharedPreferences.Editor edit = prefs.edit();
 				edit.putInt("APP_COLOR", getResources().getColor(Constant.COLORS[arg2]));
 				edit.putInt("SEMI_APP_COLOR", getResources().getColor(Constant.SEMI_COLORS[arg2]));
@@ -175,6 +180,7 @@ public class KollosalPlayer extends FragmentActivity{
 	}
 	
 	private void changeColor(int newColor) {
+		//MusicFragment.getSlideLayout().setBackgroundColor(newColor);
 		pagerSlideTab.setIndicatorColor(getResources().getColor(R.color.semi_white));
 		RelativeLayout ml = (RelativeLayout)findViewById(R.id.main_ui);
 		ml.setBackgroundColor(newColor);

@@ -21,6 +21,8 @@ package drawnzer.anurag.kollosal;
 
 import java.util.HashMap;
 
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -43,9 +45,11 @@ public class KollosalFragmentAdapter extends FragmentStatePagerAdapter{
 	private final static String[] TITLES = { "VIDEOS", "MUSIC", "ARTISTS", "ALBUMS", 
 		 "RECENTLY PLAYED "," PLAYLISTS", "CLOUD PLAYER", "NETWORK STREAM"};
 	private static HashMap<String, Fragment> fragments;
+	
 	public KollosalFragmentAdapter(FragmentManager fm) {
 		super(fm);
 		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override
