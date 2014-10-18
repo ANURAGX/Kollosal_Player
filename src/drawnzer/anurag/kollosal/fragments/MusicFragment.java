@@ -20,7 +20,10 @@
 package drawnzer.anurag.kollosal.fragments;
 
 import java.util.ArrayList;
+
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
+
 import drawnzer.anurag.kollosal.LongClick;
 import drawnzer.anurag.kollosal.MusicPlayer;
 import drawnzer.anurag.kollosal.R;
@@ -28,6 +31,9 @@ import drawnzer.anurag.kollosal.models.MusicItem;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -39,6 +45,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 /**
  * 
@@ -46,7 +54,7 @@ import android.widget.GridView;
  *
  */
 @SuppressLint("HandlerLeak")
-public class MusicFragment extends Fragment{
+public class MusicFragment extends Fragment implements PanelSlideListener{
 
 	private GridView musicGrids;
 	private static ArrayList<MusicItem> list;
@@ -58,15 +66,25 @@ public class MusicFragment extends Fragment{
 		public void handleMessage(Message msg) {
 			// TODO Auto-generated method stub
 			super.handleMessage(msg);
+			if(!initSlider_player){
+				initSlider_Player();
+			}
 			adapter.notifyDataSetChanged();
-		}
-		
+		}	
 	};
+	
+	private boolean initSlider_player;
+	
+	private ImageView album_art;
+	
+	//
+	private LinearLayout mini_controls;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+		initSlider_player = false;
 		View view = inflater.inflate(R.layout.music_tab, container , false);
 		if(list == null)
 			list = new ArrayList<MusicItem>();
@@ -107,11 +125,14 @@ public class MusicFragment extends Fragment{
 			}
 		});
 		
+		mini_controls = (LinearLayout)v.findViewById(R.id.player_mini_controls);
+		album_art = (ImageView)v.findViewById(R.id.album_art);
+		
 		//setting color for sliding panel layout....
 		panel = (SlidingUpPanelLayout)v.findViewById(R.id.sliding_layout);
 		int color = getActivity().getSharedPreferences("APP_SETTINGS", 0).getInt("APP_COLOR",0xFFC74B46);
 		panel.setBackgroundColor(color);
-		
+		panel.setPanelSlideListener(this);
 		
 		if(loadMusic == null){
 			loadMusic = new LoadMusic();
@@ -143,4 +164,71 @@ public class MusicFragment extends Fragment{
 	public static void notifyColorChange(int color){
 		panel.setBackgroundColor(color);
 	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public static boolean isSliderOpened(){
+		return panel.isPanelExpanded();
+	}
+	
+	/**
+	 * 
+	 */
+	public static void notifyPanelClose(){
+		try{
+			panel.collapsePanel();
+		}catch(Exception e){
+			
+		}		
+	}
+	
+	@Override
+	public void onPanelSlide(View panel, float slideOffset) {
+		// TODO Auto-generated method stub
+		mini_controls.setVisibility(View.GONE);
+	}
+
+	@Override
+	public void onPanelCollapsed(View panel) {
+		// TODO Auto-generated method stub
+		mini_controls.setVisibility(View.VISIBLE);
+	}
+
+	@Override
+	public void onPanelExpanded(View panel) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onPanelAnchored(View panel) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onPanelHidden(View panel) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	/**
+	 * function the create player in slider ....
+	 */
+	private void initSlider_Player() {
+		// TODO Auto-generated method stub
+		initSlider_player = true;
+		try{
+			MediaMetadataRetriever ret = new MediaMetadataRetriever();
+			ret.setDataSource(list.get(0).getPath());
+			byte[] bits = ret.getEmbeddedPicture();
+			Bitmap map = BitmapFactory.decodeByteArray(bits, 0, bits.length);
+			album_art.setImageBitmap(map);
+		}catch(Exception e){
+			initSlider_player = false;
+		}
+	}
+	
 }

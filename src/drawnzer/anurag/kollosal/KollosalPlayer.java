@@ -205,8 +205,13 @@ public class KollosalPlayer extends FragmentActivity{
 			slidingDrawer.closeDrawers();
 			if(lsTheme.getVisibility() == View.VISIBLE)
 				lsTheme.setVisibility(View.GONE);
-		}	
-		else{
+		}else if(MusicFragment.isSliderOpened() && pager.getCurrentItem() == 1){
+			//music slider panel is opened closing it first
+			MusicFragment.notifyPanelClose();
+		}else if(MusicFragment.isSliderOpened() && pager.getCurrentItem() != 1){
+			//music slider is opened but pager is on other page....
+			pager.setCurrentItem(1);
+		}else{
 			android.os.Process.killProcess(android.os.Process.myPid());
 		}
 	}		

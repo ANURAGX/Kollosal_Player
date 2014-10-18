@@ -53,6 +53,7 @@
             android:id="@+id/dragView">
 
             <LinearLayout
+                android:id="@+id/player_mini_controls"
                 android:layout_width="match_parent"
                 android:layout_height="68dp"
                 android:orientation="horizontal">
