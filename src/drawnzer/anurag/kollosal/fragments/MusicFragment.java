@@ -47,6 +47,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 /**
  * 
@@ -76,6 +77,10 @@ public class MusicFragment extends Fragment implements PanelSlideListener{
 	private boolean initSlider_player;
 	
 	private ImageView album_art;
+	
+	private ImageView slider_alb_art;
+	
+	private TextView song_name;
 	
 	//
 	private LinearLayout mini_controls;
@@ -127,6 +132,8 @@ public class MusicFragment extends Fragment implements PanelSlideListener{
 		
 		mini_controls = (LinearLayout)v.findViewById(R.id.player_mini_controls);
 		album_art = (ImageView)v.findViewById(R.id.album_art);
+		slider_alb_art = (ImageView)v.findViewById(R.id.slider_alb_art);
+		song_name = (TextView)v.findViewById(R.id.name);
 		
 		//setting color for sliding panel layout....
 		panel = (SlidingUpPanelLayout)v.findViewById(R.id.sliding_layout);
@@ -220,12 +227,14 @@ public class MusicFragment extends Fragment implements PanelSlideListener{
 	private void initSlider_Player() {
 		// TODO Auto-generated method stub
 		initSlider_player = true;
+		song_name.setText(list.get(0).getDisplayName());
 		try{
 			MediaMetadataRetriever ret = new MediaMetadataRetriever();
 			ret.setDataSource(list.get(0).getPath());
 			byte[] bits = ret.getEmbeddedPicture();
 			Bitmap map = BitmapFactory.decodeByteArray(bits, 0, bits.length);
 			album_art.setImageBitmap(map);
+			slider_alb_art.setImageBitmap(map);
 		}catch(Exception e){
 			initSlider_player = false;
 		}
