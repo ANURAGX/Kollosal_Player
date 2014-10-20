@@ -21,13 +21,6 @@ package drawnzer.anurag.kollosal.fragments;
 
 import java.util.ArrayList;
 
-import com.sothree.slidinguppanel.SlidingUpPanelLayout;
-import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
-
-import drawnzer.anurag.kollosal.LongClick;
-import drawnzer.anurag.kollosal.MusicPlayer;
-import drawnzer.anurag.kollosal.R;
-import drawnzer.anurag.kollosal.models.MusicItem;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
@@ -48,6 +41,12 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
+import drawnzer.anurag.kollosal.LongClick;
+import drawnzer.anurag.kollosal.MusicPlayer;
+import drawnzer.anurag.kollosal.R;
+import drawnzer.anurag.kollosal.models.MusicItem;
 
 /**
  * 
@@ -82,6 +81,7 @@ public class MusicFragment extends Fragment implements PanelSlideListener{
 	
 	private TextView song_name;
 	
+	private TextView alb_name;
 	//
 	private LinearLayout mini_controls;
 	
@@ -134,6 +134,7 @@ public class MusicFragment extends Fragment implements PanelSlideListener{
 		album_art = (ImageView)v.findViewById(R.id.album_art);
 		slider_alb_art = (ImageView)v.findViewById(R.id.slider_alb_art);
 		song_name = (TextView)v.findViewById(R.id.name);
+		alb_name = (TextView)v.findViewById(R.id.alb_name);
 		
 		//setting color for sliding panel layout....
 		panel = (SlidingUpPanelLayout)v.findViewById(R.id.sliding_layout);
@@ -228,6 +229,7 @@ public class MusicFragment extends Fragment implements PanelSlideListener{
 		// TODO Auto-generated method stub
 		initSlider_player = true;
 		song_name.setText(list.get(0).getDisplayName());
+		alb_name.setText(list.get(0).getAlbumName());
 		try{
 			MediaMetadataRetriever ret = new MediaMetadataRetriever();
 			ret.setDataSource(list.get(0).getPath());

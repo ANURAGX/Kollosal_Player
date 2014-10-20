@@ -43,6 +43,13 @@ public class MusicItem {
 		this.retreive = new MediaMetadataRetriever();
 		this.retreive.setDataSource(musicPath);
 		
+		//getting the actual song name....
+		try{
+			this.dislayName = retreive.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+		}catch(Exception e){
+			this.dislayName = name;
+		}
+		
 		//extracting the album art....
 		try{
 			byte[] data = this.retreive.getEmbeddedPicture();

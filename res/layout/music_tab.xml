@@ -58,15 +58,36 @@
                 android:layout_height="68dp"
                 android:orientation="horizontal">
 
+                <ImageView 
+                    android:layout_marginLeft="3dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/semi_white15"
+                    android:id="@+id/slider_alb_art"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+                
                 <TextView
+                    android:textStyle="bold"
+                    style="@style/MediaController_Text"
                     android:id="@+id/name"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:textSize="14sp"
-                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
                     android:paddingLeft="10dp"/>
 
+                <TextView
+                    android:textStyle="bold"
+                    style="@style/MediaController_Text"
+                    android:id="@+id/alb_name"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textSize="14sp"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="10dp"/>
+                
                 <ImageButton 
                     android:background="@drawable/button_click"
                     android:layout_gravity="center_vertical"
