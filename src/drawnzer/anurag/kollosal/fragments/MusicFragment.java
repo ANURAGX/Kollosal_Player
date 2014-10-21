@@ -20,14 +20,12 @@
 package drawnzer.anurag.kollosal.fragments;
 
 import java.util.ArrayList;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -44,7 +42,6 @@ import android.widget.TextView;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
 import drawnzer.anurag.kollosal.LongClick;
-import drawnzer.anurag.kollosal.MusicPlayer;
 import drawnzer.anurag.kollosal.R;
 import drawnzer.anurag.kollosal.models.MusicItem;
 
@@ -111,10 +108,12 @@ public class MusicFragment extends Fragment implements PanelSlideListener{
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position,long arg3) {
 				// TODO Auto-generated method stub
-				MusicItem item = list.get(position);
+				/*MusicItem item = list.get(position);
 				Intent intent = new Intent(getActivity(), MusicPlayer.class);
 				intent.setData(Uri.parse(item.getPath()));
-				startActivity(intent);
+				startActivity(intent);*/
+				initSlider_Player(list.get(position));
+				panel.expandPanel();
 			}
 		});
 		
@@ -233,6 +232,26 @@ public class MusicFragment extends Fragment implements PanelSlideListener{
 		try{
 			MediaMetadataRetriever ret = new MediaMetadataRetriever();
 			ret.setDataSource(list.get(0).getPath());
+			byte[] bits = ret.getEmbeddedPicture();
+			Bitmap map = BitmapFactory.decodeByteArray(bits, 0, bits.length);
+			album_art.setImageBitmap(map);
+			slider_alb_art.setImageBitmap(map);
+		}catch(Exception e){
+			initSlider_player = false;
+		}
+	}
+	
+	/**
+	 * 
+	 * @param musicItem
+	 */
+	protected void initSlider_Player(MusicItem musicItem) {
+		// TODO Auto-generated method stub
+		song_name.setText(musicItem.getDisplayName());
+		alb_name.setText(musicItem.getAlbumName());
+		try{
+			MediaMetadataRetriever ret = new MediaMetadataRetriever();
+			ret.setDataSource(musicItem.getPath());
 			byte[] bits = ret.getEmbeddedPicture();
 			Bitmap map = BitmapFactory.decodeByteArray(bits, 0, bits.length);
 			album_art.setImageBitmap(map);
