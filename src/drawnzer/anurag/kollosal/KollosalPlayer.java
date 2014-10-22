@@ -42,6 +42,7 @@ import com.astuetz.PagerSlidingTabStrip;
 import drawnzer.anurag.kollosal.adapters.DrawerMenuAdapter;
 import drawnzer.anurag.kollosal.adapters.KollosalFragmentAdapter;
 import drawnzer.anurag.kollosal.adapters.ThemeAdapter;
+import drawnzer.anurag.kollosal.fragments.Artist;
 import drawnzer.anurag.kollosal.fragments.MusicFragment;
 
 
@@ -147,6 +148,8 @@ public class KollosalPlayer extends FragmentActivity{
 				changeColor(getResources().getColor(Constant.COLORS[arg2]));
 				//explicitly changing music fragment color here....
 				MusicFragment.notifyColorChange(getResources().getColor(Constant.COLORS[arg2]));
+				Artist.notifyColorChange(getResources().getColor(Constant.COLORS[arg2]));
+				
 				SharedPreferences.Editor edit = prefs.edit();
 				edit.putInt("APP_COLOR", getResources().getColor(Constant.COLORS[arg2]));
 				edit.putInt("SEMI_APP_COLOR", getResources().getColor(Constant.SEMI_COLORS[arg2]));
@@ -214,7 +217,14 @@ public class KollosalPlayer extends FragmentActivity{
 		}else if(MusicFragment.isSliderOpened() && pager.getCurrentItem() != 1){
 			//music slider is opened but pager is on other page....
 			pager.setCurrentItem(1);
-		}else{
+		}else if(Artist.isSliderOpened() && pager.getCurrentItem() == 2){
+			//artist slider panel is opened closing it first
+			Artist.notifyPanelClose();
+		}else if(Artist.isSliderOpened() && pager.getCurrentItem() != 2){
+			//artist slider is opened but pager is on other page....
+			pager.setCurrentItem(2);
+		}
+		else{
 			android.os.Process.killProcess(android.os.Process.myPid());
 		}
 	}		
