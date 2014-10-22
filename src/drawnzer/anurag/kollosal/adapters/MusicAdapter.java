@@ -17,7 +17,7 @@
  *
  */
 
-package drawnzer.anurag.kollosal.fragments;
+package drawnzer.anurag.kollosal.adapters;
 
 import java.util.ArrayList;
 

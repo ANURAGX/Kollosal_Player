@@ -14,10 +14,12 @@
  * limitations under the License.
  *                             
  *                             anurag.dev1512@gmail.com
+ *
  */
 
-package drawnzer.anurag.kollosal;
+package drawnzer.anurag.kollosal.adapters;
 
+import drawnzer.anurag.kollosal.R;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,39 +28,42 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ThemeAdapter extends BaseAdapter{
+public class DrawerMenuAdapter extends BaseAdapter{
 
-	LayoutInflater inf;
-	Context ctx;
-	String[] list;
-	int[] colors={
-		R.color.grey,R.color.green,
-		R.color.red,R.color.orange,
-		R.color.blue,R.color.violet
+	private Context ctx;
+	private LayoutInflater inf;
+	private String[] menuItems;
+	private int[] icons = {
+		R.drawable.preferences,
+		R.drawable.check_for_update,
+		R.drawable.help,
+		R.drawable.bug,
+		R.drawable.about,
+		R.drawable.theme
 	};
-	public ThemeAdapter(Context context) {
+	public DrawerMenuAdapter(Context context) {
 		// TODO Auto-generated constructor stub
 		this.ctx = context;
-		inf = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		list = ctx.getResources().getStringArray(R.array.theme_colors);
+		this.inf = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		this.menuItems = ctx.getResources().getStringArray(R.array.lsMenu);
 	}
 	
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return list.length;
+		return menuItems.length;
 	}
 
 	@Override
-	public Object getItem(int position) {
+	public Object getItem(int arg0) {
 		// TODO Auto-generated method stub
-		return list[position];
+		return menuItems[arg0];
 	}
 
 	@Override
-	public long getItemId(int position) {
+	public long getItemId(int arg0) {
 		// TODO Auto-generated method stub
-		return position;
+		return arg0;
 	}
 
 	class hold{
@@ -67,22 +72,18 @@ public class ThemeAdapter extends BaseAdapter{
 	}
 	
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(int arg0, View convert, ViewGroup arg2) {
 		// TODO Auto-generated method stub
 		hold hld = new hold();
-		if(convertView == null){
-			convertView = inf.inflate(R.layout.list_item, parent , false);
-			hld.img = (ImageView)convertView.findViewById(R.id.thumb);
-			hld.txt = (TextView)convertView.findViewById(R.id.displayName);
-			convertView.setTag(hld);
+		if(convert == null){
+			convert = inf.inflate(R.layout.list_item, arg2 , false);
+			hld.img = (ImageView)convert.findViewById(R.id.thumb);
+			hld.txt = (TextView)convert.findViewById(R.id.displayName);
+			convert.setTag(hld);
 		}else
-			hld = (hold) convertView.getTag();
-		hld.txt.setText(list[position]);
-		hld.img.setBackgroundColor(ctx.getResources().getColor(colors[position]));
-		return convertView;
-	}
-	
-	public int getColor(int position){
-		return ctx.getResources().getColor(colors[position]);
+			hld = (hold) convert.getTag();
+		hld.img.setImageDrawable(ctx.getResources().getDrawable(icons[arg0]));
+		hld.txt.setText(menuItems[arg0]);
+		return convert;
 	}
 }

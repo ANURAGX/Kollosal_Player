@@ -41,6 +41,7 @@ import android.widget.GridView;
 import drawnzer.anurag.kollosal.LongClick;
 import drawnzer.anurag.kollosal.R;
 import drawnzer.anurag.kollosal.VideoPlayer;
+import drawnzer.anurag.kollosal.adapters.VideoAdapter;
 import drawnzer.anurag.kollosal.models.VideoItem;
 
 /**

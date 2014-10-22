@@ -17,46 +17,44 @@
  *
  */
 
-package drawnzer.anurag.kollosal;
+
+package drawnzer.anurag.kollosal.adapters;
+
+import java.util.ArrayList;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import drawnzer.anurag.kollosal.R;
+import drawnzer.anurag.kollosal.models.VideoItem;
 
-public class DrawerMenuAdapter extends BaseAdapter{
+public class VideoAdapter extends BaseAdapter{
 
+	private LayoutInflater inflater;
 	private Context ctx;
-	private LayoutInflater inf;
-	private String[] menuItems;
-	private int[] icons = {
-		R.drawable.preferences,
-		R.drawable.check_for_update,
-		R.drawable.help,
-		R.drawable.bug,
-		R.drawable.about,
-		R.drawable.theme
-	};
-	public DrawerMenuAdapter(Context context) {
+	private ArrayList<VideoItem> list;
+	public VideoAdapter(Context context , ArrayList<VideoItem> object) {
 		// TODO Auto-generated constructor stub
 		this.ctx = context;
-		this.inf = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		this.menuItems = ctx.getResources().getStringArray(R.array.lsMenu);
+		this.list = object;
+		this.inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 	
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return menuItems.length;
+		return list.size();
 	}
 
 	@Override
 	public Object getItem(int arg0) {
 		// TODO Auto-generated method stub
-		return menuItems[arg0];
+		return list.get(arg0);
 	}
 
 	@Override
@@ -65,24 +63,27 @@ public class DrawerMenuAdapter extends BaseAdapter{
 		return arg0;
 	}
 
-	class hold{
-		ImageView img;
-		TextView txt;
+	class Holder{
+		ImageView thumb;
+		TextView name;
 	}
 	
 	@Override
-	public View getView(int arg0, View convert, ViewGroup arg2) {
+	public View getView(int position, View convert, ViewGroup arg2) {
 		// TODO Auto-generated method stub
-		hold hld = new hold();
+		VideoItem item = list.get(position);
+		Holder hold = new Holder();
 		if(convert == null){
-			convert = inf.inflate(R.layout.list_item, arg2 , false);
-			hld.img = (ImageView)convert.findViewById(R.id.thumb);
-			hld.txt = (TextView)convert.findViewById(R.id.displayName);
-			convert.setTag(hld);
+			convert = inflater.inflate(R.layout.video_grid_item, arg2 , false);
+			hold.thumb = (ImageView) convert.findViewById(R.id.grid_icon);
+			hold.name = (TextView) convert.findViewById(R.id.grid_artist_name);
+			convert.setTag(hold);
 		}else
-			hld = (hold) convert.getTag();
-		hld.img.setImageDrawable(ctx.getResources().getDrawable(icons[arg0]));
-		hld.txt.setText(menuItems[arg0]);
+			hold = (Holder) convert.getTag();	
+		Bitmap map = item.getThumbnail();
+		if(map != null)
+			hold.thumb.setImageBitmap(item.getThumbnail());
+		hold.name.setText(item.getDisplayName());
 		return convert;
 	}
 }

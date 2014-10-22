@@ -20,6 +20,7 @@
 package drawnzer.anurag.kollosal.fragments;
 
 import java.util.ArrayList;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
@@ -39,10 +40,13 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
+
 import drawnzer.anurag.kollosal.LongClick;
 import drawnzer.anurag.kollosal.R;
+import drawnzer.anurag.kollosal.adapters.MusicAdapter;
 import drawnzer.anurag.kollosal.models.MusicItem;
 
 /**

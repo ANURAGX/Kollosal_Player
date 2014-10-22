@@ -39,6 +39,9 @@ import android.widget.RelativeLayout;
 
 import com.astuetz.PagerSlidingTabStrip;
 
+import drawnzer.anurag.kollosal.adapters.DrawerMenuAdapter;
+import drawnzer.anurag.kollosal.adapters.KollosalFragmentAdapter;
+import drawnzer.anurag.kollosal.adapters.ThemeAdapter;
 import drawnzer.anurag.kollosal.fragments.MusicFragment;
 
 
