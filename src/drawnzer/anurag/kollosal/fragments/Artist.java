@@ -73,6 +73,7 @@ public class Artist extends Fragment implements PanelSlideListener{
 	private TextView song_name;
 	
 	private TextView alb_name;
+	
 	//
 	private LinearLayout mini_controls;
 
@@ -151,6 +152,8 @@ public class Artist extends Fragment implements PanelSlideListener{
 					null,
 					null,
 					null);
+			
+			//getActivity().getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder)
 			while(cursor.moveToNext()){
 				String path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
 				String name = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
