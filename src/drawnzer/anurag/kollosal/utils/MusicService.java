@@ -255,11 +255,18 @@ public class MusicService extends Service implements
 		return START_NOT_STICKY;
 	}
 
+	@Override
+	public void onDestroy() {
+		// TODO Auto-generated method stub
+		mLooper.quit();
+	}
+	
 
 
 	private void play() {
 		// TODO Auto-generated method stub
-		
+		if(mplayer == null)
+			return;
 	}
 
 
@@ -296,12 +303,7 @@ public class MusicService extends Service implements
 		
 	}
 
-	@Override
-	public void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-	}
-	
+		
 	@Override
 	public IBinder onBind(Intent arg0) {
 		// TODO Auto-generated method stub

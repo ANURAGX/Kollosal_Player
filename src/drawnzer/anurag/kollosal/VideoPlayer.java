@@ -35,6 +35,7 @@ import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 import android.view.OrientationEventListener;
 import android.view.View;
+import android.widget.Toast;
 
 /**
  * THIS CLASS PLAYS THE VIDEO FROM THE PROVIDED PATH .....
@@ -50,6 +51,7 @@ public class VideoPlayer extends Activity{
 	private int NAV_BAR_OPTIONS;
 	private int color;
 	private OrientationEventListener orientationlistener;
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -213,6 +215,11 @@ public class VideoPlayer extends Activity{
 	        	return true;
 	        case 4:
 	        	//swiped to right....
+	        	//Toast.makeText(VideoPlayer.this, ""+(int)(e2.getX()-e1.getX()), Toast.LENGTH_SHORT).show();
+	        	mController.hideExceptSeekBar();
+	        	long swipe = (long)(e2.getX()-e1.getX());
+	        	swipe = swipe*10 + (long)videoView.getCurrentPosition();
+	        	videoView.seekTo(swipe); 
 	        	return true;
 	        }
 	        //unrecognized swipe....
