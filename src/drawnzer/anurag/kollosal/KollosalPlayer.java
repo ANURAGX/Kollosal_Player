@@ -45,6 +45,7 @@ import drawnzer.anurag.kollosal.adapters.ThemeAdapter;
 import drawnzer.anurag.kollosal.fragments.Albums;
 import drawnzer.anurag.kollosal.fragments.Artist;
 import drawnzer.anurag.kollosal.fragments.MusicFragment;
+import drawnzer.anurag.kollosal.fragments.VideoFragment;
 
 
 /**
@@ -190,7 +191,7 @@ public class KollosalPlayer extends FragmentActivity{
 	
 	private void changeColor(int newColor) {
 		//MusicFragment.getSlideLayout().setBackgroundColor(newColor);
-		pagerSlideTab.setIndicatorColor(getResources().getColor(R.color.semi_white));
+		//pagerSlideTab.setIndicatorColor(getResources().getColor(R.color.semi_white));
 		RelativeLayout ml = (RelativeLayout)findViewById(R.id.main_ui);
 		ml.setBackgroundColor(newColor);
 		LinearLayout listLayout = (LinearLayout)findViewById(R.id.lists_layout);
@@ -214,6 +215,12 @@ public class KollosalPlayer extends FragmentActivity{
 			slidingDrawer.closeDrawers();
 			if(lsTheme.getVisibility() == View.VISIBLE)
 				lsTheme.setVisibility(View.GONE);
+		}else if(VideoFragment.isSliderOpened() && pager.getCurrentItem() == 0){
+			//music slider panel is opened closing it first
+			VideoFragment.notifyPanelClose();
+		}else if(VideoFragment.isSliderOpened() && pager.getCurrentItem() != 0){
+			//music slider is opened but pager is on other page....
+			pager.setCurrentItem(0);
 		}else if(MusicFragment.isSliderOpened() && pager.getCurrentItem() == 1){
 			//music slider panel is opened closing it first
 			MusicFragment.notifyPanelClose();
