@@ -17,22 +17,85 @@
  
  -->
  
-<LinearLayout 
-    android:padding="5dp"
-    android:id="@+id/vid_img"
+<RelativeLayout 
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" >
-    
-    <GridView 
-        android:layout_marginTop="5dp"
-        android:id="@+id/video_grid"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >    
+    <com.sothree.slidinguppanel.SlidingUpPanelLayout
+        xmlns:sothree="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/sliding_layout_video"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:numColumns="2">
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        sothree:panelHeight="68dp"
+        sothree:shadowHeight="4dp"
+        sothree:paralaxOffset="100dp"
+        sothree:dragView="@+id/dragView">
+
+        <!-- MAIN CONTENT -->
+        <GridView 
+        	android:scrollbars="none"
+        	android:id="@+id/video_grid"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:numColumns="2">
         
-    </GridView>
+    	</GridView>
+
+        <!-- SLIDING LAYOUT -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="false"
+            android:id="@+id/dragView">
+
+            <LinearLayout
+                android:id="@+id/player_mini_controls"
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:orientation="horizontal">
+
+                <ImageView 
+                    android:layout_marginLeft="3dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/semi_white15"
+                    android:id="@+id/slider_alb_art"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+                
+                <TextView
+                    android:text="@string/timeline_video"
+                    android:textStyle="bold"
+                    style="@style/MediaController_Text"
+                    android:id="@+id/alb_name"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textSize="14sp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"/>
+                
+                
+
+            </LinearLayout>
+
+            <!-- TimeLine UI.... -->
+            <LinearLayout 
+                android:layout_width="match_parent"
+            	android:layout_height="match_parent">
+                <include 
+                    layout="@layout/vid_timeline"/>
+            </LinearLayout>
+        
+        </LinearLayout>
+        
+        
+    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
     
     
-</LinearLayout>
+  
+
+</RelativeLayout>

@@ -24,6 +24,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
@@ -38,6 +41,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import drawnzer.anurag.kollosal.LongClick;
 import drawnzer.anurag.kollosal.R;
 import drawnzer.anurag.kollosal.VideoPlayer;
@@ -49,16 +53,16 @@ import drawnzer.anurag.kollosal.models.VideoItem;
  * @author Anurag....
  *
  */
-public class VideoFragment extends Fragment{
+public class VideoFragment extends Fragment implements PanelSlideListener{
 
 	private static VideoAdapter adapter;
 	private static ArrayList<VideoItem> list;
 	private GridView grid;
 	private static LoadVideo loadVideo;
-	
+	private static SlidingUpPanelLayout slider;
 	
 	private static HashMap<String, VideoItem> addedItems;
-		
+	private LinearLayout mini_controls;	
 	@SuppressLint("HandlerLeak")
 	private Handler handler = new Handler(){
 		@Override
@@ -103,6 +107,9 @@ public class VideoFragment extends Fragment{
 			}
 		});
 		
+		slider = (SlidingUpPanelLayout)v.findViewById(R.id.sliding_layout_video);
+		mini_controls = (LinearLayout)v.findViewById(R.id.player_mini_controls);
+		slider.setPanelSlideListener(this);
 		//launching the video player....
 		grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
@@ -152,5 +159,63 @@ public class VideoFragment extends Fragment{
 			}
 			cursor.close();
 		}		
+	}
+
+	
+	/**
+	 * 
+	 * @param color
+	 */
+	public static void notifyColorChange(int color){
+		slider.setBackgroundColor(color);
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public static boolean isSliderOpened(){
+		return slider.isPanelExpanded();
+	}
+	
+	/**
+	 * 
+	 */
+	public static void notifyPanelClose(){
+		try{
+			slider.collapsePanel();
+		}catch(Exception e){
+			
+		}		
+	}
+	
+	@Override
+	public void onPanelSlide(View panel, float slideOffset) {
+		// TODO Auto-generated method stub
+		mini_controls.setVisibility(View.GONE);
+	}
+
+	@Override
+	public void onPanelCollapsed(View panel) {
+		// TODO Auto-generated method stub
+		mini_controls.setVisibility(View.VISIBLE);
+	}
+
+	@Override
+	public void onPanelExpanded(View panel) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onPanelAnchored(View panel) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onPanelHidden(View panel) {
+		// TODO Auto-generated method stub
+		
 	}	
 }
