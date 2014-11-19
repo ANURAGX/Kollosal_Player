@@ -26,13 +26,8 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import drawnzer.anurag.kollosal.fragments.Albums;
-import drawnzer.anurag.kollosal.fragments.Artist;
 import drawnzer.anurag.kollosal.fragments.CloudPlayerFragment;
-import drawnzer.anurag.kollosal.fragments.MusicFragment;
 import drawnzer.anurag.kollosal.fragments.NetworkStreamFragments;
-import drawnzer.anurag.kollosal.fragments.Playlist;
-import drawnzer.anurag.kollosal.fragments.RecentlyPlayed;
 import drawnzer.anurag.kollosal.fragments.VideoFragment;
 
 /**
@@ -42,8 +37,7 @@ import drawnzer.anurag.kollosal.fragments.VideoFragment;
  */
 public class KollosalFragmentAdapter extends FragmentStatePagerAdapter{
 
-	private final static String[] TITLES = { "VIDEOS", "MUSIC", "ARTISTS", "ALBUMS", 
-		 "RECENTLY PLAYED "," PLAYLISTS", "CLOUD PLAYER", "NETWORK STREAM"};
+	private final static String[] TITLES = { "VIDEOS", "CLOUD PLAYER", "NETWORK STREAM"};
 	private static HashMap<String, Fragment> fragments;
 	
 	public KollosalFragmentAdapter(FragmentManager fm) {
@@ -77,62 +71,7 @@ public class KollosalFragmentAdapter extends FragmentStatePagerAdapter{
 						}
 						return frgmt;
 					}				
-			case 1:
-					{
-						Fragment frgmt = fragments.get(""+position);	
-						if(frgmt == null){
-							MusicFragment musicFrgmt = new MusicFragment();
-							fragments.put(""+position, musicFrgmt);
-							return musicFrgmt;
-						}
-						return frgmt;
-					}
-					
-			case 2:
-					{
-						Fragment frgmt = fragments.get(""+position);	
-						if(frgmt == null){
-							Artist artFrgmt = new Artist();
-							fragments.put(""+position, artFrgmt);
-							return artFrgmt;
-						}
-						return frgmt;
-					}
-					
-			case 3:
-					{
-						Fragment frgmt = fragments.get(""+position);	
-						if(frgmt == null){
-							Albums albFrgmt = new Albums();
-							fragments.put(""+position, albFrgmt);
-							return albFrgmt;
-						}
-						return frgmt;
-					}	
-					
-			case 4:
-					{
-						Fragment frgmt = fragments.get(""+position);	
-						if(frgmt == null){
-							RecentlyPlayed recFrgmt = new RecentlyPlayed(); 
-							fragments.put(""+position, recFrgmt);
-							return recFrgmt;
-						}
-						return frgmt;
-					}		
-			case 5:
-					{
-						Fragment frgmt = fragments.get(""+position);	
-						if(frgmt == null){
-							Playlist plFrgmt = new Playlist();
-							fragments.put(""+position, plFrgmt);
-							return plFrgmt;
-						}
-						return frgmt;
-					}		
-					
-					
-			case 6:	
+			case 1:	
 					{
 						Fragment frgmt = fragments.get(""+position);	
 						if(frgmt == null){
@@ -143,7 +82,7 @@ public class KollosalFragmentAdapter extends FragmentStatePagerAdapter{
 						return frgmt;
 					}
 				
-			case 7:
+			case 2:
 					{
 						Fragment frgmt = fragments.get(""+position);	
 						if(frgmt == null){

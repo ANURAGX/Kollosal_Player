@@ -42,9 +42,6 @@ import com.astuetz.PagerSlidingTabStrip;
 import drawnzer.anurag.kollosal.adapters.DrawerMenuAdapter;
 import drawnzer.anurag.kollosal.adapters.KollosalFragmentAdapter;
 import drawnzer.anurag.kollosal.adapters.ThemeAdapter;
-import drawnzer.anurag.kollosal.fragments.Albums;
-import drawnzer.anurag.kollosal.fragments.Artist;
-import drawnzer.anurag.kollosal.fragments.MusicFragment;
 import drawnzer.anurag.kollosal.fragments.VideoFragment;
 
 
@@ -148,12 +145,8 @@ public class KollosalPlayer extends FragmentActivity{
 				// TODO Auto-generated method stub
 				ACTIONBAR_ICON = arg2;
 				changeColor(getResources().getColor(Constant.COLORS[arg2]));
-				//explicitly changing fragments color here....
-				MusicFragment.notifyColorChange(getResources().getColor(Constant.COLORS[arg2]));
-				Artist.notifyColorChange(getResources().getColor(Constant.COLORS[arg2]));
-				Albums.notifyColorChange(getResources().getColor(Constant.COLORS[arg2]));
 				
-				
+							
 				SharedPreferences.Editor edit = prefs.edit();
 				edit.putInt("APP_COLOR", getResources().getColor(Constant.COLORS[arg2]));
 				edit.putInt("SEMI_APP_COLOR", getResources().getColor(Constant.SEMI_COLORS[arg2]));
@@ -221,24 +214,6 @@ public class KollosalPlayer extends FragmentActivity{
 		}else if(VideoFragment.isSliderOpened() && pager.getCurrentItem() != 0){
 			//music slider is opened but pager is on other page....
 			pager.setCurrentItem(0);
-		}else if(MusicFragment.isSliderOpened() && pager.getCurrentItem() == 1){
-			//music slider panel is opened closing it first
-			MusicFragment.notifyPanelClose();
-		}else if(MusicFragment.isSliderOpened() && pager.getCurrentItem() != 1){
-			//music slider is opened but pager is on other page....
-			pager.setCurrentItem(1);
-		}else if(Artist.isSliderOpened() && pager.getCurrentItem() == 2){
-			//artist slider panel is opened closing it first
-			Artist.notifyPanelClose();
-		}else if(Artist.isSliderOpened() && pager.getCurrentItem() != 2){
-			//artist slider is opened but pager is on other page....
-			pager.setCurrentItem(2);
-		}else if(Albums.isSliderOpened() && pager.getCurrentItem() == 2){
-			//artist slider panel is opened closing it first
-			Albums.notifyPanelClose();
-		}else if(Albums.isSliderOpened() && pager.getCurrentItem() != 2){
-			//artist slider is opened but pager is on other page....
-			pager.setCurrentItem(2);
 		}
 		else{
 			android.os.Process.killProcess(android.os.Process.myPid());
