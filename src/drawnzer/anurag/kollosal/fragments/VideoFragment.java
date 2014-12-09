@@ -21,11 +21,9 @@
 package drawnzer.anurag.kollosal.fragments;
 
 import java.io.File;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import com.sothree.slidinguppanel.SlidingUpPanelLayout;
-import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -40,8 +38,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
+
 import drawnzer.anurag.kollosal.LongClick;
 import drawnzer.anurag.kollosal.R;
 import drawnzer.anurag.kollosal.VideoPlayer;
@@ -57,7 +59,7 @@ public class VideoFragment extends Fragment implements PanelSlideListener{
 
 	private static VideoAdapter adapter;
 	private static ArrayList<VideoItem> list;
-	private GridView grid;
+	private ListView grid;
 	private static LoadVideo loadVideo;
 	private static SlidingUpPanelLayout slider;
 	
@@ -90,7 +92,7 @@ public class VideoFragment extends Fragment implements PanelSlideListener{
 	@Override
 	public void onViewCreated(View v, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub	
-		grid = (GridView)v.findViewById(R.id.video_grid);
+		grid = (ListView)v.findViewById(R.id.video_grid);
 		grid.setSelector(R.drawable.button_click);
 		grid.setAdapter(adapter);
 		
