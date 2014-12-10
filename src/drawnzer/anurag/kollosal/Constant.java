@@ -53,12 +53,4 @@ public class Constant {
 									R.color.semi_violet40
 								};
 	
-	public static int[] KOLLOSAL_ICONS = {
-									R.drawable.grey_kollosal,
-									R.drawable.green_kollosal,
-									R.drawable.red_kollosal,
-									R.drawable.orange_kollosal,
-									R.drawable.blue_kollosal,
-									R.drawable.violet_kollosal
-								};
 }

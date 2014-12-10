@@ -110,10 +110,10 @@ public class KollosalPlayer extends FragmentActivity{
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setHomeButtonEnabled(true);	
 		
-		actionBar.setIcon(Constant.KOLLOSAL_ICONS[ACTIONBAR_ICON]);
+		actionBar.setIcon(R.drawable.red_kollosal);
 		
 		toggle = new ActionBarDrawerToggle(KollosalPlayer.this, slidingDrawer,
-				R.drawable.green_kollosal, R.string.settings, R.string.app_name){
+				R.drawable.red_kollosal, R.string.settings, R.string.app_name){
 			public void onDrawerClosed(View view) {
                 getActionBar().setTitle(getString(R.string.app_name));
                 isDrawerOpen = false;
@@ -197,8 +197,7 @@ public class KollosalPlayer extends FragmentActivity{
 		// http://stackoverflow.com/questions/11002691/actionbar-setbackgrounddrawable-nulling-background-from-thread-handler
 		actionBar.setDisplayShowTitleEnabled(false);
 		actionBar.setDisplayShowTitleEnabled(true);
-		//changing the action bar icon....
-		actionBar.setIcon(Constant.KOLLOSAL_ICONS[ACTIONBAR_ICON]);
+		
 	}	
 
 	@Override
