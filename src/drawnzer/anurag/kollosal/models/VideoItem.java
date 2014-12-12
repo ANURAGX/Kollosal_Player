@@ -31,6 +31,8 @@ public class VideoItem {
 
 	private ArrayList<VideoItem> child_Videos;
 	
+	private int number_of_child_video;
+	
 	/**
 	 * 
 	 * @param path path for video.....
@@ -45,10 +47,16 @@ public class VideoItem {
 			this.folderDisplayName = path.getParentFile().getName();
 		else
 			this.folderDisplayName = path.getName();
-		
+		number_of_child_video = 0;
 	}
 	
-	
+	/**
+	 * 
+	 * @return total number of videos in current folder....
+	 */	
+	public int getTotalChildVideos(){
+		return number_of_child_video;
+	}
 	
 	/**
 	 * 
@@ -72,6 +80,7 @@ public class VideoItem {
 	 * @param item
 	 */
 	public void addVideo(VideoItem item) {
+		number_of_child_video++ ;
 		this.child_Videos.add(item);
 	}
 	

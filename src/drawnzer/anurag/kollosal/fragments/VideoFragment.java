@@ -129,7 +129,7 @@ public class VideoFragment extends Fragment implements PanelSlideListener{
 					//opening a folder....
 					folder_expanded = true;
 					selected_folder = list.get(position);
-					grid.setAdapter(new VideoAdapter(getActivity(), selected_folder.getChildVideos(), false));
+					grid.setAdapter(new VideoAdapter(getActivity(), selected_folder.getChildVideos(), true));
 				}	
 			}
 		});

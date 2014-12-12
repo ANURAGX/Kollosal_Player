@@ -77,6 +77,7 @@ public class VideoAdapter extends BaseAdapter{
 	class Holder{
 		ImageView thumb;
 		TextView name;
+		TextView vidCount;
 	}
 	
 	@Override
@@ -88,11 +89,16 @@ public class VideoAdapter extends BaseAdapter{
 			convert = inflater.inflate(R.layout.video_grid_item, arg2 , false);
 			hold.thumb = (ImageView) convert.findViewById(R.id.grid_icon);
 			hold.name = (TextView) convert.findViewById(R.id.grid_artist_name);
+			hold.vidCount = (TextView) convert.findViewById(R.id.total_video);
 			convert.setTag(hold);
 		}else
 			hold = (Holder) convert.getTag();	
 		
 		hold.name.setText(item.getDisplayName());
+		if(!thumbLoading){
+			hold.vidCount.setText(item.getTotalChildVideos() + " Videos");
+			hold.vidCount.setVisibility(View.VISIBLE);
+		}	
 		return convert;
 	}
 }

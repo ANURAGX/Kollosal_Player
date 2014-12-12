@@ -35,7 +35,6 @@
 
         <!-- MAIN CONTENT -->
         <ListView 
-        	android:scrollbars="none"
         	android:id="@+id/video_grid"
         	android:layout_width="match_parent"
         	android:layout_height="wrap_content">
