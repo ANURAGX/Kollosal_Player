@@ -101,4 +101,12 @@ public class VideoItem {
 		this.child_Videos.add(item);
 	}
 	
+	/**
+	 * 
+	 * @return child videos within parent folder....
+	 */
+	public ArrayList<VideoItem> getChildVideos(){
+		return child_Videos;
+	}
+	
 }
