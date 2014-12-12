@@ -19,6 +19,7 @@
 
 package drawnzer.anurag.kollosal;
 
+import io.vov.vitamio.LibsChecker;
 import android.app.ActionBar;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
@@ -169,6 +170,9 @@ public class KollosalPlayer extends FragmentActivity{
 		
 		//setting view pager limit to save fragents....
 		pager.setOffscreenPageLimit(7);
+		
+		LibsChecker.checkVitamioLibs(KollosalPlayer.this);
+		
 	}	
 	
 	
