@@ -22,8 +22,8 @@ package drawnzer.anurag.kollosal.adapters;
 
 import java.util.ArrayList;
 
+
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,10 +38,21 @@ public class VideoAdapter extends BaseAdapter{
 	private LayoutInflater inflater;
 	private Context ctx;
 	private ArrayList<VideoItem> list;
-	public VideoAdapter(Context context , ArrayList<VideoItem> object) {
+	
+	//true then loads video thumbnail....
+	private boolean thumbLoading;
+	
+	/**
+	 * 
+	 * @param context
+	 * @param object list of videos or parent folder for videos....
+	 * @param loadThumb true then loads the thumb for video....
+	 */
+	public VideoAdapter(Context context , ArrayList<VideoItem> object ,boolean loadThumb) {
 		// TODO Auto-generated constructor stub
 		this.ctx = context;
 		this.list = object;
+		thumbLoading = loadThumb;
 		this.inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 	
@@ -80,9 +91,7 @@ public class VideoAdapter extends BaseAdapter{
 			convert.setTag(hold);
 		}else
 			hold = (Holder) convert.getTag();	
-		Bitmap map = item.getThumbnail();
-		if(map != null)
-			hold.thumb.setImageBitmap(item.getThumbnail());
+		
 		hold.name.setText(item.getDisplayName());
 		return convert;
 	}

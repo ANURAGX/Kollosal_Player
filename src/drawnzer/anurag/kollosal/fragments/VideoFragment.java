@@ -21,17 +21,14 @@
 package drawnzer.anurag.kollosal.fragments;
 
 import java.io.File;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -58,23 +55,20 @@ import drawnzer.anurag.kollosal.models.VideoItem;
 public class VideoFragment extends Fragment implements PanelSlideListener{
 
 	private static VideoAdapter adapter;
-	private static ArrayList<VideoItem> list;
-	private ListView grid;
-	private static LoadVideo loadVideo;
+	private ArrayList<VideoItem> list;
+	private static ListView grid;
+	private LoadVideo loadVideo;
 	private static SlidingUpPanelLayout slider;
 	
-	private static HashMap<String, VideoItem> addedItems;
+	private HashMap<String, VideoItem> addedItems;
 	private LinearLayout mini_controls;	
-	@SuppressLint("HandlerLeak")
-	private Handler handler = new Handler(){
-		@Override
-		public void handleMessage(Message msg) {
-			// TODO Auto-generated method stub
-			super.handleMessage(msg);
-			adapter.notifyDataSetChanged();
-		}
-		
-	};
+	
+	private static boolean folder_expanded;
+	
+	private VideoItem selected_folder;
+	
+	
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -85,7 +79,10 @@ public class VideoFragment extends Fragment implements PanelSlideListener{
 			list = new ArrayList<VideoItem>();
 		}	
 		if(adapter == null)
-			adapter = new VideoAdapter(getActivity(), list);
+			adapter = new VideoAdapter(getActivity(), list , false);
+		
+		folder_expanded = false;
+		
 		return view;
 	}
 
@@ -117,15 +114,29 @@ public class VideoFragment extends Fragment implements PanelSlideListener{
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position,long arg3) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(getActivity(), VideoPlayer.class);
+				/*Intent intent = new Intent(getActivity(), VideoPlayer.class);
 				intent.setData(Uri.parse(list.get(position).getVideoPath()));
-				startActivity(intent);
+				startActivity(intent);*/
+				
+				if(folder_expanded){
+					//the folder is open,now choosing a video file to play....
+					Intent intent = new Intent(getActivity(), VideoPlayer.class);
+					intent.setData(Uri.parse(selected_folder.getChildVideos().get(position).getVideoPath()));
+					startActivity(intent);
+					
+				}else{
+					
+					//opening a folder....
+					folder_expanded = true;
+					selected_folder = list.get(position);
+					grid.setAdapter(new VideoAdapter(getActivity(), selected_folder.getChildVideos(), false));
+				}	
 			}
 		});
 		
 		if(loadVideo == null){
 			loadVideo = new LoadVideo();
-			loadVideo.start();
+			loadVideo.execute();
 		}
 	}	
 	
@@ -134,16 +145,28 @@ public class VideoFragment extends Fragment implements PanelSlideListener{
 	 * @author Anurag....
 	 *
 	 */
-	private class LoadVideo extends Thread{
+	private class LoadVideo extends AsyncTask<Void, Void, Void>{
+		
 		public LoadVideo() {
 			// TODO Auto-generated constructor stub
 		}
 
+		
+
 		@Override
-		public void run() {
+		protected void onProgressUpdate(Void... values) {
+			// TODO Auto-generated method stub
+			super.onProgressUpdate(values);
+			adapter.notifyDataSetChanged();
+		}
+
+
+
+		@Override
+		protected Void doInBackground(Void... arg0) {
 			// TODO Auto-generated method stub
 			Cursor cursor = getActivity().getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
-							null, null, null, null);
+					null, null, null, null);
 			while(cursor.moveToNext()){
 				String path = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.DATA));
 				//addedItems.put(key, value)
@@ -151,21 +174,26 @@ public class VideoFragment extends Fragment implements PanelSlideListener{
 				String parent = file.getParent();
 				VideoItem itm = addedItems.get(parent);
 				if(itm == null){
-					VideoItem item = new VideoItem(file , getActivity() , false);
+					VideoItem item = new VideoItem(file , true);
 					list.add(item);
-					handler.sendEmptyMessage(0);
 					addedItems.put(file.getParent(), item);
+			
+					//adding the current video also....
+					addedItems.get(parent).addVideo(new VideoItem(file , false));
 				}else{
-					addedItems.get(parent).addVideo(new VideoItem(file, getActivity(),false));
-				}				
+					addedItems.get(parent).addVideo(new VideoItem(file , false));
+				}	
+				
+				publishProgress();
 			}
 			cursor.close();
+			return null;
 		}		
 	}
 
 	
 	/**
-	 * 
+	 * changes the background color of umano slider menu....
 	 * @param color
 	 */
 	public static void notifyColorChange(int color){
@@ -174,22 +202,39 @@ public class VideoFragment extends Fragment implements PanelSlideListener{
 
 	/**
 	 * 
-	 * @return
+	 * @return true if umano menu is opened....
 	 */
 	public static boolean isSliderOpened(){
 		return slider.isPanelExpanded();
 	}
 	
 	/**
-	 * 
+	 * collapses the umano slider menu.... 
 	 */
 	public static void notifyPanelClose(){
 		try{
 			slider.collapsePanel();
 		}catch(Exception e){
 			
-		}		
+		}			
 	}
+	
+	/**
+	 * 
+	 * @return true if a folder is opened for viewing videos....
+	 */
+	public static boolean isFolderExpanded(){
+		return folder_expanded;
+	}
+	
+	/**
+	 * collapses the expanded folder and displays initial folder list....
+	 */
+	public static void collapseFolder(){
+		folder_expanded = false;
+		grid.setAdapter(adapter);
+	}
+	
 	
 	@Override
 	public void onPanelSlide(View panel, float slideOffset) {
@@ -217,7 +262,6 @@ public class VideoFragment extends Fragment implements PanelSlideListener{
 
 	@Override
 	public void onPanelHidden(View panel) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 	}	
 }

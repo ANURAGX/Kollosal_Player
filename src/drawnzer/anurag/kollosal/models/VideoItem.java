@@ -19,20 +19,16 @@
 
 package drawnzer.anurag.kollosal.models;
 
-import io.vov.vitamio.ThumbnailUtils;
-import io.vov.vitamio.provider.MediaStore;
+
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import android.content.Context;
-import android.graphics.Bitmap;
 public class VideoItem {
 	
 	private String videoPath;
 	private String folderDisplayName;
-	private Bitmap thumb;
+
 	private ArrayList<VideoItem> child_Videos;
 	
 	/**
@@ -41,33 +37,18 @@ public class VideoItem {
 	 * @param ctx
 	 * @param load_thumb if true loads the thumb....
 	 */
-	public VideoItem(File path , Context ctx , boolean load_thumb) {
+	public VideoItem(File path , boolean isFolder) {
 		// TODO Auto-generated constructor stub
 		this.child_Videos = new ArrayList<VideoItem>();
 		this.videoPath = path.getAbsolutePath();
-		this.folderDisplayName = path.getParentFile().getName();
-		if(load_thumb)
-			this.thumb = makeThumb(path.getAbsolutePath(), ctx);
+		if(isFolder)
+			this.folderDisplayName = path.getParentFile().getName();
 		else
-			this.thumb = null;
+			this.folderDisplayName = path.getName();
+		
 	}
 	
-	/**
-	 * THIS FUNCTION GENERATES A THUMBNAIL OF THE VIDEO...
-	 * THIS FUNCTION USES VITAMIO LIBRARY INSTEAD OF ANDROID PROVIDED
-	 * FUNCTION..... 
-	 * @param path
-	 * @return
-	 */
-	private Bitmap makeThumb(String path , Context ctx) {
-		// TODO Auto-generated method stub
-		//MediaMetadataRetriever ret = new MediaMetadataRetriever();
-		//ret.setDataSource(path);
-		Bitmap map;// = ret.getFrameAtTime(10000, MediaMetadataRetriever.OPTION_CLOSEST_SYNC);
-		map = ThumbnailUtils.extractThumbnail(ThumbnailUtils.createVideoThumbnail(ctx,
-               path, MediaStore.Video.Thumbnails.MINI_KIND), 500, 500);
-		return map;
-	}
+	
 	
 	/**
 	 * 
@@ -77,14 +58,7 @@ public class VideoItem {
 		return this.folderDisplayName;
 	}
 	
-	/**
-	 * 
-	 * @return
-	 */
-	public Bitmap getThumbnail(){
-		return this.thumb;
-	}
-	
+		
 	/**
 	 * 
 	 * @return
