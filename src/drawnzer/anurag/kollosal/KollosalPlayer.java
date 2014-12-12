@@ -81,8 +81,7 @@ public class KollosalPlayer extends FragmentActivity{
 	//theme listview in slide drawer menu
 	private ListView lsTheme;
 	
-	//icon position for action bar....
-	private int ACTIONBAR_ICON;
+	
 	
 	//action bar of main activity....
 	private ActionBar actionBar;
@@ -92,8 +91,7 @@ public class KollosalPlayer extends FragmentActivity{
 		super.onCreate(savedInstanceState);
 		prefs = getSharedPreferences("APP_SETTINGS", 0);
 		currentColor = prefs.getInt("APP_COLOR",0xFFC74B46);
-		ACTIONBAR_ICON = prefs.getInt("APP_ICON", 2);
-				
+						
 		setContentView(R.layout.combined_ui);	
 		isDrawerOpen = false;
 		slidingDrawer = (DrawerLayout)findViewById(R.id.slideDrawer);
@@ -143,7 +141,7 @@ public class KollosalPlayer extends FragmentActivity{
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,long arg3) {
 				// TODO Auto-generated method stub
-				ACTIONBAR_ICON = arg2;
+				
 				changeColor(getResources().getColor(Constant.COLORS[arg2]));
 				
 							
@@ -208,11 +206,12 @@ public class KollosalPlayer extends FragmentActivity{
 			if(lsTheme.getVisibility() == View.VISIBLE)
 				lsTheme.setVisibility(View.GONE);
 		}else if(VideoFragment.isSliderOpened() && pager.getCurrentItem() == 0){
-			//music slider panel is opened closing it first
 			VideoFragment.notifyPanelClose();
 		}else if(VideoFragment.isSliderOpened() && pager.getCurrentItem() != 0){
-			//music slider is opened but pager is on other page....
 			pager.setCurrentItem(0);
+		}else if(VideoFragment.isFolderExpanded() && pager.getCurrentItem() == 0){
+			//collapsing the opened folder....
+			VideoFragment.collapseFolder();
 		}
 		else{
 			android.os.Process.killProcess(android.os.Process.myPid());
