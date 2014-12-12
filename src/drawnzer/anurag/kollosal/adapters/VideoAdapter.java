@@ -20,10 +20,14 @@
 
 package drawnzer.anurag.kollosal.adapters;
 
+import io.vov.vitamio.ThumbnailUtils;
+import io.vov.vitamio.provider.MediaStore;
+
 import java.util.ArrayList;
 
-
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +35,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import drawnzer.anurag.kollosal.R;
+import drawnzer.anurag.kollosal.fragments.VideoFragment;
 import drawnzer.anurag.kollosal.models.VideoItem;
 
 public class VideoAdapter extends BaseAdapter{
@@ -98,7 +103,38 @@ public class VideoAdapter extends BaseAdapter{
 		if(!thumbLoading){
 			hold.vidCount.setText(item.getTotalChildVideos() + " Videos");
 			hold.vidCount.setVisibility(View.VISIBLE);
-		}	
+		}else if(thumbLoading && VideoFragment.isFolderExpanded())
+			new LoadThumb(item, hold.thumb).execute();
 		return convert;
+	}
+	
+	private class LoadThumb extends AsyncTask<Void, Void, Void>{
+
+		VideoItem itm;
+		ImageView image;
+		Bitmap map;
+		
+		public LoadThumb(VideoItem item , ImageView img) {
+			// TODO Auto-generated constructor stub
+			itm = item;
+			image = img;
+		}
+		
+		@Override
+		protected void onPostExecute(Void result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			if(map != null)
+				image.setImageBitmap(map);
+		}
+
+		@Override
+		protected Void doInBackground(Void... arg0) {
+			// TODO Auto-generated method stub
+			map = ThumbnailUtils.extractThumbnail(ThumbnailUtils.createVideoThumbnail(ctx,
+					               itm.getVideoPath(), MediaStore.Video.Thumbnails.MICRO_KIND), 100, 100);
+			return null;
+		}
+		
 	}
 }
