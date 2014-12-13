@@ -57,8 +57,8 @@
         <activity
             android:name="io.vov.vitamio.activity.InitActivity"
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
-            android:launchMode="singleTop"
-            android:theme="@android:style/Theme.NoTitleBar"
+            android:launchMode="standard"
+            android:theme="@style/Theme.Holo.Translucent"
             android:windowSoftInputMode="stateAlwaysHidden" />
         
         <!-- SIMPLE ACTIVITY LAUNCHED ON LONG CLICK ACTION.... -->
@@ -113,10 +113,7 @@
                 <data android:mimeType="application/x-quicktimeplayer" />
                 <data android:mimeType="application/x-shockwave-flash" />
             </intent-filter>
-        </activity>
-        
-           
-        
+        </activity>        
         
     </application>
 
