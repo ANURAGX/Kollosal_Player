@@ -147,7 +147,9 @@ public class VideoPlayer extends Activity{
 			@Override
 			public void onPreviousVideoSelect() {
 				// TODO Auto-generated method stub
-				
+				VideoItem item = VideoFragment.getPreviousVideo();
+				if(item != null)
+					videoView.setVideoPath(item.getVideoPath());
 			}
 		});
 		

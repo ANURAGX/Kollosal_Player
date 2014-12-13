@@ -273,8 +273,25 @@ public class VideoFragment extends Fragment implements PanelSlideListener{
 	 */
 	public static VideoItem getNextVideo(){
 		VideoItem item = null;
+		
 		if(++selected_video_position < selected_folder.getTotalChildVideos())
 			item = selected_folder.getChildVideos().get(selected_video_position);
+		else
+			--selected_video_position;
+		return item;
+	}
+	
+	/**
+	 * this function is called when previous button is clicked from video player....
+	 * 
+	 * @return the back video to be played from the opened folder....
+	 */
+	public static VideoItem getPreviousVideo(){
+		VideoItem item = null;
+		
+		if(selected_video_position != 0)
+			if(--selected_video_position >= 0)
+				item = selected_folder.getChildVideos().get(selected_video_position);
 		return item;
 	}
 	
