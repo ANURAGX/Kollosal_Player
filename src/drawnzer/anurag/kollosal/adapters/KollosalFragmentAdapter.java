@@ -21,12 +21,9 @@ package drawnzer.anurag.kollosal.adapters;
 
 import java.util.HashMap;
 
-import com.sothree.slidinguppanel.SlidingUpPanelLayout;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import drawnzer.anurag.kollosal.fragments.CloudPlayerFragment;
 import drawnzer.anurag.kollosal.fragments.NetworkStreamFragments;
 import drawnzer.anurag.kollosal.fragments.VideoFragment;
 
@@ -37,7 +34,7 @@ import drawnzer.anurag.kollosal.fragments.VideoFragment;
  */
 public class KollosalFragmentAdapter extends FragmentStatePagerAdapter{
 
-	private final static String[] TITLES = { "VIDEOS", "CLOUD PLAYER", "NETWORK STREAM"};
+	private final static String[] TITLES = { "VIDEOS", "NETWORK STREAM"};
 	private static HashMap<String, Fragment> fragments;
 	
 	public KollosalFragmentAdapter(FragmentManager fm) {
@@ -71,18 +68,8 @@ public class KollosalFragmentAdapter extends FragmentStatePagerAdapter{
 						}
 						return frgmt;
 					}				
-			case 1:	
-					{
-						Fragment frgmt = fragments.get(""+position);	
-						if(frgmt == null){
-							CloudPlayerFragment cloudFrgmt = new CloudPlayerFragment();
-							fragments.put(""+position, cloudFrgmt);
-							return cloudFrgmt;
-						}
-						return frgmt;
-					}
-				
-			case 2:
+					
+			case 1:
 					{
 						Fragment frgmt = fragments.get(""+position);	
 						if(frgmt == null){
