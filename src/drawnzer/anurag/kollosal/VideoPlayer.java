@@ -19,6 +19,8 @@
 
 package drawnzer.anurag.kollosal;
 
+import drawnzer.anurag.kollosal.fragments.VideoFragment;
+import drawnzer.anurag.kollosal.models.VideoItem;
 import io.vov.vitamio.LibsChecker;
 import io.vov.vitamio.MediaPlayer;
 import io.vov.vitamio.widget.MediaController;
@@ -131,7 +133,9 @@ public class VideoPlayer extends Activity{
 			@Override
 			public void onNextVideoSelect() {
 				// TODO Auto-generated method stub
-				
+				VideoItem item = VideoFragment.getNextVideo();
+				if(item != null)
+					videoView.setVideoPath(item.getVideoPath());
 			}
 		});
 		

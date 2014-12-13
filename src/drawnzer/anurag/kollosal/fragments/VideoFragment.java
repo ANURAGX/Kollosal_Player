@@ -65,8 +65,9 @@ public class VideoFragment extends Fragment implements PanelSlideListener{
 	
 	private static boolean folder_expanded;
 	
-	private VideoItem selected_folder;
+	private static VideoItem selected_folder;
 	
+	private static int selected_video_position;
 	
 	
 	@Override
@@ -123,7 +124,7 @@ public class VideoFragment extends Fragment implements PanelSlideListener{
 					Intent intent = new Intent(getActivity(), VideoPlayer.class);
 					intent.setData(Uri.parse(selected_folder.getChildVideos().get(position).getVideoPath()));
 					startActivity(intent);
-					
+					selected_video_position = position;
 				}else{
 					
 					//opening a folder....
@@ -264,4 +265,17 @@ public class VideoFragment extends Fragment implements PanelSlideListener{
 	public void onPanelHidden(View panel) {
 		// TODO Auto-generated method stub		
 	}	
+	
+	/**
+	 * this function is called when next button is clicked from video player.... 
+	 * 
+	 * @return the next video track to be played from the sequence of opened folder....
+	 */
+	public static VideoItem getNextVideo(){
+		VideoItem item = null;
+		if(++selected_video_position < selected_folder.getTotalChildVideos())
+			item = selected_folder.getChildVideos().get(selected_video_position);
+		return item;
+	}
+	
 }
