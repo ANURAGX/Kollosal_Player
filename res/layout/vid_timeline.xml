@@ -93,7 +93,7 @@
         android:layout_marginBottom="3dp"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="30dp">
         <TextView 
             style="@style/MediaController_Text"
             android:text="@string/local_videos"

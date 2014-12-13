@@ -35,9 +35,10 @@
 
         <!-- MAIN CONTENT -->
         <ListView 
+            android:background="@color/semi_white15"
         	android:id="@+id/video_grid"
         	android:layout_width="match_parent"
-        	android:layout_height="wrap_content">
+        	android:layout_height="match_parent">
         
     	</ListView>
 
@@ -51,7 +52,6 @@
             android:id="@+id/dragView">
 
             <LinearLayout
-                android:background="@color/semi_white15"
                 android:id="@+id/player_mini_controls"
                 android:layout_width="match_parent"
                 android:layout_height="68dp"
