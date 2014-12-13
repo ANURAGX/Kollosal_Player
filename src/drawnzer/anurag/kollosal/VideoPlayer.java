@@ -134,8 +134,10 @@ public class VideoPlayer extends Activity{
 			public void onNextVideoSelect() {
 				// TODO Auto-generated method stub
 				VideoItem item = VideoFragment.getNextVideo();
-				if(item != null)
+				if(item != null){
+					videoView.stopPlayback();
 					videoView.setVideoPath(item.getVideoPath());
+				}	
 			}
 		});
 		
@@ -148,8 +150,10 @@ public class VideoPlayer extends Activity{
 			public void onPreviousVideoSelect() {
 				// TODO Auto-generated method stub
 				VideoItem item = VideoFragment.getPreviousVideo();
-				if(item != null)
+				if(item != null){
+					videoView.stopPlayback();
 					videoView.setVideoPath(item.getVideoPath());
+				}	
 			}
 		});
 		
