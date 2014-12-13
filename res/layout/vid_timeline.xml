@@ -69,20 +69,21 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignTop="@+id/timeline_vid_name"
-            android:layout_marginLeft="16dp"
-            android:background="@drawable/speaker_on"
-            android:src="@drawable/button_click" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignTop="@+id/textView1"
             android:layout_marginRight="20dp"
             android:background="@drawable/share_timeline"
             android:src="@drawable/button_click" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/timeline_vid_name"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/speaker_on"
+            android:src="@drawable/button_click" />
+
     </RelativeLayout>
     
     <LinearLayout 
