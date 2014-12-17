@@ -44,6 +44,7 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
 import drawnzer.anurag.kollosal.LongClick;
 import drawnzer.anurag.kollosal.R;
 import drawnzer.anurag.kollosal.VideoPlayer;
+import drawnzer.anurag.kollosal.adapters.FolderAdapter;
 import drawnzer.anurag.kollosal.adapters.VideoAdapter;
 import drawnzer.anurag.kollosal.models.VideoItem;
 
@@ -54,7 +55,10 @@ import drawnzer.anurag.kollosal.models.VideoItem;
  */
 public class VideoFragment extends Fragment implements PanelSlideListener{
 
-	private static VideoAdapter adapter;
+	private static VideoAdapter videoAdapter;
+	
+	private static FolderAdapter folderAdapter;
+	
 	private ArrayList<VideoItem> list;
 	private static ListView grid;
 	private LoadVideo loadVideo;
@@ -79,8 +83,11 @@ public class VideoFragment extends Fragment implements PanelSlideListener{
 			addedItems = new HashMap<String , VideoItem>();
 			list = new ArrayList<VideoItem>();
 		}	
-		if(adapter == null)
-			adapter = new VideoAdapter(getActivity(), list , false);
+		if(videoAdapter == null)
+			videoAdapter = new VideoAdapter(getActivity(), list , false);
+		
+		if(folderAdapter == null)
+			folderAdapter = new FolderAdapter(getActivity(), list);
 		
 		folder_expanded = false;
 		
@@ -92,7 +99,7 @@ public class VideoFragment extends Fragment implements PanelSlideListener{
 		// TODO Auto-generated method stub	
 		grid = (ListView)v.findViewById(R.id.video_grid);
 		grid.setSelector(R.drawable.button_click);
-		grid.setAdapter(adapter);
+		grid.setAdapter(folderAdapter);
 		
 		//long click action is taken here.....
 		grid.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -158,7 +165,7 @@ public class VideoFragment extends Fragment implements PanelSlideListener{
 		protected void onProgressUpdate(Void... values) {
 			// TODO Auto-generated method stub
 			super.onProgressUpdate(values);
-			adapter.notifyDataSetChanged();
+			folderAdapter.notifyDataSetChanged();
 		}
 
 
@@ -233,7 +240,7 @@ public class VideoFragment extends Fragment implements PanelSlideListener{
 	 */
 	public static void collapseFolder(){
 		folder_expanded = false;
-		grid.setAdapter(adapter);
+		grid.setAdapter(folderAdapter);
 	}
 	
 	

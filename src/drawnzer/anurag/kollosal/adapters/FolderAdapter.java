@@ -38,26 +38,23 @@ import drawnzer.anurag.kollosal.R;
 import drawnzer.anurag.kollosal.fragments.VideoFragment;
 import drawnzer.anurag.kollosal.models.VideoItem;
 
-public class VideoAdapter extends BaseAdapter{
+public class FolderAdapter extends BaseAdapter{
 
 	private LayoutInflater inflater;
 	private Context ctx;
 	private ArrayList<VideoItem> list;
 	
-	//true then loads video thumbnail....
-	private boolean thumbLoading;
-	
+		
 	/**
 	 * 
 	 * @param context
 	 * @param object list of videos or parent folder for videos....
 	 * @param loadThumb true then loads the thumb for video....
 	 */
-	public VideoAdapter(Context context , ArrayList<VideoItem> object ,boolean loadThumb) {
+	public FolderAdapter(Context context , ArrayList<VideoItem> object) {
 		// TODO Auto-generated constructor stub
 		this.ctx = context;
 		this.list = object;
-		thumbLoading = loadThumb;
 		this.inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 	
@@ -82,6 +79,7 @@ public class VideoAdapter extends BaseAdapter{
 	class Holder{
 		ImageView thumb;
 		TextView name;
+		TextView vidCount;
 	}
 	
 	@Override
@@ -90,47 +88,18 @@ public class VideoAdapter extends BaseAdapter{
 		VideoItem item = list.get(position);
 		Holder hold = new Holder();
 		if(convert == null){
-			convert = inflater.inflate(R.layout.video_grid_item, arg2 , false);
+			convert = inflater.inflate(R.layout.folder_item, arg2 , false);
 			hold.thumb = (ImageView) convert.findViewById(R.id.grid_icon);
 			hold.name = (TextView) convert.findViewById(R.id.grid_artist_name);
+			hold.vidCount = (TextView) convert.findViewById(R.id.total_video);
 			convert.setTag(hold);
 		}else
 			hold = (Holder) convert.getTag();	
 		
 		hold.name.setText(item.getDisplayName());
-		
-		if(thumbLoading && VideoFragment.isFolderExpanded())
-			new LoadThumb(item, hold.thumb).execute();
+		hold.vidCount.setText(item.getTotalChildVideos() + " Videos");
 		return convert;
 	}
 	
-	private class LoadThumb extends AsyncTask<Void, Void, Void>{
-
-		VideoItem itm;
-		ImageView image;
-		Bitmap map;
-		
-		public LoadThumb(VideoItem item , ImageView img) {
-			// TODO Auto-generated constructor stub
-			itm = item;
-			image = img;
-		}
-		
-		@Override
-		protected void onPostExecute(Void result) {
-			// TODO Auto-generated method stub
-			super.onPostExecute(result);
-			if(map != null)
-				image.setImageBitmap(map);
-		}
-
-		@Override
-		protected Void doInBackground(Void... arg0) {
-			// TODO Auto-generated method stub
-			map = ThumbnailUtils.extractThumbnail(ThumbnailUtils.createVideoThumbnail(ctx,
-					               itm.getVideoPath(), MediaStore.Video.Thumbnails.MICRO_KIND), 100, 100);
-			return null;
-		}
-		
-	}
+	
 }
