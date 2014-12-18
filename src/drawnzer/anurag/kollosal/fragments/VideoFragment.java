@@ -55,22 +55,37 @@ import drawnzer.anurag.kollosal.models.VideoItem;
  */
 public class VideoFragment extends Fragment implements PanelSlideListener{
 
-	private static VideoAdapter videoAdapter;
 	
+	//adapter for video folders
 	private static FolderAdapter folderAdapter;
 	
+	//folder items..which also contains child videos....
 	private ArrayList<VideoItem> list;
+	
+	//list view....
 	private static ListView grid;
+	
+	//asynctask class to load videos from sdcard from phone in background thread
+	//and update the list view as videos are discovered....
 	private LoadVideo loadVideo;
+	
+	//umano slider view....
 	private static SlidingUpPanelLayout slider;
 	
+	//list to keep track of added folders,a folder has to added to list only once and its child
+	//videos will to added to current folder....
 	private HashMap<String, VideoItem> addedItems;
+	
+	//umano drag view....
 	private LinearLayout mini_controls;	
 	
+	//true then folder is clicked and list view showing videos from folder....
 	private static boolean folder_expanded;
 	
+	//selected folder or video....
 	private static VideoItem selected_folder;
 	
+	//selected position for video folder.....
 	private static int selected_video_position;
 	
 	
@@ -83,8 +98,7 @@ public class VideoFragment extends Fragment implements PanelSlideListener{
 			addedItems = new HashMap<String , VideoItem>();
 			list = new ArrayList<VideoItem>();
 		}	
-		if(videoAdapter == null)
-			videoAdapter = new VideoAdapter(getActivity(), list , false);
+		
 		
 		if(folderAdapter == null)
 			folderAdapter = new FolderAdapter(getActivity(), list);
