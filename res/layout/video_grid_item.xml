@@ -46,6 +46,7 @@
     </RelativeLayout>
     
     <ImageView 
+        android:visibility="gone"
         android:layout_marginLeft="2dp"
         android:layout_marginRight="2dp"
         android:id="@+id/new_video"

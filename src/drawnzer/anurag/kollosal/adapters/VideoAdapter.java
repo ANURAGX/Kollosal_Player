@@ -82,6 +82,7 @@ public class VideoAdapter extends BaseAdapter{
 	class Holder{
 		ImageView thumb;
 		TextView name;
+		ImageView newVid;
 	}
 	
 	@Override
@@ -93,11 +94,15 @@ public class VideoAdapter extends BaseAdapter{
 			convert = inflater.inflate(R.layout.video_grid_item, arg2 , false);
 			hold.thumb = (ImageView) convert.findViewById(R.id.grid_icon);
 			hold.name = (TextView) convert.findViewById(R.id.grid_artist_name);
+			hold.newVid = (ImageView) convert.findViewById(R.id.new_video);
 			convert.setTag(hold);
 		}else
 			hold = (Holder) convert.getTag();	
 		
 		hold.name.setText(item.getDisplayName());
+		
+		if(item.isVideoNew())
+			hold.newVid.setVisibility(View.VISIBLE);
 		
 		if(thumbLoading && VideoFragment.isFolderExpanded())
 			new LoadThumb(item, hold.thumb).execute();

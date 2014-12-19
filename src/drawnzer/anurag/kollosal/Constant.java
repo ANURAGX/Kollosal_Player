@@ -19,6 +19,8 @@
 
 package drawnzer.anurag.kollosal;
 
+import drawnzer.anurag.provider.NewAddedVideos;
+
 /**
  * 
  * @author Anurag....
@@ -52,5 +54,10 @@ public class Constant {
 									R.color.semi_blue40,
 									R.color.semi_violet40
 								};
+	
+	/**
+	 * 
+	 */
+	public static NewAddedVideos NEW_VIDEOS;
 	
 }

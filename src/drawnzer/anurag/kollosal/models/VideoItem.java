@@ -24,14 +24,27 @@ package drawnzer.anurag.kollosal.models;
 import java.io.File;
 import java.util.ArrayList;
 
+
 public class VideoItem {
 	
+	//path for video.....
+	//comes in use for getting child video path....
 	private String videoPath;
+	
+	//folder name to display....
 	private String folderDisplayName;
 
+	//child list of videos inside the folder.....
 	private ArrayList<VideoItem> child_Videos;
 	
+	//number of child videos inside folder....
 	private int number_of_child_video;
+	
+	//true then folder contains new video.....
+	private boolean folder_has_new_video;
+	
+	//true then child video is new video and is not watched....
+	private boolean video_is_new;
 	
 	/**
 	 * 
@@ -48,6 +61,9 @@ public class VideoItem {
 		else
 			this.folderDisplayName = path.getName();
 		number_of_child_video = 0;
+		
+		folder_has_new_video = false;
+		video_is_new = false;
 	}
 	
 	/**
@@ -76,6 +92,36 @@ public class VideoItem {
 	}
 	
 	/**
+	 * sets the video to new video....
+	 */
+	public void setNewVideoFlag(){
+		this.video_is_new = true;
+	}
+	
+	/**
+	 * removes the new video tag from the video....
+	 */
+	public void removeNewVideoFlag(){
+		this.video_is_new = false;
+	}
+	
+	/**
+	 * 
+	 * @return true if folder contains new videos....
+	 */
+	public boolean isFolderHasNewVideos(){
+		return this.folder_has_new_video;
+	}
+	
+	/**
+	 * 
+	 * @return true if this video is new.....
+	 */
+	public boolean isVideoNew(){
+		return this.video_is_new;
+	}
+	
+	/**
 	 * 
 	 * @param item
 	 */
@@ -90,6 +136,5 @@ public class VideoItem {
 	 */
 	public ArrayList<VideoItem> getChildVideos(){
 		return child_Videos;
-	}
-	
+	}	
 }
