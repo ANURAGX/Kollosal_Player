@@ -110,6 +110,10 @@ public class VideoItem {
 	 * @return true if folder contains new videos....
 	 */
 	public boolean isFolderHasNewVideos(){
+		for(VideoItem itm : child_Videos){
+			if(itm.isVideoNew())
+				return (this.folder_has_new_video = true);
+		}
 		return this.folder_has_new_video;
 	}
 	

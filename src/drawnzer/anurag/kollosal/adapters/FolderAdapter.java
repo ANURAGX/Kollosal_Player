@@ -20,14 +20,9 @@
 
 package drawnzer.anurag.kollosal.adapters;
 
-import io.vov.vitamio.ThumbnailUtils;
-import io.vov.vitamio.provider.MediaStore;
-
 import java.util.ArrayList;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +30,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import drawnzer.anurag.kollosal.R;
-import drawnzer.anurag.kollosal.fragments.VideoFragment;
 import drawnzer.anurag.kollosal.models.VideoItem;
 
 public class FolderAdapter extends BaseAdapter{
@@ -80,6 +74,7 @@ public class FolderAdapter extends BaseAdapter{
 		ImageView thumb;
 		TextView name;
 		TextView vidCount;
+		ImageView newVid;
 	}
 	
 	@Override
@@ -92,12 +87,17 @@ public class FolderAdapter extends BaseAdapter{
 			hold.thumb = (ImageView) convert.findViewById(R.id.grid_icon);
 			hold.name = (TextView) convert.findViewById(R.id.grid_artist_name);
 			hold.vidCount = (TextView) convert.findViewById(R.id.total_video);
+			hold.newVid = (ImageView) convert.findViewById(R.id.new_video);
 			convert.setTag(hold);
 		}else
 			hold = (Holder) convert.getTag();	
 		
 		hold.name.setText(item.getDisplayName());
 		hold.vidCount.setText(item.getTotalChildVideos() + " Videos");
+		
+		if(item.isFolderHasNewVideos())
+			hold.newVid.setVisibility(View.VISIBLE);
+		
 		return convert;
 	}
 	
