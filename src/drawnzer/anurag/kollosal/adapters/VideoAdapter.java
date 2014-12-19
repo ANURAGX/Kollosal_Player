@@ -24,6 +24,7 @@ import io.vov.vitamio.ThumbnailUtils;
 import io.vov.vitamio.provider.MediaStore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -42,6 +43,12 @@ public class VideoAdapter extends BaseAdapter{
 
 	private LayoutInflater inflater;
 	private Context ctx;
+	
+	//storing the video thumbnail in hashmap and using key to 
+	//retrieve them....
+	private HashMap<String , Bitmap> thumbs;
+	
+	//list of videos....
 	private ArrayList<VideoItem> list;
 	
 	//true then loads video thumbnail....
@@ -58,6 +65,7 @@ public class VideoAdapter extends BaseAdapter{
 		this.ctx = context;
 		this.list = object;
 		thumbLoading = loadThumb;
+		thumbs = new HashMap<String , Bitmap>();
 		this.inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 	
@@ -104,11 +112,23 @@ public class VideoAdapter extends BaseAdapter{
 		if(item.isVideoNew())
 			hold.newVid.setVisibility(View.VISIBLE);
 		
-		if(thumbLoading && VideoFragment.isFolderExpanded())
-			new LoadThumb(item, hold.thumb).execute();
+		if(thumbLoading && VideoFragment.isFolderExpanded()){
+			Bitmap map = thumbs.get(item.getVideoPath());
+			if(map == null){
+				hold.thumb.setTag(item.getVideoPath());
+				new LoadThumb(item, hold.thumb).execute();
+			}	
+			else
+				hold.thumb.setImageBitmap(map);
+		}	
 		return convert;
 	}
 	
+	/**
+	 * 
+	 * @author anurag
+	 *
+	 */
 	private class LoadThumb extends AsyncTask<Void, Void, Void>{
 
 		VideoItem itm;
@@ -126,16 +146,27 @@ public class VideoAdapter extends BaseAdapter{
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 			if(map != null)
-				image.setImageBitmap(map);
+				if(image.getTag().equals(itm.getVideoPath()))
+					image.setImageBitmap(map);
 		}
 
 		@Override
 		protected Void doInBackground(Void... arg0) {
 			// TODO Auto-generated method stub
-			map = ThumbnailUtils.extractThumbnail(ThumbnailUtils.createVideoThumbnail(ctx,
-					               itm.getVideoPath(), MediaStore.Video.Thumbnails.MICRO_KIND), 100, 100);
+			
+			try{
+				map = ThumbnailUtils.extractThumbnail(ThumbnailUtils.createVideoThumbnail(ctx,
+			               itm.getVideoPath(), MediaStore.Video.Thumbnails.MICRO_KIND), 100, 100);
+				thumbs.put(itm.getVideoPath(), map);
+			}catch(OutOfMemoryError e){
+				/*
+				 * bitmap consumes a large memory in heap,in case we get out of memory error
+				 * deallocate the hashmap and reallocate hashmap again....
+				 */
+				thumbs = null;
+				thumbs = new HashMap<String ,Bitmap>();
+			}
 			return null;
-		}
-		
+		}		
 	}
 }
