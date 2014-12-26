@@ -107,6 +107,15 @@ public class VideoPlayer extends Activity{
 		});
 		getWindow().getDecorView().setSystemUiVisibility(NAV_BAR_OPTIONS);
 		
+		
+		/*mController.setOnShownListener(new MediaController.OnShownListener() {
+			@Override
+			public void onShown() {
+				// TODO Auto-generated method stub
+				getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+			}
+		});*/
+		
 		/**
 		 * This listener is responsible for changing the orientation from reverse_landscape to landscape
 		 * and vice versa....
