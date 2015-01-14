@@ -1,0 +1,169 @@
+<!-- 
+  Copyright(c) 2014 DRAWNZER.ORG PROJECTS -> ANURAG
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+       
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+                              
+                              anurag.dev1512@gmail.com
+ 
+ -->
+ 
+ <RelativeLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/top_info"
+        android:padding="20dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/mediacontroller_bg" >
+
+        <TextView
+            android:id="@+id/mediacontroller_file_name"
+            style="@style/MediaController_Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:ellipsize="marquee"
+            android:paddingLeft="5dp"
+            android:singleLine="true" />
+        
+    </LinearLayout>
+    
+    
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:background="@color/mediacontroller_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:padding="5dp" >
+
+        <LinearLayout 
+            android:paddingBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            
+            <ImageButton
+            	android:id="@+id/mediacontroller_lock_screen"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:layout_marginLeft="5dp"
+            	android:layout_weight="1"
+            	android:background="@drawable/mediacontroller_button"
+            	android:padding="3dp"
+            	android:src="@drawable/mediacontroller_lock" />
+
+        	<ImageButton
+            	android:id="@+id/mediacontroller_previous_video"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:layout_marginLeft="5dp"
+            	android:layout_weight="1"
+            	android:background="@drawable/mediacontroller_button"
+            	android:padding="3dp"
+            	android:src="@drawable/mediacontroller_previous" />
+
+        	<ImageButton
+            	android:id="@+id/mediacontroller_play_pause"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:layout_marginLeft="5dp"
+            	android:layout_weight="1"
+            	android:background="@drawable/mediacontroller_button"
+            	android:contentDescription="@string/mediacontroller_play_pause"
+            	android:padding="3dp"
+            	android:src="@drawable/mediacontroller_pause" />
+
+        	<ImageButton
+            	android:id="@+id/mediacontroller_next_video"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:layout_marginLeft="5dp"
+            	android:layout_weight="1"
+            	android:background="@drawable/mediacontroller_button"
+            	android:padding="3dp"
+            	android:src="@drawable/mediacontroller_next" />
+
+        	<ImageButton
+            	android:id="@+id/mediacontroller_resize"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:layout_marginLeft="5dp"
+            	android:layout_weight="1"
+            	android:background="@drawable/mediacontroller_button"
+            	android:padding="3dp"
+            	android:src="@drawable/mediacontroller_zoom_out" />
+        </LinearLayout>        
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/mediacontroller_unlock_screen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/top_info"
+        android:background="@drawable/mediacontroller_button"
+        android:padding="5dp"
+        android:src="@drawable/mediacontroller_unlock" />
+
+    <ImageButton
+        android:id="@+id/mediacontroller_change_orientation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/mediacontroller_unlock_screen"
+        android:background="@drawable/mediacontroller_button"
+        android:contentDescription="@string/mediacontroller_play_pause"
+        android:padding="5dp"
+        android:src="@drawable/mediacontroller_orientation" />
+
+    <ImageButton
+        android:id="@+id/mediacontroller_qr_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout1"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="38dp"
+        android:background="@drawable/mediacontroller_button"
+        android:contentDescription="@string/mediacontroller_play_pause"
+        android:padding="5dp"
+        android:src="@drawable/mediacontroller_qr_code" />
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout1"
+        android:layout_alignParentLeft="true"
+        layout="@layout/seekbar" />
+
+    <TextView
+        android:textSize="40sp"
+        android:visibility="gone"
+        android:id="@+id/player_control_messages"
+        style="@style/MediaController_Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textStyle="bold" />
+    
+</RelativeLayout>

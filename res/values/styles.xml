@@ -50,4 +50,20 @@
     <style name="ActionBarThemeTitleStyle" parent="android:style/TextAppearance.Holo.Widget.ActionBar.Title">
         <item name="android:textStyle">bold</item>
     </style>
+    
+    <style name="MediaController_Text">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+    
+    <!-- theme for init activity of decoders.... -->
+    <style name="Theme.Holo.Translucent" parent="android:Theme.Holo">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    
 </resources>
