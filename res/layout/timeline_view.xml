@@ -44,7 +44,6 @@
 
         <!-- SLIDING LAYOUT -->
         <LinearLayout
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -64,7 +63,7 @@
                     android:layout_gravity="center_vertical"
                     android:background="@color/semi_white15"
                     android:id="@+id/slider_alb_art"
-                    android:layout_width="60dp"
+                    android:layout_width="80dp"
                     android:layout_height="60dp"/>
                 
                 <TextView
