@@ -46,15 +46,6 @@
         android:theme="@style/AppTheme" >
         
         
-        
-        <!-- MUST HAVE ACTIVITY FROM VITAMIO LIBRARY..... -->
-        <activity
-            android:name="io.vov.vitamio.activity.InitActivity"
-            android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
-            android:launchMode="standard"
-            android:theme="@style/Theme.Holo.Translucent"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        
         <!-- SIMPLE ACTIVITY LAUNCHED ON LONG CLICK ACTION.... -->
         <activity 
             android:name="drawnzer.anurag.kollosal.LongClick"

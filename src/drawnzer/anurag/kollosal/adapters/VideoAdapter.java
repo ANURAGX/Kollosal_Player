@@ -20,8 +20,6 @@
 
 package drawnzer.anurag.kollosal.adapters;
 
-import io.vov.vitamio.ThumbnailUtils;
-import io.vov.vitamio.provider.MediaStore;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -159,9 +157,9 @@ public class VideoAdapter extends BaseAdapter{
 			// TODO Auto-generated method stub
 			
 			try{
-				map = ThumbnailUtils.extractThumbnail(ThumbnailUtils.createVideoThumbnail(ctx,
+				/*map = ThumbnailUtils.extractThumbnail(ThumbnailUtils.createVideoThumbnail(ctx,
 			               itm.getVideoPath(), MediaStore.Video.Thumbnails.MICRO_KIND), thumb_width, thumb_height);
-				thumbs.put(itm.getVideoPath(), map);
+				thumbs.put(itm.getVideoPath(), map);*/
 			}catch(OutOfMemoryError e){
 				/*
 				 * bitmap consumes a large memory in heap,in case we get out of memory error

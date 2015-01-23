@@ -19,7 +19,7 @@
 
 package drawnzer.anurag.kollosal;
 
-import io.vov.vitamio.LibsChecker;
+
 import android.app.ActionBar;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
@@ -170,8 +170,6 @@ public class KollosalPlayer extends FragmentActivity{
 		pager.setPageMargin(pageMargin);
 		pagerSlideTab.setViewPager(pager);
 		changeColor(currentColor);		
-		
-		LibsChecker.checkVitamioLibs(KollosalPlayer.this);
 		
 	}	
 	

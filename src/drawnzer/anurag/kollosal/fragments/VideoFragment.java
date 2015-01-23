@@ -21,6 +21,7 @@
 package drawnzer.anurag.kollosal.fragments;
 
 import java.io.File;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -42,7 +43,6 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
 
 import drawnzer.anurag.kollosal.Constant;
-import drawnzer.anurag.kollosal.LongClick;
 import drawnzer.anurag.kollosal.R;
 import drawnzer.anurag.kollosal.VideoPlayer;
 import drawnzer.anurag.kollosal.adapters.FolderAdapter;
@@ -136,10 +136,6 @@ public class VideoFragment extends Fragment implements PanelSlideListener{
 			@Override
 			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,int position, long arg3) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(getActivity(), LongClick.class);
-				intent.setAction("VIDEO");
-				intent.putExtra("PATH", list.get(position).getVideoPath());
-				startActivity(intent);
 				return true;
 			}
 		});

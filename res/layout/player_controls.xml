@@ -89,7 +89,6 @@
             	android:layout_marginLeft="5dp"
             	android:layout_weight="1"
             	android:background="@drawable/mediacontroller_button"
-            	android:contentDescription="@string/mediacontroller_play_pause"
             	android:padding="3dp"
             	android:src="@drawable/mediacontroller_pause" />
 
@@ -132,7 +131,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/mediacontroller_unlock_screen"
         android:background="@drawable/mediacontroller_button"
-        android:contentDescription="@string/mediacontroller_play_pause"
         android:padding="5dp"
         android:src="@drawable/mediacontroller_orientation" />
 
@@ -144,7 +142,6 @@
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="38dp"
         android:background="@drawable/mediacontroller_button"
-        android:contentDescription="@string/mediacontroller_play_pause"
         android:padding="5dp"
         android:src="@drawable/mediacontroller_qr_code" />
 

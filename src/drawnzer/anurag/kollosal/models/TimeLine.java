@@ -18,9 +18,6 @@
  */
 
 package drawnzer.anurag.kollosal.models;
-
-import io.vov.vitamio.ThumbnailUtils;
-import io.vov.vitamio.provider.MediaStore;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -91,7 +88,7 @@ public class TimeLine {
 	 * @return
 	 */
 	public Bitmap getVideoPreview(String path){
-		preview = ThumbnailUtils.createVideoThumbnail(context, path, MediaStore.Video.Thumbnails.MICRO_KIND);
+		//preview = ThumbnailUtils.createVideoThumbnail(context, path, MediaStore.Video.Thumbnails.MICRO_KIND);
 		if(preview !=null)
 			return preview;
 		return null;
