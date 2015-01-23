@@ -21,7 +21,6 @@
 package drawnzer.anurag.kollosal.fragments;
 
 import java.io.File;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -38,12 +37,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-
-import com.sothree.slidinguppanel.SlidingUpPanelLayout;
-import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
-
 import drawnzer.anurag.kollosal.Constant;
 import drawnzer.anurag.kollosal.R;
+import drawnzer.anurag.kollosal.SlidingUpPanelLayout;
+import drawnzer.anurag.kollosal.SlidingUpPanelLayout.PanelSlideListener;
 import drawnzer.anurag.kollosal.VideoPlayer;
 import drawnzer.anurag.kollosal.adapters.FolderAdapter;
 import drawnzer.anurag.kollosal.adapters.VideoAdapter;

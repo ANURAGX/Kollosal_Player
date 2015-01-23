@@ -21,6 +21,7 @@ package drawnzer.anurag.kollosal;
 
 
 import android.app.ActionBar;
+
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -38,8 +39,6 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-
-import com.astuetz.PagerSlidingTabStrip;
 
 import drawnzer.anurag.kollosal.adapters.DrawerMenuAdapter;
 import drawnzer.anurag.kollosal.adapters.KollosalFragmentAdapter;

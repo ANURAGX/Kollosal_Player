@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.astuetz;
+package drawnzer.anurag.kollosal;
 
 import java.util.Locale;
 

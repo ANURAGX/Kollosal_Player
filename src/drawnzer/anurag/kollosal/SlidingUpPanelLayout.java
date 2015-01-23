@@ -1,4 +1,4 @@
-package com.sothree.slidinguppanel;
+package drawnzer.anurag.kollosal;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

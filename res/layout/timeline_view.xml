@@ -22,7 +22,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >    
-    <com.sothree.slidinguppanel.SlidingUpPanelLayout
+    <drawnzer.anurag.kollosal.SlidingUpPanelLayout
         xmlns:sothree="http://schemas.android.com/apk/res-auto"
         android:id="@+id/sliding_layout_video"
         android:layout_width="match_parent"
@@ -94,7 +94,7 @@
         </LinearLayout>
         
         
-    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
+    </drawnzer.anurag.kollosal.SlidingUpPanelLayout>
     
     
   
