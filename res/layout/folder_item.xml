@@ -29,6 +29,7 @@
  
     
     <RelativeLayout 
+        android:layout_marginLeft="5dp"
         android:gravity="center"
         android:layout_width="50dp"
         android:layout_height="50dp">

@@ -36,6 +36,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import drawnzer.anurag.kollosal.R;
+import drawnzer.anurag.kollosal.Utils;
 import drawnzer.anurag.kollosal.fragments.VideoFragment;
 import drawnzer.anurag.kollosal.models.VideoItem;
 
@@ -54,6 +55,8 @@ public class VideoAdapter extends BaseAdapter{
 	//true then loads video thumbnail....
 	private boolean thumbLoading;
 	
+	private int thumb_width;
+	private int thumb_height;
 	/**
 	 * 
 	 * @param context
@@ -67,6 +70,9 @@ public class VideoAdapter extends BaseAdapter{
 		thumbLoading = loadThumb;
 		thumbs = new HashMap<String , Bitmap>();
 		this.inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		
+		thumb_width = Utils.convert_dp_to_px(ctx, 100);
+		thumb_height = Utils.convert_dp_to_px(ctx, 70);
 	}
 	
 	@Override
@@ -94,18 +100,16 @@ public class VideoAdapter extends BaseAdapter{
 	}
 	
 	@Override
-	public View getView(int position, View convert, ViewGroup arg2) {
+	public View getView(int position, View convert2, ViewGroup arg2) {
 		// TODO Auto-generated method stub
 		VideoItem item = list.get(position);
 		Holder hold = new Holder();
-		if(convert == null){
-			convert = inflater.inflate(R.layout.video_grid_item, arg2 , false);
+		View convert = null;
+		convert = inflater.inflate(R.layout.video_grid_item, arg2 , false);
 			hold.thumb = (ImageView) convert.findViewById(R.id.grid_icon);
 			hold.name = (TextView) convert.findViewById(R.id.grid_artist_name);
 			hold.newVid = (ImageView) convert.findViewById(R.id.new_video);
 			convert.setTag(hold);
-		}else
-			hold = (Holder) convert.getTag();	
 		
 		hold.name.setText(item.getDisplayName());
 		
@@ -156,7 +160,7 @@ public class VideoAdapter extends BaseAdapter{
 			
 			try{
 				map = ThumbnailUtils.extractThumbnail(ThumbnailUtils.createVideoThumbnail(ctx,
-			               itm.getVideoPath(), MediaStore.Video.Thumbnails.MICRO_KIND), 100, 100);
+			               itm.getVideoPath(), MediaStore.Video.Thumbnails.MICRO_KIND), thumb_width, thumb_height);
 				thumbs.put(itm.getVideoPath(), map);
 			}catch(OutOfMemoryError e){
 				/*

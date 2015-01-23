@@ -24,6 +24,7 @@ import android.app.ActionBar;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
@@ -145,7 +146,9 @@ public class KollosalPlayer extends FragmentActivity{
 				
 				changeColor(getResources().getColor(Constant.COLORS[arg2]));
 				
-							
+				//applying color change to system views....
+				init_system_ui();							
+				
 				SharedPreferences.Editor edit = prefs.edit();
 				edit.putInt("APP_COLOR", getResources().getColor(Constant.COLORS[arg2]));
 				edit.putInt("SEMI_APP_COLOR", getResources().getColor(Constant.SEMI_COLORS[arg2]));
@@ -168,14 +171,66 @@ public class KollosalPlayer extends FragmentActivity{
 		pagerSlideTab.setViewPager(pager);
 		changeColor(currentColor);		
 		
-		//setting view pager limit to save fragents....
-		pager.setOffscreenPageLimit(7);
-		
 		LibsChecker.checkVitamioLibs(KollosalPlayer.this);
 		
 	}	
 	
 	
+	@Override
+	public void onResume(){
+		super.onResume();
+		init_system_ui();
+	}
+	
+	private void init_system_ui() {
+		// TODO Auto-generated method stub
+		if(Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT)
+			return;
+		
+		SystemBarTintManager tinter = new SystemBarTintManager(KollosalPlayer.this);
+		SystemBarTintManager.SystemBarConfig conf = tinter.getConfig();
+		boolean isNavBar = conf.hasNavigtionBar();
+		if(isNavBar){
+			tinter.setNavigationBarTintEnabled(true);
+			tinter.setNavigationBarTintColor(currentColor);
+		}
+		tinter.setStatusBarTintEnabled(true);
+		tinter.setStatusBarTintColor(currentColor);
+		LinearLayout ls = (LinearLayout) findViewById(R.id.lists_layout);
+		LinearLayout frame = (LinearLayout) findViewById(R.id.frame_container);
+		frame.setPadding(0, getStatusBarHeight(), 0, isNavBar ? getNavigationBarHeight() : 0);
+		ls.setPadding(0, getStatusBarHeight(), 0, isNavBar ? getNavigationBarHeight() : 0);
+	}
+
+	/**
+	 * 
+	 * @return height of status bar along with height of action bar....
+	 */
+	private int getStatusBarHeight(){
+		int res = 0;
+		int resId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+		if(resId > 0)
+			res = getResources().getDimensionPixelSize(resId);
+		TypedValue val = new TypedValue();
+		getTheme().resolveAttribute(android.R.attr.actionBarSize, val, true); 
+		int action_size = TypedValue.complexToDimensionPixelSize(val.data, getResources().getDisplayMetrics());
+		res += action_size;
+		return res;
+	}
+	
+	/**
+	 * 
+	 * @return the height of navigation bar....
+	 */
+	private int getNavigationBarHeight(){
+		int res = 0;
+		int resId = getResources().getIdentifier("navigation_bar_height", "dimen", "android");
+		if(resId > 0)
+			res = getResources().getDimensionPixelSize(resId);
+		return res;
+	}
+	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    // Inflate the menu items for use in the action bar
@@ -199,7 +254,7 @@ public class KollosalPlayer extends FragmentActivity{
 		// http://stackoverflow.com/questions/11002691/actionbar-setbackgrounddrawable-nulling-background-from-thread-handler
 		actionBar.setDisplayShowTitleEnabled(false);
 		actionBar.setDisplayShowTitleEnabled(true);
-		
+		currentColor = newColor;
 	}	
 
 	@Override
