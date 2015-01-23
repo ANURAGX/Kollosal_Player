@@ -20,6 +20,8 @@
 package drawnzer.anurag.kollosal;
 
 
+import org.videolan.libvlc.IVideoPlayer;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -29,6 +31,7 @@ import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 import android.view.OrientationEventListener;
+import android.view.Surface;
 import android.view.View;
 
 
@@ -37,7 +40,7 @@ import android.view.View;
  * @author Anurag....
  *
  */
-public class VideoPlayer extends Activity{
+public class VideoPlayer extends Activity implements IVideoPlayer{
 
 	private GestureDetector detector;
 	private String videoPath;
@@ -138,5 +141,25 @@ public class VideoPlayer extends Activity{
 	        return 4;
 	        return 0;
 	    }
+	}
+
+
+	@Override
+	public void setSurfaceLayout(int width, int height, int visible_width,
+			int visible_height, int sar_num, int sar_den) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int configureSurface(Surface surface, int width, int height, int hal) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void eventHardwareAccelerationError() {
+		// TODO Auto-generated method stub
+		
 	}
 }
