@@ -21,6 +21,7 @@ package drawnzer.anurag.kollosal;
 
 
 import org.videolan.libvlc.IVideoPlayer;
+import org.videolan.libvlc.LibVLC;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -32,6 +33,8 @@ import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 import android.view.OrientationEventListener;
 import android.view.Surface;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 
 
@@ -47,6 +50,13 @@ public class VideoPlayer extends Activity implements IVideoPlayer{
 	private int NAV_BAR_OPTIONS;
 	private int color;
 	private OrientationEventListener orientationlistener;
+	
+	private LibVLC mLibVLC;
+	
+	private Surface mSurface;
+	private SurfaceHolder mSurfaceHolder;
+	private SurfaceView mSurfaceView;
+	
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
