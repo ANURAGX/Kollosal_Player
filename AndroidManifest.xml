@@ -39,8 +39,10 @@
         android:targetSdkVersion="21" />
 
     <application
+        android:name="drawnzer.anurag.kollosal.KollosalApplication"
         android:hardwareAccelerated="true"
         android:allowBackup="true"
+        android:largeHeap="true"
         android:icon="@drawable/red_kollosal"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
